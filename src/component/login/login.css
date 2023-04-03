@@ -1,0 +1,19 @@
+.login div{
+    width: 45%;
+}
+.loginform input{
+    width: 50%;
+    padding: 10px 10px;
+    margin-bottom: 10px;
+}
+.loginform button{
+    color: black;
+    width: 50%;
+    font-weight: 600;
+    margin-top: 10px;
+}
+.loginform1 div{
+    width: 200px;
+    background-color: aqua;
+    margin-left: 10px;
+}

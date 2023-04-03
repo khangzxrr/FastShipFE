@@ -1,0 +1,17 @@
+.href a {
+    color: black;
+    font-size: 11px;
+    line-height: 19px;
+    text-transform: uppercase;
+    padding: 0 12px;
+    border-right: 1px solid #101010;
+  }
+  
+  .href a:hover {
+    text-decoration: underline;
+  }
+  
+  .links div {
+    padding: 10px 0px;
+  }
+  
