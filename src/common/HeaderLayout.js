@@ -9,6 +9,7 @@ import {
 import "../common/style.css";
 import { Link, useNavigate } from "react-router-dom";
 import {VscAccount} from 'react-icons/vsc'
+import { useSelector } from "react-redux";
 const { Header } = Layout;
 
 const Item = ({ children }) => (
@@ -46,6 +47,9 @@ const items = [
 
 export const HeaderLayout = () => {
   const navigate = useNavigate();
+
+  const loginInfo = useSelector(state => state.login)
+
   return (
     <>
           <div style={{ backgroundColor: "#f0f0ed" }}>
@@ -72,11 +76,18 @@ export const HeaderLayout = () => {
             >
             </div>
           </div>
+          {loginInfo ?
+            <div className="href">
+              <Link to="/login">{loginInfo.email}</Link>
+          </div>
+          :
           <div className="href">
-            <Link to="/order">Tài Khoản</Link>
             <Link to="/login">Đăng Nhập</Link>
             <Link to="/signin">Đăng Ký</Link>
           </div>
+          }
+
+          
         </div>
       </div>
       <Header
