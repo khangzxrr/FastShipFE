@@ -1,14 +1,64 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "../home/home.css"
 import { Input, Checkbox, Button, Form, message, Space } from "antd";
 import { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { HubConnectionBuilder } from '@microsoft/signalr';
+import { useDispatch, useSelector } from 'react-redux';
+import { requestProductAction } from '../../features/requestProduct/requestProductAction';
+import { addProduct } from '../../features/requestProduct/requestProductSlice';
+
 
 const onChange = (e) => {
     console.log(`checked = ${e.target.checked}`);
 };
 const { TextArea } = Input;
 export default function () {
+    const [productUrl, setProductUrl] = useState('')
+    const [waitingFetching, setwaitingFetching] = useState(false)
+    const [connection, setConnection] = useState(null)
+
+    const loginInfo = useSelector(state => state.login)
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    function handleProductUrlOnChange(event) {
+        setProductUrl(event.target.value)
+    }
+
+    function handleRequestProductOnClick() {
+        dispatch(requestProductAction(productUrl, loginInfo.token))
+        setwaitingFetching(true)
+    }
+
+    useEffect(() => {
+
+        const connection = new HubConnectionBuilder()
+            .withUrl('https://fastship.sontran.us/hub', { accessTokenFactory: () => loginInfo.token })
+            .withAutomaticReconnect()
+            .build()
+
+        setConnection(connection)
+    }, [])
+
+    useEffect(() => {
+        if (connection != null && loginInfo != null) {
+            connection
+                .start()
+                .then(() => {
+                    console.log("connected")
+                    connection.on("boardcast", (message) => {
+                        console.log(JSON.parse(message))
+                        const jsonProduct = JSON.parse(message)
+                        dispatch(addProduct(jsonProduct))
+                        navigate("/add")
+                    });
+                })
+                .catch((err) => console.log(err))
+        }
+    }, [connection, loginInfo])
+
     return (
         <>
             <div style={{ marginLeft: "50%", position: "absolute", zIndex: "1", paddingTop: '20px' }}>
@@ -23,15 +73,14 @@ export default function () {
                     </div>
                 </div>
                 <div className='form-home'>
-                    <div className='baogia-form'>
-                        <Input className='baogiaip' placeholder='LINK HOẶC TÊN SẢN PHẨM' />
+                    <div className='baogia-form' hidden={!waitingFetching}>
+                        Xin vui lòng chờ giây lát....
+                    </div>
+                    <div className='baogia-form' hidden={waitingFetching}>
+                        <Input className='baogiaip' placeholder='LINK HOẶC TÊN SẢN PHẨM' onChange={handleProductUrlOnChange}/>
                         <Input className='baogiaip' placeholder='SỐ LƯỢNG' />
-                        <Input className='baogiaip' placeholder='MÃ GIẢM GIÁ' />
-                        <Input className='baogiaip' placeholder='MÔ TẢ SẢN PHẨM' />
-                        <Checkbox><span style={{ color: "#FFE715" }}>Khách hàng doanh nghiệp cần xuất VAT</span></Checkbox>
                         <br />
-                        <button>Thêm vào giỏ hàng</button>
-                        <button>Báo giá nhanh</button>
+                        <button onClick={handleRequestProductOnClick}>Báo giá nhanh</button>
                     </div>
                     <div className='timkiem-form' style={{ height: "200px" }}>
                         <Link><Input style={{ width: "70%" }} placeholder='LINK HOẶC TÊN SẢN PHẨM' /></Link>

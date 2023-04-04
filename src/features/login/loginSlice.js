@@ -16,10 +16,14 @@ export const loginSlice = createSlice({
             state.token = action.payload.token
             state.phoneNumber = action.payload.phoneNumber
         },
-        loginFailure: (state, action) => {
-            
+        logout: (state) => {
+            state.isLogin = false
+            state.email = ''
+            state.phoneNumber = ''
+            state.token = ''
+            console.log('logout! ' + state.isLogin)
         }
     }
 })
 
-export const { loginSuccess, loginFailure } = loginSlice.actions
+export const { loginSuccess, logout } = loginSlice.actions

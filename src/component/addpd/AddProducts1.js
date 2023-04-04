@@ -10,9 +10,6 @@ export default function AddProducts1() {
         <h2>TẠO ĐƠN HÀNG</h2>
         <p>Điền đầy đủ thông tin bên dưới</p>
         <AddDeleteTableRows/>
-        <Input className='voucher' style={{width:'40%'}} placeholder="MÃ GIẢM GIÁ" />
-        <Button style={{backgroundColor:'black', color:'yellow', margin:'0px 5px'}}><AiOutlineGift style={{fontSize:"15px", marginRight:"5px"}}/> FREESHIP</Button>
-        <Button style={{backgroundColor:'black', color:'yellow', margin:'0px 5px'}}><AiOutlineGift style={{fontSize:"15px", marginRight:"5px"}}/> GIAM10K</Button>
     </div>
   )
 }

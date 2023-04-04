@@ -9,7 +9,8 @@ import {
 import "../common/style.css";
 import { Link, useNavigate } from "react-router-dom";
 import {VscAccount} from 'react-icons/vsc'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../features/login/loginSlice";
 const { Header } = Layout;
 
 const Item = ({ children }) => (
@@ -46,9 +47,15 @@ const items = [
 ];
 
 export const HeaderLayout = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const loginInfo = useSelector(state => state.login)
+
+  function logoutOnClick() {
+    dispatch(logout())
+    alert('Đã đăng xuất thành công!')
+  }
 
   return (
     <>
@@ -76,9 +83,10 @@ export const HeaderLayout = () => {
             >
             </div>
           </div>
-          {loginInfo ?
+          {loginInfo.isLogin ?
             <div className="href">
               <Link to="/login">{loginInfo.email}</Link>
+              <Link onClick={logoutOnClick}>Đăng xuất</Link>
           </div>
           :
           <div className="href">

@@ -2,71 +2,56 @@ import TableRows from "./TableRows"
 import React, { useState } from "react";
 import { Button, Input } from "antd";
 import "../addpd/addpd.css"
-import {AiFillDelete} from "react-icons/ai"
+import { AiFillDelete } from "react-icons/ai"
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 function AddDeleteTableRows() {
+    const requestProduct = useSelector(state => state.requestProduct)
 
+    const navigate = useNavigate()
 
-    const [rowsData, setRowsData] = useState([]);
+    console.log(requestProduct)
 
-    const addTableRows = () => {
-
-        const rowsInput = {
-            link: '',
-            color: '',
-            price: '',
-            quantity: '',
-        }
-        setRowsData([...rowsData, rowsInput])
-
-    }
-    const deleteTableRows = (index) => {
-        const rows = [...rowsData];
-        rows.splice(index, 1);
-        setRowsData(rows);
+    function handleAddNewProduct(){
+        navigate('/home')
     }
 
-    const handleChange = (index, evnt) => {
-
-        const { name, value } = evnt.target;
-        const rowsInput = [...rowsData];
-        rowsInput[index][name] = value;
-        setRowsData(rowsInput);
-
-
-
-    }
     return (
         <div>
-            <table className="addtb" style={{ width: '100%', marginTop:'20px' }}>
-                <tr> 
-                    <th style={{width:'40%'}}>LINK HOẶC TÊN SẢN PHẨM</th>
-                    <th>MÀU SẮC</th>
-                    <th>GIÁ SẢN PHẨM</th>
-                    <th>SỐ LƯỢNG</th>
-                </tr>
-                <tr>
-                    <td><Input defaultValue={'https://minhtuanmobile.com/iphone-14-pro-max/'}/></td>
-                    <td><Input defaultValue={'đen'}/></td>
-                    <td><Input defaultValue={'1.200'}/></td>
-                    <td><Input defaultValue={'1'}/></td>
-                    <td><button style={{fontSize:20, border:'none', backgroundColor:'white'}} >
-                        <AiFillDelete/>
-                    </button></td>
-                </tr>
-                <tr>
-                    <td><Input defaultValue={'https://minhtuanmobile.com/iphone-14-pro-max/'} /></td>
-                    <td><Input defaultValue={'đen'}/></td>
-                    <td><Input defaultValue={'1.200'}/></td>
-                    <td><Input defaultValue={'1'}/></td>
-                    <td><button style={{fontSize:20, border:'none', backgroundColor:'white'}} >
-                        <AiFillDelete/>
-                    </button></td>
-                </tr>
+            <table className="addtb" style={{ width: '100%', marginTop: '20px' }}>
                 <tbody>
-                    <TableRows rowsData={rowsData} deleteTableRows={deleteTableRows} handleChange={handleChange} />
+                    <tr>
+                        <th style={{ width: '40%' }}>LINK HOẶC TÊN SẢN PHẨM</th>
+                        <th>LOẠI</th>
+                        <th>TÊN</th>
+                        <th>GIÁ SẢN PHẨM</th>
+                        <th>SỐ LƯỢNG</th>
+                        <th>CÓ BẢO HÀNH</th>
+                        <th>CÓ ĐỔI TRẢ</th>
+                    </tr>
+
+                    {
+                        requestProduct.products.map((product, index) => {
+                            return (
+                                <tr>
+                                    <td><Input defaultValue={product.productURL} /></td>
+                                    <td><Input defaultValue={product.productCategory.productCategoryName} /></td>
+                                    <td><Input defaultValue={product.productName} /></td>
+                                    <td><Input defaultValue={product.productPrice + '$'} /></td>
+                                    <td><Input defaultValue={'1'} /></td>
+                                    <td><Input defaultValue={product.productWarrantable ? "Có" : "Không"} /></td>
+                                    <td><Input defaultValue={product.productReturnable ? "Có" : "Không"} /></td>
+                                    <td>
+                                        <button style={{ fontSize: 20, border: 'none', backgroundColor: 'white' }} ><AiFillDelete /></button>
+                                    </td>
+                                </tr>
+                            )
+                        })
+                    }
                 </tbody>
+
             </table>
-            <Button type="primary" style={{ marginLeft: '250px', color: 'black' , marginBottom:'100px', fontWeight:600}} onClick={addTableRows} >THÊM SẢN PHẨM KHÁC</Button>
+            <Button type="primary" style={{ marginLeft: '250px', color: 'black', marginBottom: '100px', fontWeight: 600 }}  onClick={handleAddNewProduct}>THÊM SẢN PHẨM KHÁC</Button>
         </div>
 
     )

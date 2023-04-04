@@ -16,7 +16,7 @@ export default function LoginForm() {
 
 
     useEffect(() => {
-        if (loginInfo != null) {
+        if (loginInfo.isLogin) {
             navigate("/home")
         }
     }, [loginInfo])

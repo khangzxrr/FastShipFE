@@ -13,7 +13,6 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const persistor = persistStore(store)
 root.render(
-  <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <PersistGate loading={null} persistor={persistor}>
@@ -21,7 +20,5 @@ root.render(
         </PersistGate>  
       </BrowserRouter>
     </Provider>
-    
-  </React.StrictMode>
 );
 reportWebVitals();

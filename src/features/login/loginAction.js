@@ -1,8 +1,8 @@
-import axios from "axios"
+import axiosProfile from "../axiosProfile"
 import { loginSuccess } from "./loginSlice"
 
 export const logionAction = (email, password) => async dispatch => {
-    const response = await axios.post('http://localhost:57679/Login',{
+    const response = await axiosProfile.post('/Login',{
         email,
         password
     })
