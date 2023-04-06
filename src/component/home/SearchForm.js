@@ -7,6 +7,8 @@ import { HubConnectionBuilder } from '@microsoft/signalr';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestProductAction } from '../../features/requestProduct/requestProductAction';
 import { addProduct } from '../../features/requestProduct/requestProductSlice';
+import { logout } from '../../features/login/loginSlice';
+import { API_BASE_URL } from '../../features/axiosProfile';
 
 
 const onChange = (e) => {
@@ -28,14 +30,26 @@ export default function () {
     }
 
     function handleRequestProductOnClick() {
-        dispatch(requestProductAction(productUrl, loginInfo.token))
         setwaitingFetching(true)
+        dispatch(requestProductAction(productUrl, loginInfo.token))
+            .catch((err) => {
+                console.log(err.response.status)
+                if (err.response.status === 401){
+                    alert('Không có quyền yêu cầu báo giá, vui lòng đăng nhập lại')
+                    dispatch(logout())    
+                    navigate("/login")
+                }
+
+                setwaitingFetching(false)
+            })
+
+        
     }
 
     useEffect(() => {
 
         const connection = new HubConnectionBuilder()
-            .withUrl('https://fastship.sontran.us/hub', { accessTokenFactory: () => loginInfo.token })
+            .withUrl(API_BASE_URL + "/hub", { accessTokenFactory: () => loginInfo.token })
             .withAutomaticReconnect()
             .build()
 
@@ -49,9 +63,17 @@ export default function () {
                 .then(() => {
                     console.log("connected")
                     connection.on("boardcast", (message) => {
-                        console.log(JSON.parse(message))
-                        const jsonProduct = JSON.parse(message)
-                        dispatch(addProduct(jsonProduct))
+                        
+                        const jsonObj = JSON.parse(message)
+
+                        if (jsonObj.message) {
+                            alert("Có lỗi xảy ra, vui lòng thử lại")
+                            setwaitingFetching(false)
+                            return
+                        } 
+
+                        //success
+                        dispatch(addProduct(jsonObj))
                         navigate("/add")
                     });
                 })
