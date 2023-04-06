@@ -9,7 +9,7 @@ export const requestProductAction = (productUrl, token) => async dispatch => {
             "Content-type": "application/json",
             "Authorization": `Bearer ${token}`
         }
-})
+    })
 
     return Promise.resolve(response.data)
 }

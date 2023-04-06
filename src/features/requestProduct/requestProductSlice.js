@@ -7,10 +7,12 @@ export const requestProductSlice = createSlice({
     },
     reducers: {
         addProduct: (state, action) => {
-            state.products = [] //clear products
             state.products.push(action.payload)
+        },
+        removeProduct: (state, action) => {
+            state.products = state.products.splice(action.payload, 1)
         }
     }
 })
 
-export const { addProduct } = requestProductSlice.actions
+export const { addProduct, removeProduct } = requestProductSlice.actions
