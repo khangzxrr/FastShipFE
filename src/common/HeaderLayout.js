@@ -133,9 +133,12 @@ export const HeaderLayout = () => {
           </div>
           <div>
             
-            <Button style={{ fontSize: 11 }}>
-              YÊU CẦU BÁO GIÁ
-            </Button>
+            <Link to="/add">
+              <Button style={{ fontSize: 11 }} >
+                GIỎ HÀNG
+              </Button>
+            </Link>
+            
           </div>  
         </div>
       </Header>
