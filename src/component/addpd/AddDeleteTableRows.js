@@ -3,17 +3,24 @@ import React, { useState } from "react";
 import { Button, Input } from "antd";
 import "../addpd/addpd.css"
 import { AiFillDelete } from "react-icons/ai"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { removeProduct } from "../../features/requestProduct/requestProductSlice";
 function AddDeleteTableRows() {
     const requestProduct = useSelector(state => state.requestProduct)
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     console.log(requestProduct)
 
     function handleAddNewProduct(){
         navigate('/home')
+    }
+
+    function handleDeleteProduct(productIndex){
+        console.log("call handle")
+        dispatch(removeProduct(productIndex))
     }
 
     return (
@@ -33,7 +40,7 @@ function AddDeleteTableRows() {
                     {
                         requestProduct.products.map((product, index) => {
                             return (
-                                <tr>
+                                <tr key={index}>
                                     <td><Input defaultValue={product.productURL} /></td>
                                     <td><Input defaultValue={product.productCategory.productCategoryName} /></td>
                                     <td><Input defaultValue={product.productName} /></td>
@@ -42,7 +49,7 @@ function AddDeleteTableRows() {
                                     <td><Input defaultValue={product.productWarrantable ? "Có" : "Không"} /></td>
                                     <td><Input defaultValue={product.productReturnable ? "Có" : "Không"} /></td>
                                     <td>
-                                        <button style={{ fontSize: 20, border: 'none', backgroundColor: 'white' }} ><AiFillDelete /></button>
+                                        <button style={{ fontSize: 20, border: 'none', backgroundColor: 'white' }} onClick={() => {handleDeleteProduct(index)}}><AiFillDelete /></button>
                                     </td>
                                 </tr>
                             )
