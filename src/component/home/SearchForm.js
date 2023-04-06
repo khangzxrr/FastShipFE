@@ -57,6 +57,7 @@ export default function () {
     }, [])
 
     useEffect(() => {
+
         if (connection != null && loginInfo != null) {
             connection
                 .start()
@@ -77,7 +78,13 @@ export default function () {
                         navigate("/add")
                     });
                 })
-                .catch((err) => console.log(err))
+                .catch((err) => {
+                    if (err.errorType === "FailedToNegotiateWithServerError"){
+                        alert('Không có quyền yêu cầu báo giá, vui lòng đăng nhập lại')
+                        dispatch(logout())    
+                        navigate("/login")
+                    }
+                })
         }
     }, [connection, loginInfo])
 

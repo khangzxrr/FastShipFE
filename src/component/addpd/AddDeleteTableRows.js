@@ -1,5 +1,5 @@
 import TableRows from "./TableRows"
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Input } from "antd";
 import "../addpd/addpd.css"
 import { AiFillDelete } from "react-icons/ai"
@@ -12,7 +12,12 @@ function AddDeleteTableRows() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    console.log(requestProduct)
+    useEffect(() => {
+        if (requestProduct.products.length == 0){
+            navigate("/home")
+        }
+    }, [requestProduct.products])
+    
 
     function handleAddNewProduct(){
         navigate('/home')
@@ -21,6 +26,11 @@ function AddDeleteTableRows() {
     function handleDeleteProduct(productIndex){
         console.log("call handle")
         dispatch(removeProduct(productIndex))
+
+        
+        if (requestProduct.products.length == 0){
+            navigate("/home")
+        }
     }
 
     return (

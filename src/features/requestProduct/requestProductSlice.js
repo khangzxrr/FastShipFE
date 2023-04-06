@@ -10,7 +10,14 @@ export const requestProductSlice = createSlice({
             state.products.push(action.payload)
         },
         removeProduct: (state, action) => {
-            state.products = state.products.splice(action.payload, 1)
+
+            if (state.products.length == 1){
+                state.products = []
+            } else {
+                state.products = state.products.splice(action.payload, 1)
+            }
+
+            
         }
     }
 })
