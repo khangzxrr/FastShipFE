@@ -1,38 +1,69 @@
-import React from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { Input, Button, Steps } from 'antd'
 import "../myod/detailod.css"
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { getOrderByIdAction } from '../../features/getOrderById/getOrderByIdAction';
 
 export default function DetailOrders() {
 
-    const {order} = useSelector(state => state.createOrder)
+    const { search } = useLocation()
+
+    
+
+    const { token } = useSelector(state => state.login)
+    const { order } = useSelector(state => state.getOrderById)
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+
+
+    useMemo(() => {
+        const orderId = new URLSearchParams(search).get('orderId')
+
+        if (orderId == null){
+            
+            alert('không có thông tin orderId')
+            navigate('/home')
+        }
+
+        dispatch(getOrderByIdAction(orderId, token))
+            .catch((err) => {
+                if (err.response.status === 400){
+                    alert('Lỗi khi xảy ra khi lấy thông tin order')
+                    navigate('/home')
+                }
+            })
+
+    }, [search])
 
     return (
         <>
             <div className='detail3' style={{ width: '90%', margin: '10px 5%', fontWeight: 500 }}>
                 <div style={{ width: '70%' }}>
-                    <div style={{width:'100%'}}>
-                    <Steps size='small' style={{fontWeight:600, margin:'20px 0px 50px 75px', padding:'0px 100px'}}
-                    current={1}
-                    items={[
-                        {
-                            title: 'Tạo Order',
-                        },
-                        {
-                            title: 'Thanh toán lần 1',
-                        },
-                        {
-                            title: 'Đã chấp nhận',
-                        },
-                        {
-                            title: 'Hoàn tất',
-                        },
-                    ]}
-                />
+                    <div style={{ width: '100%' }}>
+                        <Steps size='small' style={{ fontWeight: 600, margin: '20px 0px 50px 75px', padding: '0px 100px' }}
+                            current={1}
+                            items={[
+                                {
+                                    title: 'Tạo Order',
+                                },
+                                {
+                                    title: 'Thanh toán lần 1',
+                                },
+                                {
+                                    title: 'Đã chấp nhận',
+                                },
+                                {
+                                    title: 'Hoàn tất',
+                                },
+                            ]}
+                        />
                     </div>
                     <div className='detail'>
                         <h1>Chờ thanh toán</h1>
-                        <table style={{display:'flex',width: '100%', marginBottom: '50px' }}>
+                        <table style={{ display: 'flex', width: '100%', marginBottom: '50px' }}>
                             <tbody>
                                 <tr>
                                     <td>orderDate</td>
@@ -62,14 +93,14 @@ export default function DetailOrders() {
                                     <td>US shipcost</td>
                                 </tr>
                                 {
-                                    order.orderDetails.map(od => 
-                                        (<tr>
-                                            <td>{od.orderDetailId}</td>
-                                            <td>{od.product.name}</td>
-                                            <td>{od.productCost}</td>
-                                            <td>{od.quantity}</td>
-                                            <td>{od.shipCost}</td>
-                                        </tr>))
+                                    order.orderDetails && order.orderDetails.map(od =>
+                                    (<tr>
+                                        <td>{od.orderDetailId}</td>
+                                        <td>{od.product.name}</td>
+                                        <td>{od.productCost}</td>
+                                        <td>{od.quantity}</td>
+                                        <td>{od.shipCost}</td>
+                                    </tr>))
                                 }
                             </tbody>
                         </table>
@@ -93,8 +124,8 @@ export default function DetailOrders() {
                             <h3>${order.remainCost}</h3>
                         </div>
                     </div>
-                    
-                    <Button type="primary" style={{width:'100%', color: 'black',fontWeight:600}} >Thanh toán </Button>
+
+                    <Button type="primary" style={{ width: '100%', color: 'black', fontWeight: 600 }} >Thanh toán </Button>
                 </div>
             </div>
         </>

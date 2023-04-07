@@ -1,8 +1,10 @@
-import React from 'react'
-import createRoot from 'react-dom'
+import React, { useEffect } from 'react'
 import { MdArrowBackIosNew, MdArrowDropDown } from 'react-icons/md'
 import { Button, Space, Table, Tag, Dropdown } from 'antd'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllOrdersAction } from '../../features/getAllOrders/getAllOrdersAction';
+import { logout } from '../../features/login/loginSlice';
 const handleMenuClick = (e) => {
 
 };
@@ -35,63 +37,52 @@ const menuProps = {
 const columns = [
   {
     title: 'MÃ ĐƠN HÀNG',
-    dataIndex: 'id',
+    dataIndex: 'orderId',
     key: 'id',
-    render: (text) => <a>{text}</a>,
+    render: (text) => <span>{text}</span>,
   },
   {
     title: 'NGÀY ĐẶT HÀNG',
-    dataIndex: 'time',
+    dataIndex: 'orderDate',
     key: 'time',
   },
   {
-    title: 'TÌNH TRẠNG ĐƠN HÀNG',
-    key: 'status',
-    dataIndex: 'status',
-    render: (_, { tags }) => (
-      <>
-        {tags.map((tag) => {
-          let color = tag.length > 5 ? 'geekblue' : 'green';
-          if (tag === 'fail') {
-            color = 'volcano';
-          }
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </>
-    ),
+    title: 'TÌNH TRẠNG',
+    dataIndex: 'orderStatus',
+    key: 'time',
   },
   {
     title: '',
+    dataIndex: 'orderId',
     key: 'action',
-    render: (_, record) => (
+    render: (orderId) => (
       <Space size="middle">
-        <a>Chi tiết</a>
+        <Link to={{pathname:`/detailod`, search: `?orderId=${orderId}`}}><span>Chi tiết</span></Link>
       </Space>
     ),
   },
 ];
-const data = [
-  {
-    id: (<Link to='/detailod'>141297</Link>),
-    time: '14-12-2020',
-    tags: ['done'],
-  },
-  {
-    id: '123456',
-    time: '14-12-2020',
-    tags: ['fail'],
-  },
-  {
-    id: '123456',
-    time: '14-12-2020',
-    tags: ['done'],
-  },
-];
+
 export default function MyOrders() {
+
+  const { orders } = useSelector(state => state.getAllOrders)
+  const { token } = useSelector(state => state.login)
+
+  const navigate = useNavigate()
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getAllOrdersAction(token))
+      .catch((err) => {
+        if (err.response.status === 401) {
+          alert('Không có quyền yêu cầu báo giá, vui lòng đăng nhập lại')
+          dispatch(logout())
+          navigate("/login")
+        }
+      })
+  }, [dispatch])
+
   return (
     <div>
       <div className='addpd' style={{ padding: "10px 20px", display: 'flex', boxShadow: ' rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px', border: 'none' }}>
@@ -107,12 +98,12 @@ export default function MyOrders() {
         </Space>
       </div>
       <div style={{
-        width: '90%', margin: '0px 5% 50px 5%', border: '1px solid grey',
+        width: '90%', margin: '0px 5% 50px 5%',
         borderRadius: '20px', padding: '10px 20px', boxShadow: ' rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px', border: 'none'
       }}>
         <h2>ĐƠN HÀNG CỦA TÔI</h2>
-        <p>Bạn hiện đang có <Link to={'/detailod'}>2</Link> đơn hàng</p>
-        <Table columns={columns} dataSource={data}/>
+        <p>Bạn hiện đang có <Link to={'/detailod'}>{orders.length}</Link> đơn hàng</p>
+        <Table columns={columns} dataSource={orders} />
       </div>
     </div>
   )

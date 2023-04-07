@@ -1,5 +1,4 @@
 import axiosProfile from "../axiosProfile"
-import { createOrderSuccess } from "./createOrderSlice"
 
 export const createOrderAction = (productDetails, token)  => async dispatch =>  {
 
@@ -17,9 +16,6 @@ export const createOrderAction = (productDetails, token)  => async dispatch =>  
             "Authorization": `Bearer ${token}`
         }
     })
-
-    dispatch(createOrderSuccess(response.data))
-    
 
     return Promise.resolve(response.data)
 }
