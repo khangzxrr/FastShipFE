@@ -11,12 +11,6 @@ function AddDeleteTableRows() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        if (requestProduct.products.length == 0){
-            navigate("/home")
-        }
-    }, [requestProduct.products])
     
 
     function handleAddNewProduct(){
