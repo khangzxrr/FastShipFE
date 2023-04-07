@@ -1,26 +1,13 @@
 import React from "react";
 import { Button, Layout, Menu } from "antd";
 import {
-  DownOutlined,
-  MailOutlined,
   PhoneFilled,
-  RightOutlined,
 } from "@ant-design/icons";
 import "../common/style.css";
 import { Link, useNavigate } from "react-router-dom";
-import {VscAccount} from 'react-icons/vsc'
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/login/loginSlice";
 const { Header } = Layout;
-
-const Item = ({ children }) => (
-  <div
-    style={{ width: "100%", display: "flex", justifyContent: "space-between" }}
-  >
-    <span>{children}</span>
-    <RightOutlined style={{ marginLeft: 30, fontSize: 9 }} />
-  </div>
-);
 
 const items = [
 
@@ -59,7 +46,7 @@ export const HeaderLayout = () => {
 
   return (
     <>
-          <div style={{ backgroundColor: "#f0f0ed" }}>
+      <div style={{ backgroundColor: "#f0f0ed" }}>
         <div
           className="container"
           style={{
@@ -87,15 +74,15 @@ export const HeaderLayout = () => {
             <div className="href">
               <Link to="/login">{loginInfo.email}</Link>
               <Link onClick={logoutOnClick}>Đăng xuất</Link>
-          </div>
-          :
-          <div className="href">
-            <Link to="/login">Đăng Nhập</Link>
-            <Link to="/signin">Đăng Ký</Link>
-          </div>
+            </div>
+            :
+            <div className="href">
+              <Link to="/login">Đăng Nhập</Link>
+              <Link to="/signin">Đăng Ký</Link>
+            </div>
           }
 
-          
+
         </div>
       </div>
       <Header
@@ -108,21 +95,22 @@ export const HeaderLayout = () => {
           borderBottom: "1px solid rgba(5, 5, 5, 0.06)",
         }}
       >
-                  <div
+        <div
           className="container"
           style={{ display: "flex", justifyContent: "space-between" }}
         >
-            <img
-              onClick={() => navigate("/")}
-              src="/logo.png"
-              style={{
-                float: "left",
-                height: "100%",
-                width: 190,
-                marginRight: 15,
-                
-              }}
-            />
+          <img
+            onClick={() => navigate("/")}
+            src="/logo.png"
+            alt="logo fastship"
+            style={{
+              float: "left",
+              height: "100%",
+              width: 190,
+              marginRight: 15,
+
+            }}
+          />
           <div style={{ display: "flex" }}>
             <Menu
               theme="light"
@@ -132,14 +120,19 @@ export const HeaderLayout = () => {
             />
           </div>
           <div>
-            
+            <Link to="/order">
+              <Button style={{ fontSize: 11 }} >
+                ORDER CỦA TÔI
+              </Button>
+            </Link>
+          </div>
+          <div>
             <Link to="/add">
               <Button style={{ fontSize: 11 }} >
                 GIỎ HÀNG
               </Button>
             </Link>
-            
-          </div>  
+          </div>
         </div>
       </Header>
     </>
