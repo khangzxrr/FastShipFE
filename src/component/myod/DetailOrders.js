@@ -1,9 +1,11 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useEffect } from 'react'
 import { Input, Button, Steps } from 'antd'
 import "../myod/detailod.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getOrderByIdAction } from '../../features/getOrderById/getOrderByIdAction';
+import { createPaymentAction } from '../../features/createPayment/createPaymentAction';
+import { logout } from '../../features/login/loginSlice';
 
 export default function DetailOrders() {
 
@@ -18,9 +20,23 @@ export default function DetailOrders() {
     const navigate = useNavigate()
 
 
+    function handleCreatePaymentOnClick () {
+        dispatch(createPaymentAction(order.orderId, window.location.href, token))
+            .then(response => window.location.href = response.payUrl)
+            .catch(err => {
+                if (err.response.status === 401){
+                    alert('Bạn không có quyền thanh toán, vui lòng đăng nhập lại')
+                    dispatch(logout())
+                    navigate('/login')
+                }
+                
+            })
+    }
 
-    useMemo(() => {
+    useEffect(() => {
         const orderId = new URLSearchParams(search).get('orderId')
+
+        console.log(orderId)
 
         if (orderId == null){
             
@@ -38,22 +54,34 @@ export default function DetailOrders() {
 
     }, [search])
 
+
+
+
     return (
         <>
             <div className='detail3' style={{ width: '90%', margin: '10px 5%', fontWeight: 500 }}>
                 <div style={{ width: '70%' }}>
                     <div style={{ width: '100%' }}>
                         <Steps size='small' style={{ fontWeight: 600, margin: '20px 0px 50px 75px', padding: '0px 100px' }}
-                            current={1}
+                            current={order.progressStatus}
                             items={[
-                                {
-                                    title: 'Tạo Order',
-                                },
                                 {
                                     title: 'Thanh toán lần 1',
                                 },
                                 {
-                                    title: 'Đã chấp nhận',
+                                    title: 'Chờ nhân viên order hàng',
+                                },
+                                {
+                                    title: 'Đang order hàng từ người bán',
+                                },
+                                {
+                                    title: 'đang giao từ Mỹ về Việt Nam',
+                                },
+                                {
+                                    title: 'Đang ở kho Việt Nam',
+                                },
+                                {
+                                    title: 'Đang giao đến người dùng',
                                 },
                                 {
                                     title: 'Hoàn tất',
@@ -125,7 +153,12 @@ export default function DetailOrders() {
                         </div>
                     </div>
 
-                    <Button type="primary" style={{ width: '100%', color: 'black', fontWeight: 600 }} >Thanh toán </Button>
+                    {
+                        order.status === "noPayYet" && 
+                            (<Button type="primary" style={{ width: '100%', color: 'black', fontWeight: 600 }} onClick={handleCreatePaymentOnClick}>Thanh toán Lần 1 (80%)</Button>)
+                    }
+
+                    
                 </div>
             </div>
         </>

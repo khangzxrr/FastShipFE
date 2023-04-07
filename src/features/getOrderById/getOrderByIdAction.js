@@ -1,4 +1,5 @@
 import axiosProfile from "../axiosProfile"
+import { getOrderByIdSuccessfully } from "./getOrderByIdSlice"
 
 
 
@@ -9,4 +10,6 @@ export const getOrderByIdAction = (orderId, token) => async dispatch => {
             "Authorization": `Bearer ${token}`
         }
     })
+
+    dispatch(getOrderByIdSuccessfully(response.data))
 }
