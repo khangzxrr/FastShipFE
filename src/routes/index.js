@@ -1,6 +1,8 @@
 import {AppLayout} from "../common/AppLayout";
 import Add from "../pages/add";
 import Detail from "../pages/detailod";
+import HomeEmployee from "../pages/employee/employee-order";
+import OrderDetailEmployee from "../pages/employee/employee-orderdetail";
 import HomePage from "../pages/home";
 import Login from "../pages/login";
 import MyOrder from "../pages/order";
@@ -42,6 +44,14 @@ export const route = [
               {
                 path: "/detailod",
                 element: <Detail/>,
+              },
+              {
+                path: "/employee-order",
+                element: <HomeEmployee/>
+              },
+              {
+                path: "/employee-orderdetail",
+                element: <OrderDetailEmployee/>,
               },
         ]
     },
