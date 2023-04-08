@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { employeeGetOrderByIdAction } from "../../features/employeeGetOrderById/employeeGetOrderByIdAction"
 import { logout } from "../../features/login/loginSlice"
 import { employeeGetOrderChatAction } from "../../features/employeeGetOrderChat/employeeGetOrderChatAction"
+import EmployeeChat from "../../component/orders-employee/EmployeeChat"
 
 const OrderDetailEmployee = () => {
 
@@ -55,7 +56,7 @@ const OrderDetailEmployee = () => {
               <OrderInfo order={order}/>
               </div>
               <div style={{width:'50%'}}>
-              <Chat chatMessages={chatMessages}/>
+              <EmployeeChat chatMessages={chatMessages} order={order}/>
               </div>
             </div>
             <div style={{width:'100%', display:'flex'}}>

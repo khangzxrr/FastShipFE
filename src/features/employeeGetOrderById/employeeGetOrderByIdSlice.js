@@ -8,8 +8,11 @@ export const employeeGetOrderByIdSlice = createSlice({
     reducers: {
         employeeGetOrderByIdSuccessfully: (state, action) => {
             state.order = action.payload.order
+        },
+        employeeSetOrderStatus: (state, action) => {
+            state.order.status = action.payload
         }
     }
 })
 
-export const { employeeGetOrderByIdSuccessfully } = employeeGetOrderByIdSlice.actions
+export const { employeeGetOrderByIdSuccessfully, employeeSetOrderStatus } = employeeGetOrderByIdSlice.actions
