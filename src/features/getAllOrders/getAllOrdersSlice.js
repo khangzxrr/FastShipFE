@@ -8,9 +8,12 @@ export const getAllOrdersSlice = createSlice({
     reducers: {
         getAllOrdersSuccessfully: (state, action) => {
             state.orders = action.payload.orderRecords
+        },
+        clearAllOrders: (state) => {
+            state.orders = []
         }
     }
 
 })  
 
-export const { getAllOrdersSuccessfully } = getAllOrdersSlice.actions
+export const { getAllOrdersSuccessfully, clearAllOrders } = getAllOrdersSlice.actions

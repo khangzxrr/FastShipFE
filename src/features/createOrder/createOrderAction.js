@@ -8,8 +8,6 @@ export const createOrderAction = (productDetails, token)  => async dispatch =>  
             }
         )
 
-    console.log(products)
-
     const response = await axiosProfile.post('/Orders', {
         products
     }, {

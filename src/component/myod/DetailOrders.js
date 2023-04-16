@@ -141,7 +141,7 @@ export default function DetailOrders() {
                             <h3>TỔNG CỘNG</h3>
                         </div>
                         <div style={{ width: '50%', textAlign: 'right' }}>
-                            <h3>${order.price}</h3>
+                            <h3>{order.price} VNĐ</h3>
                         </div>
                     </div>
                     <div style={{ width: '100%', }}>
@@ -149,7 +149,7 @@ export default function DetailOrders() {
                             <h3>CÒN LẠI</h3>
                         </div>
                         <div style={{ width: '50%', textAlign: 'right' }}>
-                            <h3>${order.remainCost}</h3>
+                            <h3>{order.remainCost} VNĐ</h3>
                         </div>
                     </div>
 
