@@ -4,9 +4,11 @@ export const createOrderAction = (productDetails, token)  => async dispatch =>  
 
     const products = productDetails.map(
             function(product){ 
-                return { "productURL": product.productURL, "productQuantity": 1 }
+                return { "productId": product.Id, "productQuantity": 1 }
             }
         )
+
+    console.log(products)
 
     const response = await axiosProfile.post('/Orders', {
         products
