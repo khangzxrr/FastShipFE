@@ -148,21 +148,5 @@ body {
   .card_text p:last-child {
     margin: 0;
   }
-  .chatbox table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  
-  .chatbox td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 7px;
-    color: grey;
-  }
-  
-  .chatbox tr:nth-child(even) {
-    background-color: whitesmoke;
-  }
+
   

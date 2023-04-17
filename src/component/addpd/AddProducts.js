@@ -52,8 +52,6 @@ export default function AddProducts() {
       </div>
       <div  style={{display:'flex',width: '100%', marginBottom: '50px' }}>
         <AddProducts1 />
-        <AddProducts2 />
-
       </div>
     </div>
   )

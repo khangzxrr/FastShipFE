@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import "../home/home.css"
-import { Input, Checkbox, Button, Form, message, Space } from "antd";
+import { Input, Checkbox, Button, Form, message, Space , Spin} from "antd";
 import { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { HubConnectionBuilder } from '@microsoft/signalr';
@@ -9,7 +9,7 @@ import { requestProductAction } from '../../features/requestProduct/requestProdu
 import { addProduct } from '../../features/requestProduct/requestProductSlice';
 import { logout } from '../../features/login/loginSlice';
 import { API_BASE_URL } from '../../features/axiosProfile';
-
+import { BsSearch } from 'react-icons/bs'
 
 const onChange = (e) => {
     console.log(`checked = ${e.target.checked}`);
@@ -90,35 +90,21 @@ export default function () {
 
     return (
         <>
-            <div style={{ marginLeft: "50%", position: "absolute", zIndex: "1", paddingTop: '20px' }}>
-                <p style={{ fontSize: 30, fontWeight: 700, margin: "10px 0px" }}>TÌM GÌ CŨNG CÓ</p>
-                <p style={{ fontSize: 16, fontWeight: 700, margin: "10px 0px" }}>XaBa.vn được điều hành bởi Xanh Logistics</p>
-                <div className='button-home' style={{ display: 'flex' }}>
-                    <div className='baogia'>
-                        <p>Nhận Báo Giá</p>
-                    </div>
-                    <div className='timkiem'>
-                        <p>Tìm Kiếm</p>
-                    </div>
-                </div>
+            <div>
                 <div className='form-home'>
                     <div className='baogia-form' hidden={!waitingFetching}>
-                        Xin vui lòng chờ giây lát....
+                        <Space >
+                            <Spin style={{width:'800px', marginTop:'20px'}} tip="Đợi xí...">
+                            </Spin>
+                        </Space>
                     </div>
-                    <div className='baogia-form' hidden={waitingFetching}>
-                        <Input className='baogiaip' placeholder='LINK HOẶC TÊN SẢN PHẨM' onChange={handleProductUrlOnChange}/>
-                        <Input className='baogiaip' placeholder='SỐ LƯỢNG' />
-                        <br />
-                        <button onClick={handleRequestProductOnClick}>Báo giá nhanh</button>
-                    </div>
-                    <div className='timkiem-form' style={{ height: "200px" }}>
-                        <Link><Input style={{ width: "70%" }} placeholder='LINK HOẶC TÊN SẢN PHẨM' /></Link>
-                        <button>Tìm kiếm</button>
-                        <br />
-                        <br />
-                        <span>Laptop</span><span>Đồng hồ</span>
-                    </div>
+                    <div style={{ width: '98vw', height: '100vw' }} hidden={waitingFetching}>
+                        <div className='baogia-form'>
+                            <input className='btn' onChange={handleProductUrlOnChange} type='text' placeholder='Nhập link sản phẩm cần mua'></input>
+                            <button onClick={handleRequestProductOnClick}><BsSearch style={{ fontSize: 25, marginLeft: '50px', color: 'rgba(3, 102, 214, 0.3)' }} /></button>
+                        </div>
 
+                    </div>
                 </div>
             </div>
         </>

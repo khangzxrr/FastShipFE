@@ -7,6 +7,7 @@ import "../common/style.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/login/loginSlice";
+import {BsFillCartCheckFill} from "react-icons/bs"
 const { Header } = Layout;
 
 const items = [
@@ -26,10 +27,6 @@ const items = [
   {
     label: "TIN TỨC",
     key: "news",
-  },
-  {
-    label: "LIÊN HỆ",
-    key: "contact",
   },
 ];
 
@@ -101,12 +98,12 @@ export const HeaderLayout = () => {
         >
           <img
             onClick={() => navigate("/")}
-            src="/logo.png"
+            src="/logopage.jpg"
             alt="logo fastship"
             style={{
               float: "left",
-              height: "100%",
-              width: 190,
+              height: "60px",
+              width: 130,
               marginRight: 15,
 
             }}
@@ -120,16 +117,14 @@ export const HeaderLayout = () => {
             />
           </div>
           <div>
-            <Link to="/order">
+          <Link to="/order">
               <Button style={{ fontSize: 11 }} >
-                ORDER CỦA TÔI
+                Đơn hàng của tôi
               </Button>
             </Link>
-          </div>
-          <div>
             <Link to="/add">
-              <Button style={{ fontSize: 11 }} >
-                GIỎ HÀNG
+              <Button style={{ fontSize: 15, border:'none', boxShadow:'none'}} >
+                <BsFillCartCheckFill/>
               </Button>
             </Link>
           </div>

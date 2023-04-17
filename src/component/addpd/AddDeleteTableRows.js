@@ -6,6 +6,10 @@ import { AiFillDelete } from "react-icons/ai"
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { removeProduct } from "../../features/requestProduct/requestProductSlice";
+import { AiOutlinePlusSquare } from "react-icons/ai";
+import { createOrderAction } from "../../features/createOrder/createOrderAction";
+import { clearProduct } from "../../features/requestProduct/requestProductSlice";
+import { getOrderByIdSuccessfully } from "../../features/getOrderById/getOrderByIdSlice";
 function AddDeleteTableRows() {
     const requestProduct = useSelector(state => state.requestProduct)
 
@@ -26,19 +30,35 @@ function AddDeleteTableRows() {
             navigate("/home")
         }
     }
+    const { products } = useSelector(state => state.requestProduct)
+    const { token } = useSelector(state => state.login)
+  
+    function requestCreateOrder() {
+      dispatch(createOrderAction(products, token))
+        .then((response) => {
+          console.log(response)
+  
+          //clear added product
+          dispatch(clearProduct())
+          dispatch(getOrderByIdSuccessfully(response))
+  
+          navigate(`/detailod?orderId=${response.order.orderId}`)
+        })
+    }
 
     return (
         <div>
             <table className="addtb" style={{ width: '100%', marginTop: '20px' }}>
                 <tbody>
                     <tr>
-                        <th style={{ width: '40%' }}>LINK HOẶC TÊN SẢN PHẨM</th>
-                        <th>LOẠI</th>
-                        <th>TÊN</th>
-                        <th>GIÁ SẢN PHẨM</th>
-                        <th>SỐ LƯỢNG</th>
-                        <th>CÓ BẢO HÀNH</th>
-                        <th>CÓ ĐỔI TRẢ</th>
+                    <th style={{ width: '25%' }}>LINK SẢN PHẨM</th>
+                        <th style={{ width: '15%' }}>LOẠI</th>
+                        <th style={{ width: '20%' }}>TÊN</th>
+                        <th style={{ width: '10%' }}>GIÁ SẢN PHẨM</th>
+                        <th style={{ width: '10%' }}>SỐ LƯỢNG</th>
+                        <th style={{ width: '10%' }}>CÓ BẢO HÀNH</th>
+                        <th style={{ width: '10%' }}>CÓ ĐỔI TRẢ</th>
+                        <th><Button style={{ color: 'black', fontSize: 30, color: 'green', border: 'none', boxShadow:'none', height:'40px' }} onClick={handleAddNewProduct}><AiOutlinePlusSquare /></Button></th>
                     </tr>
 
                     {
@@ -49,11 +69,11 @@ function AddDeleteTableRows() {
                                     <td><Input defaultValue={product.productCategory.productCategoryName} /></td>
                                     <td><Input defaultValue={product.productName} /></td>
                                     <td><Input defaultValue={product.productPrice + '$'} /></td>
-                                    <td><Input defaultValue={'1'} /></td>
+                                    <td><Input type="number" min={1} max={10} defaultValue={'1'} /></td>
                                     <td><Input defaultValue={product.productWarrantable ? "Có" : "Không"} /></td>
                                     <td><Input defaultValue={product.productReturnable ? "Có" : "Không"} /></td>
                                     <td>
-                                        <button style={{ fontSize: 20, border: 'none', backgroundColor: 'white' }} onClick={() => {handleDeleteProduct(index)}}><AiFillDelete /></button>
+                                        <button style={{ fontSize: 20, border: 'none', backgroundColor: 'white',marginLeft:'13px' }} onClick={() => {handleDeleteProduct(index)}}><AiFillDelete /></button>
                                     </td>
                                 </tr>
                             )
@@ -62,9 +82,8 @@ function AddDeleteTableRows() {
                 </tbody>
 
             </table>
-            <Button type="primary" style={{ marginLeft: '250px', color: 'black', marginBottom: '100px', fontWeight: 600 }}  onClick={handleAddNewProduct}>THÊM SẢN PHẨM KHÁC</Button>
+            <Button type="primary" style={{width:'30%', left:'35%', color: 'black',fontWeight:600, margin:'20px 0px'}}  onClick={requestCreateOrder}>YÊU CẦU BÁO GIÁ</Button>
         </div>
-
     )
 
 }

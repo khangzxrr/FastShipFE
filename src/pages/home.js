@@ -4,7 +4,7 @@ import { ContentUpper } from "../component/home/ContentUpper"
 const HomePage = () => {
     return (
         <>
-            <div style={{ background: "url(/bg.jpg) 0 repeat-x" }}>
+            <div style={{ background: "url(/homebg11.jpg) 0 no-repeat", backgroundSize:'100%'}}>
                 <div>
                     <ContentUpper />
                 </div>

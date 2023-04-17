@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
-import { Input, Button, Steps } from 'antd'
+import { Input, Button, Steps, Descriptions } from 'antd'
 import "../myod/detailod.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getOrderByIdAction } from '../../features/getOrderById/getOrderByIdAction';
 import { createPaymentAction } from '../../features/createPayment/createPaymentAction';
 import { logout } from '../../features/login/loginSlice';
-
+import Chat from './Chat';
+import { Link } from 'react-router-dom';
 export default function DetailOrders() {
 
     const { search } = useLocation()
@@ -61,87 +62,102 @@ export default function DetailOrders() {
         <>
             <div className='detail3' style={{ width: '90%', margin: '10px 5%', fontWeight: 500 }}>
                 <div style={{ width: '70%' }}>
-                    <div style={{ width: '100%' }}>
-                        <Steps size='small' style={{ fontWeight: 600, margin: '20px 0px 50px 75px', padding: '0px 100px' }}
+                    <div className='detail'>
+                        <h1>Chi tiết đơn hàng</h1>
+                        <div style={{
+                            width: '100%', border: '1px solid grey',
+                            borderRadius: '20px', marginBottom: '30px', padding: '20px 20px', border: 'none', boxShadow: ' rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px'
+                        }}>
+                            <Descriptions title="User Info">
+                                <Descriptions.Item label="UserName">Zhou Maomao</Descriptions.Item>
+                                <Descriptions.Item label="Telephone">{order.contactPhoneNumber}</Descriptions.Item>
+                                <Descriptions.Item label="Live">Hangzhou, Zhejiang</Descriptions.Item>
+                                <Descriptions.Item label="Remark">empty</Descriptions.Item>
+                                <Descriptions.Item label="Address">
+                                    HCM, VN
+                                </Descriptions.Item>
+                            </Descriptions>
+                        </div>
+                        <div style={{
+                            width: '100%', border: '1px solid grey',
+                            borderRadius: '20px', marginBottom: '30px', padding: '20px 20px', border: 'none', boxShadow: ' rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px'
+                        }}>
+                            <Descriptions title="Order Info">
+                                <Descriptions.Item span={2} label="Order Date">{order.orderDate}</Descriptions.Item>
+                                <Descriptions.Item label="Note">{order.customerDescription}</Descriptions.Item>
+                                <Descriptions.Item label="Delivery Address">{order.deliveryAddress}</Descriptions.Item>
+                                <Descriptions.Item label="Contact Phone Number">{order.contactPhoneNumber}</Descriptions.Item>
+                                <Descriptions.Item label="Ship Estimated Days">{order.shipEstimatedDays}
+                                </Descriptions.Item>
+                            </Descriptions>
+                        </div>
+                        <Chat/>
+                        <h1>Chi tiết sản phẩm</h1>
+                        <div className="main">
+                            <ul className="cards">
+                            {
+                                    order.orderDetails && order.orderDetails.map(od =>
+                                    (
+                                        <li className="cards_item">
+                                            <div class="card">
+                                                <div class="card_image">
+                                                    <img src={od.product.imageUrl} alt={od.product.name} />
+                                                    <span class="card_price"><span>$</span>{od.productCost}</span>
+                                                </div>
+                                                <div class="card_content">
+                                                    <h2 class="card_title">{od.product.name}</h2>
+                                                    <div class="card_text">
+                                                        <p style={{wordBreak:'break-word'}}>Link: <Link>{od.product.url}</Link></p>
+                                                        <p>Phụ thu: ${od.additionalCost}</p>
+                                                        <p>Phí xử lí: ${od.processCost}</p>
+                                                        <p>Số lượng: {od.quantity}</p>
+                                                        <p>Phí ship đến kho US: ${od.shipCost}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div className='detail2' style={{ fontWeight: 600 }}>
+                    <div>
+                        <Steps size='large' style={{ fontWeight: 600, padding: '0px 10px', height: '500px' }}
                             current={order.progressStatus}
+                            direction='vertical'
                             items={[
                                 {
-                                    title: 'Thanh toán lần 1',
+                                    title: 'Deposit',
                                 },
                                 {
-                                    title: 'Chờ nhân viên order hàng',
+                                    title: 'Waiting ordering',
                                 },
                                 {
-                                    title: 'Đang order hàng từ người bán',
+                                    title: 'Ordering from seller',
                                 },
                                 {
-                                    title: 'đang giao từ Mỹ về Việt Nam',
+                                    title: 'Delivery US to VN',
                                 },
                                 {
-                                    title: 'Đang ở kho Việt Nam',
+                                    title: 'In VN warehouse',
                                 },
                                 {
-                                    title: 'Đang giao đến người dùng',
+                                    title: 'On delivery',
                                 },
                                 {
-                                    title: 'Hoàn tất',
+                                    title: 'Completed',
                                 },
                             ]}
                         />
                     </div>
-                    <div className='detail'>
-                        <h1>Chờ thanh toán</h1>
-                        <table style={{ display: 'flex', width: '100%', marginBottom: '50px' }}>
-                            <tbody>
-                                <tr>
-                                    <td>orderDate</td>
-                                    <td>customer description</td>
-                                    <td>deliveryAddress</td>
-                                    <td>contactPhoneNumber</td>
-                                    <td>shipEstimatedDays</td>
-                                </tr>
-                                <tr>
-                                    <td>{order.orderDate}</td>
-                                    <td>{order.customerDescription}</td>
-                                    <td>{order.deliveryAddress}</td>
-                                    <td>{order.contactPhoneNumber}</td>
-                                    <td>{order.shipEstimatedDays}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <br></br>
-                        <h1>Order details</h1>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>Id</td>
-                                    <td>Name</td>
-                                    <td>Price</td>
-                                    <td>Quantity</td>
-                                    <td>US shipcost</td>
-                                </tr>
-                                {
-                                    order.orderDetails && order.orderDetails.map(od =>
-                                    (<tr>
-                                        <td>{od.orderDetailId}</td>
-                                        <td>{od.product.name}</td>
-                                        <td>{od.productCost}</td>
-                                        <td>{od.quantity}</td>
-                                        <td>{od.shipCost}</td>
-                                    </tr>))
-                                }
-                            </tbody>
-                        </table>
-
-                    </div>
-                </div>
-                <div className='detail2' style={{ fontWeight: 600 }}>
-                    <div style={{ width: '100%', }}>
+                    <div style={{ width: '100%',marginTop:'140px' }}>
                         <div style={{ width: '50%', color: 'grey' }}>
                             <h3>TỔNG CỘNG</h3>
                         </div>
                         <div style={{ width: '50%', textAlign: 'right' }}>
-                            <h3>{order.price} VNĐ</h3>
+                            <h3>${order.price}</h3>
                         </div>
                     </div>
                     <div style={{ width: '100%', }}>
@@ -149,16 +165,14 @@ export default function DetailOrders() {
                             <h3>CÒN LẠI</h3>
                         </div>
                         <div style={{ width: '50%', textAlign: 'right' }}>
-                            <h3>{order.remainCost} VNĐ</h3>
+                            <h3>${order.remainCost}</h3>
                         </div>
                     </div>
 
                     {
-                        order.status === "noPayYet" && 
-                            (<Button type="primary" style={{ width: '100%', color: 'black', fontWeight: 600 }} onClick={handleCreatePaymentOnClick}>Thanh toán Lần 1 (80%)</Button>)
+                        order.status === "noPayYet" &&
+                        (<Button type="primary" style={{ width: '100%', color: 'black', fontWeight: 600 }} onClick={handleCreatePaymentOnClick}>Thanh toán Lần 1 (80%)</Button>)
                     }
-
-                    
                 </div>
             </div>
         </>
