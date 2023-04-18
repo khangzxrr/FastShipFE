@@ -8,6 +8,7 @@ import { createPaymentAction } from '../../features/createPayment/createPaymentA
 import { logout } from '../../features/login/loginSlice';
 import Chat from './Chat';
 import { Link } from 'react-router-dom';
+import { getOrderChatAction } from '../../features/getOrderChat/getOrderChatAction';
 export default function DetailOrders() {
 
     const { search } = useLocation()
@@ -46,6 +47,7 @@ export default function DetailOrders() {
         }
 
         dispatch(getOrderByIdAction(orderId, token))
+            .then(dispatch(getOrderChatAction(orderId)))
             .catch((err) => {
                 if (err.response.status === 400){
                     alert('Lỗi khi xảy ra khi lấy thông tin order')
@@ -87,11 +89,10 @@ export default function DetailOrders() {
                                 <Descriptions.Item label="Note">{order.customerDescription}</Descriptions.Item>
                                 <Descriptions.Item label="Delivery Address">{order.deliveryAddress}</Descriptions.Item>
                                 <Descriptions.Item label="Contact Phone Number">{order.contactPhoneNumber}</Descriptions.Item>
-                                <Descriptions.Item label="Ship Estimated Days">{order.shipEstimatedDays}
-                                </Descriptions.Item>
+                                <Descriptions.Item label="Ship Estimated Days">{order.shipEstimatedDays}</Descriptions.Item>
                             </Descriptions>
                         </div>
-                        <Chat/>
+                        <Chat />
                         <h1>Chi tiết sản phẩm</h1>
                         <div className="main">
                             <ul className="cards">
@@ -157,7 +158,7 @@ export default function DetailOrders() {
                             <h3>TỔNG CỘNG</h3>
                         </div>
                         <div style={{ width: '50%', textAlign: 'right' }}>
-                            <h3>${order.price}</h3>
+                            <h3>{order.price} VNĐ</h3>
                         </div>
                     </div>
                     <div style={{ width: '100%', }}>
@@ -165,7 +166,7 @@ export default function DetailOrders() {
                             <h3>CÒN LẠI</h3>
                         </div>
                         <div style={{ width: '50%', textAlign: 'right' }}>
-                            <h3>${order.remainCost}</h3>
+                            <h3>{order.remainCost} VNĐ</h3>
                         </div>
                     </div>
 

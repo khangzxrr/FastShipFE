@@ -1,8 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Input, Button } from 'antd'
 import "../myod/detailod.css"
+import { useDispatch, useSelector } from 'react-redux';
+import { orderSendMessageAction } from '../../features/orderSendMessages/orderSendMessageAction';
+import { getOrderChatAction } from '../../features/getOrderChat/getOrderChatAction';
 const { TextArea } = Input;
 export default function Chat(){
+
+    const [message, setMessage] = useState('')
+
+    const dispatch = useDispatch()
+
+    const { chatMessages } = useSelector(state => state.getOrderChat)
+    const { order } = useSelector(state => state.getOrderById)
+
+    function handleTextChange(event) {
+        setMessage(event.target.value)
+    }
+
+    function handleSendMessageOnClick() {
+        dispatch(orderSendMessageAction(order.orderId, message))
+        .then(() => {
+            setMessage("")
+            dispatch(getOrderChatAction(order.orderId))
+        })
+    }
+
     return (
         <div className='chatbox' style={{marginBottom:'30px',
             width: '100%',
@@ -11,15 +34,19 @@ export default function Chat(){
             <h4 style={{ fontSize: '16px' }}>Nội dung trao đổi về đơn hàng này</h4>
             <table>
                 <tbody>
+                    {
+                        chatMessages.map((chatMessage) => (
+                            <tr>
+                                <td>{chatMessage.isFromEmployee ? "Nhân viên" : "Khách hàng"}</td>
+                                <td>{chatMessage.message}</td>
+                            </tr>
+                        ))
 
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    }
                 </tbody>
             </table>
-            <TextArea style={{ marginBottom: '10px' }} />
-            <Button type='primary' style={{ color: 'black' }} >Gửi tin nhắn cho CSKH</Button>
+            <TextArea style={{ marginBottom: '10px' }} onChange={handleTextChange} value={message}/>
+            <Button type='primary' style={{ color: 'black' }} onClick={handleSendMessageOnClick}>Gửi tin nhắn cho CSKH</Button>
         </div>
     )
 }
