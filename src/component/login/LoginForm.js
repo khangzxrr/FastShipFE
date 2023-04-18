@@ -3,8 +3,8 @@ import { Input, Checkbox, Button } from "antd";
 import "../login/login.css"
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { logionAction } from '../../features/login/loginAction';
-import { loginSuccess } from '../../features/login/loginSlice';
+import { loginAction } from '../../features/login/loginAction';
+
 export default function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -30,7 +30,7 @@ export default function LoginForm() {
     }
 
     function loginButtonOnClick(){
-        dispatch(logionAction(email, password))
+        dispatch(loginAction(email, password))
         .then((response) => {
             console.log(response)
         })

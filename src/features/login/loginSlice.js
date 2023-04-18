@@ -15,6 +15,7 @@ export const loginSlice = createSlice({
             state.email = action.payload.email
             state.token = action.payload.token
             state.phoneNumber = action.payload.phoneNumber
+            
         },
         logout: (state) => {
             state.isLogin = false
