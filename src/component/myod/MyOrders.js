@@ -76,7 +76,7 @@ export default function MyOrders() {
     dispatch(getAllOrdersAction(token))
       .catch((err) => {
         if (err.response.status === 401) {
-          alert('Không có quyền yêu cầu báo giá, vui lòng đăng nhập lại')
+          //alert('Không có quyền yêu cầu báo giá, vui lòng đăng nhập lại')
           dispatch(logout())
           navigate("/login")
         }

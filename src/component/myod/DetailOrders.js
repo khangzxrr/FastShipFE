@@ -27,7 +27,7 @@ export default function DetailOrders() {
             .then(response => window.location.href = response.payUrl)
             .catch(err => {
                 if (err.response.status === 401){
-                    alert('Bạn không có quyền thanh toán, vui lòng đăng nhập lại')
+                    //alert('Bạn không có quyền thanh toán, vui lòng đăng nhập lại')
                     dispatch(logout())
                     navigate('/login')
                 }
@@ -42,7 +42,7 @@ export default function DetailOrders() {
 
         if (orderId == null){
             
-            alert('không có thông tin orderId')
+            //alert('không có thông tin orderId')
             navigate('/home')
         }
 
@@ -50,7 +50,7 @@ export default function DetailOrders() {
             .then(dispatch(getOrderChatAction(orderId)))
             .catch((err) => {
                 if (err.response.status === 400){
-                    alert('Lỗi khi xảy ra khi lấy thông tin order')
+                    //alert('Lỗi khi xảy ra khi lấy thông tin order')
                     navigate('/home')
                 }
             })
@@ -113,6 +113,14 @@ export default function DetailOrders() {
                                                         <p>Phí xử lí: ${od.processCost}</p>
                                                         <p>Số lượng: {od.quantity}</p>
                                                         <p>Phí ship đến kho US: ${od.shipCost}</p>
+                                                        <p>Phí trọng lượng 1kg: ${od.product.costPerWeight}</p>
+                                                        <p>Bảo hành: {od.product.warrantable ? 'có' : 'không'}</p>
+                                                        {od.product.warrantable &&
+                                                            (<p>Mô tả bảo hành: {od.product.warrantableDescription}</p>)}
+                                                        <p>Đổi trả: {od.product.returnable ? 'có' : 'không'}</p>
+                                                        {od.product.returnable &&
+                                                            (<p>Mô tả đổi trả: Chấp nhận {od.product.returnDuration} ngày đổi trả</p>)}
+                                                                
                                                     </div>
                                                 </div>
                                             </div>

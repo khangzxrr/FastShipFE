@@ -36,7 +36,7 @@ const OrderDetailEmployee = () => {
         .then(dispatch(employeeGetOrderChatAction(orderId, token)))
         .catch(err => {
           if (err.response.status === 401 || err.response.status === 403){
-            alert('Bạn không có quyền thực thi việc này, vui lòng đăng nhập lại')
+            //alert('Bạn không có quyền thực thi việc này, vui lòng đăng nhập lại')
             dispatch(logout())
             navigate('/login')
           }
