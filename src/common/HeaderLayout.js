@@ -7,7 +7,7 @@ import "../common/style.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/login/loginSlice";
-import {BsFillCartCheckFill} from "react-icons/bs"
+import { BsFillCartCheckFill } from "react-icons/bs"
 const { Header } = Layout;
 
 const items = [
@@ -34,11 +34,14 @@ export const HeaderLayout = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  const { roleName } = useSelector(state => state.login)
+
   const loginInfo = useSelector(state => state.login)
 
   function logoutOnClick() {
     dispatch(logout())
     alert('Đã đăng xuất thành công!')
+    navigate("/login")
   }
 
   return (
@@ -117,14 +120,25 @@ export const HeaderLayout = () => {
             />
           </div>
           <div>
-          <Link to="/order">
-              <Button style={{ fontSize: 11 }} >
-                Đơn hàng của tôi
-              </Button>
-            </Link>
+            {roleName === "EMPLOYEE" &&
+              (<Link to="/employee-order">
+                <Button style={{ fontSize: 11 }} >
+                  Đơn hàng tôi đang đảm nhiệm
+                </Button>
+              </Link>)
+            }
+            {roleName === "CUSTOMER" &&
+              (<Link to="/order">
+                <Button style={{ fontSize: 11 }} >
+                  Đơn hàng của tôi
+                </Button>
+              </Link>)
+            }
+
+
             <Link to="/add">
-              <Button style={{ fontSize: 15, border:'none', boxShadow:'none'}} >
-                <BsFillCartCheckFill/>
+              <Button style={{ fontSize: 15, border: 'none', boxShadow: 'none' }} >
+                <BsFillCartCheckFill />
               </Button>
             </Link>
           </div>
