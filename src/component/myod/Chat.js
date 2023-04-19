@@ -36,7 +36,7 @@ export default function Chat(){
                 <tbody>
                     {
                         chatMessages.map((chatMessage) => (
-                            <tr>
+                            <tr key={chatMessage.id}>
                                 <td>{chatMessage.isFromEmployee ? "Nhân viên" : "Khách hàng"}</td>
                                 <td>{chatMessage.message}</td>
                             </tr>
