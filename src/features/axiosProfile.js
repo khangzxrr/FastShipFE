@@ -11,8 +11,6 @@ axiosProfile.interceptors.request.use((config) => {
     const { token } = store.getState().login
     config.headers.Authorization = `Bearer ${token}`
 
-    console.log("set token!!! ", token)
-
     return config
 })
 
