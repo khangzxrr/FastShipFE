@@ -71,13 +71,8 @@ export default function DetailOrders() {
                             borderRadius: '20px', marginBottom: '30px', padding: '20px 20px', border: 'none', boxShadow: ' rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px'
                         }}>
                             <Descriptions title="User Info">
-                                <Descriptions.Item label="UserName">Zhou Maomao</Descriptions.Item>
+                                <Descriptions.Item label="UserName">{order.customerName}</Descriptions.Item>
                                 <Descriptions.Item label="Telephone">{order.contactPhoneNumber}</Descriptions.Item>
-                                <Descriptions.Item label="Live">Hangzhou, Zhejiang</Descriptions.Item>
-                                <Descriptions.Item label="Remark">empty</Descriptions.Item>
-                                <Descriptions.Item label="Address">
-                                    HCM, VN
-                                </Descriptions.Item>
                             </Descriptions>
                         </div>
                         <div style={{
@@ -99,7 +94,7 @@ export default function DetailOrders() {
                             {
                                     order.orderDetails && order.orderDetails.map(od =>
                                     (
-                                        <li className="cards_item">
+                                        <li className="cards_item" key={od.orderDetailId}>
                                             <div class="card">
                                                 <div class="card_image">
                                                     <img src={od.product.imageUrl} alt={od.product.name} />
