@@ -35,7 +35,7 @@ export default function () {
             .catch((err) => {
                 console.log(err.response.status)
                 if (err.response.status === 401){
-                    alert('Không có quyền yêu cầu báo giá, vui lòng đăng nhập lại')
+                    //alert('Không có quyền yêu cầu báo giá, vui lòng đăng nhập lại')
                     dispatch(logout())    
                     navigate("/login")
                 }
@@ -80,7 +80,7 @@ export default function () {
                 })
                 .catch((err) => {
                     if (err.errorType === "FailedToNegotiateWithServerError"){
-                        alert('Không có quyền yêu cầu báo giá, vui lòng đăng nhập lại')
+                        //alert('Không có quyền yêu cầu báo giá, vui lòng đăng nhập lại')
                         dispatch(logout())    
                         navigate("/login")
                     }
