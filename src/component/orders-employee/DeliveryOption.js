@@ -1,5 +1,4 @@
 import React from 'react'
-import UserInfo from './UserInfo';
 import { Button, Modal } from 'antd';
 import { useState } from 'react';
 
