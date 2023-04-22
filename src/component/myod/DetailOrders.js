@@ -13,7 +13,7 @@ export default function DetailOrders() {
 
     const { search } = useLocation()
 
-    
+
 
     const { token } = useSelector(state => state.login)
     const { order } = useSelector(state => state.getOrderById)
@@ -22,16 +22,16 @@ export default function DetailOrders() {
     const navigate = useNavigate()
 
 
-    function handleCreatePaymentOnClick () {
+    function handleCreatePaymentOnClick() {
         dispatch(createPaymentAction(order.orderId, window.location.href, token))
             .then(response => window.location.href = response.payUrl)
             .catch(err => {
-                if (err.response.status === 401){
+                if (err.response.status === 401) {
                     //alert('Bạn không có quyền thanh toán, vui lòng đăng nhập lại')
                     dispatch(logout())
                     navigate('/login')
                 }
-                
+
             })
     }
 
@@ -40,8 +40,8 @@ export default function DetailOrders() {
 
         console.log(orderId)
 
-        if (orderId == null){
-            
+        if (orderId == null) {
+
             //alert('không có thông tin orderId')
             navigate('/home')
         }
@@ -49,7 +49,7 @@ export default function DetailOrders() {
         dispatch(getOrderByIdAction(orderId, token))
             .then(dispatch(getOrderChatAction(orderId)))
             .catch((err) => {
-                if (err.response.status === 400){
+                if (err.response.status === 400) {
                     //alert('Lỗi khi xảy ra khi lấy thông tin order')
                     navigate('/home')
                 }
@@ -88,42 +88,7 @@ export default function DetailOrders() {
                             </Descriptions>
                         </div>
                         <Chat />
-                        <h1>Chi tiết sản phẩm</h1>
-                        <div className="main">
-                            <ul className="cards">
-                            {
-                                    order.orderDetails && order.orderDetails.map(od =>
-                                    (
-                                        <li className="cards_item" key={od.orderDetailId}>
-                                            <div class="card">
-                                                <div class="card_image">
-                                                    <img src={od.product.imageUrl} alt={od.product.name} />
-                                                    <span class="card_price"><span>$</span>{od.productCost}</span>
-                                                </div>
-                                                <div class="card_content">
-                                                    <h2 class="card_title">{od.product.name}</h2>
-                                                    <div class="card_text">
-                                                        <p style={{wordBreak:'break-word'}}>Link: <Link>{od.product.url}</Link></p>
-                                                        <p>Phụ thu: ${od.additionalCost}</p>
-                                                        <p>Phí xử lí: ${od.processCost}</p>
-                                                        <p>Số lượng: {od.quantity}</p>
-                                                        <p>Phí ship đến kho US: ${od.shipCost}</p>
-                                                        <p>Phí trọng lượng 1kg: ${od.product.costPerWeight}</p>
-                                                        <p>Bảo hành: {od.product.warrantable ? 'có' : 'không'}</p>
-                                                        {od.product.warrantable &&
-                                                            (<p>Mô tả bảo hành: {od.product.warrantableDescription}</p>)}
-                                                        <p>Đổi trả: {od.product.returnable ? 'có' : 'không'}</p>
-                                                        {od.product.returnable &&
-                                                            (<p>Mô tả đổi trả: Chấp nhận {od.product.returnDuration} ngày đổi trả</p>)}
-                                                                
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    ))
-                                }
-                            </ul>
-                        </div>
+
                     </div>
                 </div>
                 <div className='detail2' style={{ fontWeight: 600 }}>
@@ -156,27 +121,61 @@ export default function DetailOrders() {
                             ]}
                         />
                     </div>
-                    <div style={{ width: '100%',marginTop:'140px' }}>
-                        <div style={{ width: '50%', color: 'grey' }}>
-                            <h3>TỔNG CỘNG</h3>
-                        </div>
-                        <div style={{ width: '50%', textAlign: 'right' }}>
-                            <h3>{order.price} VNĐ</h3>
-                        </div>
-                    </div>
-                    <div style={{ width: '100%', }}>
-                        <div style={{ width: '50%', color: 'grey' }}>
-                            <h3>CÒN LẠI</h3>
-                        </div>
-                        <div style={{ width: '50%', textAlign: 'right' }}>
-                            <h3>{order.remainCost} VNĐ</h3>
-                        </div>
-                    </div>
 
-                    {
-                        order.status === "noPayYet" &&
-                        (<Button type="primary" style={{ width: '100%', color: 'black', fontWeight: 600 }} onClick={handleCreatePaymentOnClick}>Thanh toán Lần 1 (80%)</Button>)
-                    }
+                </div>
+                <div style={{ display: 'flex', width: '100%', marginBottom:'20px' }}>
+                    <div style={{ width: '65%', marginRight:'5%' }}>
+                        <h1>Chi tiết sản phẩm</h1>
+                        <div className='products'>
+                            <ul style={{ listStyleType: 'none' }}>
+                                {
+                                    order.orderDetails && order.orderDetails.map(od =>
+                                    (
+                                        <li key={od.orderDetailId} >
+                                            <div className='product' style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}>
+                                                <p ><img src={od.product.imageUrl} alt={od.product.name} style={{ float: 'left' }} />
+                                                    <span style={{ fontSize: 20, fontWeight: 500 }}>{od.product.name}</span><br /><a href={od.product.url}>Link Product</a>
+                                                    <br />Phụ thu: ${od.additionalCost}<br />Phí xử lí: ${od.processCost}<br />Số lượng: {od.quantity}
+                                                    <br />Phí ship đến kho US: ${od.shipCost}<br />Phí trọng lượng 1kg: ${od.product.costPerWeight}<br />
+                                                    Bảo hành: {od.product.warrantable ? 'có' : 'không'}<br />
+                                                    {od.product.warrantable &&
+                                                        (<span>Mô tả bảo hành: {od.product.warrantableDescription}</span>)}
+                                                    <span>Đổi trả: {od.product.returnable ? 'có' : 'không'}</span><br />
+                                                    {od.product.returnable &&
+                                                        (<span>Mô tả đổi trả: Chấp nhận {od.product.returnDuration} ngày đổi trả</span>)}
+                                                </p>
+
+                                            </div>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div style={{ width: '30%' }}>
+                        <h1>Thanh toán</h1>
+                        <div style={{ width: '100%' }}>
+                            <div style={{ width: '50%', color: 'grey' }}>
+                                <h3>TỔNG CỘNG</h3>
+                            </div>
+                            <div style={{ width: '50%', textAlign: 'right' }}>
+                                <h3>{order.price} VNĐ</h3>
+                            </div>
+                        </div>
+                        <div style={{ width: '100%', }}>
+                            <div style={{ width: '50%', color: 'grey' }}>
+                                <h3>CÒN LẠI</h3>
+                            </div>
+                            <div style={{ width: '50%', textAlign: 'right' }}>
+                                <h3>{order.remainCost} VNĐ</h3>
+                            </div>
+                        </div>
+
+                        {
+                            order.status === "noPayYet" &&
+                            (<Button type="primary" style={{ width: '100%', color: 'black', fontWeight: 600 }} onClick={handleCreatePaymentOnClick}>Thanh toán Lần 1 (80%)</Button>)
+                        }
+                    </div>
                 </div>
             </div>
         </>

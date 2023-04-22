@@ -4,27 +4,24 @@ import { Link } from 'react-router-dom'
 export default function ProductList(props) {
   return (
     <>
-      <div className="main">
-        <ul className="cards">
+      <div  className='products'>
+        <ul style={{ listStyleType: 'none' }}>
           {
             props.order.orderDetails &&
             props.order.orderDetails.map((od, index) => (
-              <li className="cards_item" key={index}>
-                <div class="card">
-                  <div class="card_image">
-                    <img src={od.product.imageUrl} alt={od.product.name} />
-                    <span class="card_price"><span>$</span>{od.productCost}</span>
-                  </div>
-                  <div class="card_content">
-                    <h2 class="card_title">{od.product.name}</h2>
-                    <div class="card_text">
-                      <p>Link: <Link>{od.product.url}</Link></p>
-                      <p>Phụ thu: ${od.additionalCost}</p>
-                      <p>Phí xử lí: ${od.processCost}</p>
-                      <p>Số lượng: {od.quantity}</p>
-                      <p>Phí ship đến kho US: ${od.shipCost}</p>
-                    </div>
-                  </div>
+              <li key={index}>
+                <div className='product' style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}>
+                  <p ><img src={od.product.imageUrl} alt={od.product.name} style={{ float: 'left' }} />
+                    <span style={{ fontSize: 20, fontWeight: 500 }}>{od.product.name}</span><br /><a href={od.product.url}>Link Product</a>
+                    <br />Phụ thu: ${od.additionalCost}<br />Phí xử lí: ${od.processCost}<br />Số lượng: {od.quantity}
+                    <br />Phí ship đến kho US: ${od.shipCost}<br />Phí trọng lượng 1kg: ${od.product.costPerWeight}<br />
+                    Bảo hành: {od.product.warrantable ? 'có' : 'không'}<br />
+                    {od.product.warrantable &&
+                      (<span>Mô tả bảo hành: {od.product.warrantableDescription}</span>)}
+                    <span>Đổi trả: {od.product.returnable ? 'có' : 'không'}</span><br />
+                    {od.product.returnable &&
+                      (<span>Mô tả đổi trả: Chấp nhận {od.product.returnDuration} ngày đổi trả</span>)}
+                  </p>
                 </div>
               </li>
             ))

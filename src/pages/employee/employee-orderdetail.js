@@ -52,17 +52,17 @@ const OrderDetailEmployee = () => {
           }}>
             <h2>CHI TIẾT ĐƠN HÀNG</h2>
             <div style={{width:'100%', display:'flex'}}>
-              <div style={{width:'50%', marginRight:'2%'}}>
+              <div style={{width:'70%', marginRight:'2%'}}>
               <OrderDetail order={order}/>
               <OrderInfo order={order}/>
-              <DeliveryOption/>
-              </div>
-              <div style={{width:'50%'}}>
               <EmployeeChat chatMessages={chatMessages} order={order}/>
+              </div>
+              <div style={{width:'28%'}}>
+              <DeliveryOption/>
               </div>
             </div>
             <div style={{width:'100%', display:'flex'}}>
-              <div style={{width:'70%',}}>
+              <div style={{width:'65%', marginRight:'5%'}}>
                 <ProductInfo order={order}/>
               </div>
               <div style={{width:'30%'}}>
