@@ -7,6 +7,8 @@ import HomePage from "../pages/home";
 import Login from "../pages/login";
 import MyOrder from "../pages/order";
 import RegisterAccount from "../pages/register";
+import HomeShipper from "../pages/shipper/shipper-order";
+import OrderDetailShipper from "../pages/shipper/shipper-orderdetail";
 import Signin from "../pages/signin";
 export const route = [
     {
@@ -52,6 +54,14 @@ export const route = [
               {
                 path: "/employee-orderdetail",
                 element: <OrderDetailEmployee/>,
+              },
+              {
+                path: "/shipper-order",
+                element: <HomeShipper/>
+              },
+              {
+                path: "/shipper-orderdetail",
+                element: <OrderDetailShipper/>
               },
         ]
     },

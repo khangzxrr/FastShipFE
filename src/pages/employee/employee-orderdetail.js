@@ -10,6 +10,7 @@ import { employeeGetOrderByIdAction } from "../../features/employeeGetOrderById/
 import { logout } from "../../features/login/loginSlice"
 import { employeeGetOrderChatAction } from "../../features/employeeGetOrderChat/employeeGetOrderChatAction"
 import EmployeeChat from "../../component/orders-employee/EmployeeChat"
+import DeliveryOption from "../../component/orders-employee/DeliveryOption"
 
 const OrderDetailEmployee = () => {
 
@@ -54,6 +55,7 @@ const OrderDetailEmployee = () => {
               <div style={{width:'50%', marginRight:'2%'}}>
               <OrderDetail order={order}/>
               <OrderInfo order={order}/>
+              <DeliveryOption/>
               </div>
               <div style={{width:'50%'}}>
               <EmployeeChat chatMessages={chatMessages} order={order}/>

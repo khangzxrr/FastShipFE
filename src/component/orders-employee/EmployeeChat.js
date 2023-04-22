@@ -31,7 +31,7 @@ export default function EmployeeChat(props) {
             borderRadius: '20px', padding: '10px 10px 20px 10px', boxShadow: ' rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px'
         }}>
             <h4 style={{ fontSize: '16px' }}>Nội dung trao đổi về đơn hàng này</h4>
-            <table>
+            <table style={{width:'100%', borderCollapse:'collapse', marginBottom:'10px'}}>
                 <tbody>
                     {
                         props.chatMessages.map((chatMessage) => (

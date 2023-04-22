@@ -6,7 +6,9 @@
     padding: 0 12px;
     border-right: 1px solid #101010;
   }
-  
+  .logomobile {
+    display: none;
+  }
   .href a:hover {
     text-decoration: underline;
   }
@@ -14,4 +16,22 @@
   .links div {
     padding: 10px 0px;
   }
-  
+  .containerHeader {
+    display: flex;
+    justify-content: space-between;
+
+    margin-right: auto;
+    margin-left: auto;
+    width: 1200px;
+  }
+  @media only screen and (max-width:600px) {
+    .containerHeader {
+      display: none;
+    }
+    .footer {
+      display: none;
+    }
+    .logomobile {
+      display: flex;
+    }
+  }

@@ -6,7 +6,7 @@ const { Footer } = Layout;
 export const FooterLayout = () => {
     const navigate = useNavigate();
     return (
-        <Footer style={{ padding: "0px" }}>
+        <Footer className="footer" style={{ padding: "0px" }}>
             <img
               onClick={() => navigate("/")}
               src="/logo.png"

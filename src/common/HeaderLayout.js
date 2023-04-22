@@ -48,10 +48,8 @@ export const HeaderLayout = () => {
     <>
       <div style={{ backgroundColor: "#f0f0ed" }}>
         <div
-          className="container"
+          className="containerHeader"
           style={{
-            display: "flex",
-            justifyContent: "space-between",
             fontWeight: "bold",
             padding: 10,
           }}
@@ -85,7 +83,7 @@ export const HeaderLayout = () => {
 
         </div>
       </div>
-      <Header
+      <Header className="header"
         style={{
           height: "65px",
           position: "sticky",
@@ -95,9 +93,23 @@ export const HeaderLayout = () => {
           borderBottom: "1px solid rgba(5, 5, 5, 0.06)",
         }}
       >
+        <div>
+        <img
+            onClick={() => navigate("/")}
+            src="/logopage.jpg"
+            alt="logo fastship"
+            className="logomobile"
+            style={{
+              height: "60px",
+              width: 130,
+              marginLeft:'auto',
+              marginRight:'auto'
+            }}
+          />
+        </div>
         <div
-          className="container"
-          style={{ display: "flex", justifyContent: "space-between" }}
+          className="containerHeader"
+          
         >
           <img
             onClick={() => navigate("/")}

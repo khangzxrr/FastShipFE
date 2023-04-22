@@ -103,7 +103,7 @@ export default function MyOrders() {
       }}>
         <h2>ĐƠN HÀNG CỦA TÔI</h2>
         <p>Bạn hiện đang có <Link to={'/detailod'}>{orders.length}</Link> đơn hàng</p>
-        <Table columns={columns} dataSource={orders} />
+        <Table style={{border:'none'}} columns={columns} dataSource={orders} />
       </div>
     </div>
   )
