@@ -45,7 +45,7 @@ export default function EmployeeChat(props) {
                 </tbody>
             </table>
             <TextArea style={{ marginBottom: '10px' }} onChange={handleTextAreaOnChange}/>
-            <Button type='primary' style={{ color: 'black' }} onClick={sendMessage}>Gửi tin nhắn cho CSKH</Button>
+            <Button type='primary' style={{ color: 'black' }} onClick={sendMessage}>Gửi tin nhắn cho KH</Button>
         </div>
     )
 }
