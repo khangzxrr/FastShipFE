@@ -58,7 +58,7 @@ const OrderDetailEmployee = () => {
               <EmployeeChat chatMessages={chatMessages} order={order}/>
               </div>
               <div style={{width:'28%'}}>
-              <DeliveryOption/>
+              <DeliveryOption order={order} />
               </div>
             </div>
             <div style={{width:'100%', display:'flex'}}>
