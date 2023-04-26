@@ -94,16 +94,16 @@ export default function () {
                 <div className='form-home'>
                     <div className='baogia-form' hidden={!waitingFetching}>
                         <Space >
-                            <Spin style={{width:'800px', marginTop:'20px'}} tip="Đợi xí...">
+                            <Spin style={{width:'1200px', marginTop:'20px'}} tip="Đợi xí...">
                             </Spin>
                         </Space>
                     </div>
                     <div style={{ width: '98vw', height: '100vw' }} hidden={waitingFetching}>
                         <div className='baogia-form'>
-                            <input className='btn' onChange={handleProductUrlOnChange} type='text' placeholder='Nhập link sản phẩm cần mua'></input>
-                            <button onClick={handleRequestProductOnClick}><BsSearch style={{ fontSize: 25, marginLeft: '50px', color: 'rgba(3, 102, 214, 0.3)' }} /></button>
+                            <input className='btnlink'  onChange={handleProductUrlOnChange} type='text' placeholder='Nhập link sản phẩm cần mua'></input>
+                            <input className='btnquantity' min={1} type='number' placeholder='Nhập số lượng'></input>
+                            <Button type='primary' onClick={handleRequestProductOnClick}>TÌM KIẾM</Button>
                         </div>
-
                     </div>
                 </div>
             </div>
