@@ -9,9 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/login/loginSlice";
 import { BsFillCartCheckFill } from "react-icons/bs"
 const { Header } = Layout;
-
 const items = [
-
   {
     label: "DỊCH VỤ",
     key: "service",

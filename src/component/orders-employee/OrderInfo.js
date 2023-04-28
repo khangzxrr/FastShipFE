@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
-    Descriptions, Radio, Button, Modal, Input, Select
+    Descriptions, Button, Modal, Input,
 } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { employeeUpdateOrderStatusAction } from '../../features/employeeUpdateOrderStatus/employeeUpdateOrderStatusAction'
@@ -9,9 +9,6 @@ import { employeeSetOrderStatus } from '../../features/employeeGetOrderById/empl
 import { employeeGetOrderChatAction } from '../../features/employeeGetOrderChat/employeeGetOrderChatAction'
 
 export default function OrderInfo(props) {
-    const handleChange = (value) => {
-        console.log(`selected ${value}`);
-    };
     const [isModalOpen, setIsModalOpen] = useState(false);
     const showModal = () => {
         setIsModalOpen(true);

@@ -1,37 +1,18 @@
 import React from 'react'
 import {
     Button,
-    Cascader,
-    Checkbox,
-    DatePicker,
     Form,
     Input,
-    InputNumber,
     Radio,
-    Select,
-    Switch,
-    TreeSelect,
-    Upload, Image
+    Select, Image
 } from 'antd'
-import { PlusOutlined } from '@ant-design/icons';
-import { useState } from 'react';
 export default function InforWarranty() {
-    const { RangePicker } = DatePicker;
-    const { TextArea } = Input;
     const normFile = (e) => {
         if (Array.isArray(e)) {
             return e;
         }
         return e?.fileList;
     };
-    const layout = {
-        labelCol: {
-          span: 8,
-        },
-        wrapperCol: {
-          span: 16,
-        },
-      };
     return (
         <>
             <Form

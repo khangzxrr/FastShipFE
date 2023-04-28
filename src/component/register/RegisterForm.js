@@ -1,4 +1,4 @@
-import { Button, Checkbox, Col, Form, Input, Row, Select } from "antd";
+import { Button, Col, Form, Input, Row, Select } from "antd";
 const { Option } = Select;
 export default function ResgisterForm () {
     const onFinish = (values) => {

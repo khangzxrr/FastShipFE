@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react'
 import "../home/home.css"
-import { Input, Checkbox, Button, Form, message, Space, Spin } from "antd";
+import { Input,  Button, Space, Spin } from "antd";
 import { useState } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { HubConnectionBuilder } from '@microsoft/signalr';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestProductAction } from '../../features/requestProduct/requestProductAction';
 import { addProduct } from '../../features/requestProduct/requestProductSlice';
 import { logout } from '../../features/login/loginSlice';
 import { API_BASE_URL } from '../../features/axiosProfile';
-import { BsSearch } from 'react-icons/bs'
 
 const onChange = (e) => {
     console.log(`checked = ${e.target.checked}`);

@@ -2,8 +2,7 @@ import React from 'react'
 import "../addpd/addpd.css"
 import { MdArrowBackIosNew, MdArrowDropDown } from 'react-icons/md'
 import AddProducts1 from './AddProducts1'
-import AddProducts2 from './AddProducts2'
-import { message, Space, Dropdown, Button } from 'antd'
+import { Space, Dropdown, Button } from 'antd'
 import { Link } from 'react-router-dom'
 
 const handleMenuClick = (e) => {

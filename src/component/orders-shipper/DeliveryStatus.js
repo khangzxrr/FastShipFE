@@ -1,7 +1,5 @@
 import React from 'react'
 import { Radio, Button } from 'antd'
-import { CiLocationOn } from 'react-icons/ci'
-import { BsBarChartSteps } from 'react-icons/bs'
 export default function DeliveryStatus() {
     return (
         <div style={{

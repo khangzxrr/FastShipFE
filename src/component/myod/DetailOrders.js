@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Input, Button, Steps, Descriptions } from 'antd'
+import { Button, Steps, Descriptions } from 'antd'
 import "../myod/detailod.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -10,11 +10,7 @@ import Chat from './Chat';
 import { Link } from 'react-router-dom';
 import { getOrderChatAction } from '../../features/getOrderChat/getOrderChatAction';
 export default function DetailOrders() {
-
     const { search } = useLocation()
-
-
-
     const { token } = useSelector(state => state.login)
     const { order } = useSelector(state => state.getOrderById)
 
@@ -67,7 +63,7 @@ export default function DetailOrders() {
                     <div className='detail'>
                         <h1>Chi tiết đơn hàng</h1>
                         <div style={{
-                            width: '100%', border: '1px solid grey',
+                            width: '100%',
                             borderRadius: '20px', marginBottom: '30px', padding: '20px 20px', border: 'none', boxShadow: ' rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px'
                         }}>
                             <Descriptions title="User Info">
@@ -76,7 +72,7 @@ export default function DetailOrders() {
                             </Descriptions>
                         </div>
                         <div style={{
-                            width: '100%', border: '1px solid grey',
+                            width: '100%',
                             borderRadius: '20px', marginBottom: '30px', padding: '20px 20px', border: 'none', boxShadow: ' rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px'
                         }}>
                             <Descriptions title="Order Info">
@@ -132,7 +128,7 @@ export default function DetailOrders() {
                                     order.orderDetails && order.orderDetails.map(od =>
                                     (
                                         <li key={od.orderDetailId} >
-                                            <div className='product' style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}>
+                                            <div className='product' style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px", width:'100%' }}>
                                                 <p ><img src={od.product.imageUrl} alt={od.product.name} style={{ float: 'left' }} />
                                                     <span style={{ fontSize: 20, fontWeight: 500 }}>{od.product.name}</span><br /><a href={od.product.url} target="_blank" rel="noopener noreferrer">Link Product</a>
                                                     <br/><button style={{fontWeight:600, backgroundColor:'yellow', height:'20px', border:'none', borderRadius:'5px'}}>Gía:${od.productCost}</button>

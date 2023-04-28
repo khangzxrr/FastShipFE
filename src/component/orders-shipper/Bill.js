@@ -1,7 +1,5 @@
 import React from 'react'
-import { Radio } from 'antd'
-import { CiLocationOn } from 'react-icons/ci'
-import { BsBarChartSteps, BsInfo, BiInfoCircle, BsInfoCircle } from 'react-icons/bs'
+import {  BsInfoCircle } from 'react-icons/bs'
 export default function Bill() {
     return (
         <div style={{

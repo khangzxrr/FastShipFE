@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Checkbox, Button } from "antd";
+import { Input, Button } from "antd";
 import "../login/login.css"
 import { Link } from 'react-router-dom';
 export default function SignIn() {
