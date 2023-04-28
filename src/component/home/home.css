@@ -1,7 +1,16 @@
 .baogia-form{
     width: 90%;
     height: 160px;
-    background-color: #363534;
+    top: 50%;
+    left: 5%;
+    position: absolute;
+    display: flex;
+}
+.opa{
+    width: 90%;
+    height: 160px;
+    background-color: black;
+    opacity: 0.7;
     top: 50%;
     left: 5%;
     position: absolute;

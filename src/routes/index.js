@@ -3,6 +3,8 @@ import Add from "../pages/add";
 import Detail from "../pages/detailod";
 import HomeEmployee from "../pages/employee/employee-order";
 import OrderDetailEmployee from "../pages/employee/employee-orderdetail";
+import WarrantyList from "../pages/employee/employee-warranty";
+import WarrantyDetail from "../pages/employee/employee-warrantydetail";
 import HomePage from "../pages/home";
 import Login from "../pages/login";
 import MyOrder from "../pages/order";
@@ -10,6 +12,7 @@ import RegisterAccount from "../pages/register";
 import HomeShipper from "../pages/shipper/shipper-order";
 import OrderDetailShipper from "../pages/shipper/shipper-orderdetail";
 import Signin from "../pages/signin";
+import Warranty from "../pages/warranty";
 export const route = [
     {
         path: "/",
@@ -63,6 +66,18 @@ export const route = [
                 path: "/shipper-orderdetail",
                 element: <OrderDetailShipper/>
               },
+              {
+                path: "/warranty",
+                element: <Warranty/>
+              },
+              {
+                path:"/employee-warranty",
+                element:<WarrantyList/>
+              },
+              {
+                path:"/employee-warrantydetail",
+                element:<WarrantyDetail/>
+              }
         ]
     },
 ];

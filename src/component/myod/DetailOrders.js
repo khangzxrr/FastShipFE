@@ -144,7 +144,8 @@ export default function DetailOrders() {
                                                     <span>Đổi trả: {od.product.returnable ? 'có' : 'không'}</span><br />
                                                     {od.product.returnable &&
                                                         (<span>Mô tả đổi trả: Chấp nhận {od.product.returnDuration} ngày đổi trả</span>)}
-                                                        <Button className='btnBaohanh' type='primary'>YÊU CẦU BẢO HÀNH/ ĐỔI TRẢ</Button>
+                                                        <Link to={"/warranty"}><Button className='btnBaohanh' type='primary'>YÊU CẦU BẢO HÀNH/ ĐỔI TRẢ</Button></Link>
+                                                        
                                                 </p>
 
                                             </div>

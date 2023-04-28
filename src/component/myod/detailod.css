@@ -29,7 +29,7 @@
   }
   .chatbox td{
     padding: 2px;
-    border: 1px solid grey;
+    border: 1px solid #AAAAAA;
   }
   .chatbox {
     border-collapse: collapse;

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import "../home/home.css"
-import { Input, Checkbox, Button, Form, message, Space , Spin} from "antd";
+import { Input, Checkbox, Button, Form, message, Space, Spin } from "antd";
 import { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { HubConnectionBuilder } from '@microsoft/signalr';
@@ -34,16 +34,16 @@ export default function () {
         dispatch(requestProductAction(productUrl, loginInfo.token))
             .catch((err) => {
                 console.log(err.response.status)
-                if (err.response.status === 401){
+                if (err.response.status === 401) {
                     //alert('Không có quyền yêu cầu báo giá, vui lòng đăng nhập lại')
-                    dispatch(logout())    
+                    dispatch(logout())
                     navigate("/login")
                 }
 
                 setwaitingFetching(false)
             })
 
-        
+
     }
 
     useEffect(() => {
@@ -64,14 +64,14 @@ export default function () {
                 .then(() => {
                     console.log("connected")
                     connection.on("boardcast", (message) => {
-                        
+
                         const jsonObj = JSON.parse(message)
 
                         if (jsonObj.message) {
                             alert("Có lỗi xảy ra, vui lòng thử lại")
                             setwaitingFetching(false)
                             return
-                        } 
+                        }
 
                         //success
                         dispatch(addProduct(jsonObj))
@@ -79,9 +79,9 @@ export default function () {
                     });
                 })
                 .catch((err) => {
-                    if (err.errorType === "FailedToNegotiateWithServerError"){
+                    if (err.errorType === "FailedToNegotiateWithServerError") {
                         //alert('Không có quyền yêu cầu báo giá, vui lòng đăng nhập lại')
-                        dispatch(logout())    
+                        dispatch(logout())
                         navigate("/login")
                     }
                 })
@@ -90,21 +90,20 @@ export default function () {
 
     return (
         <>
-            <div>
-                <div className='form-home'>
-                    <div className='baogia-form' hidden={!waitingFetching}>
-                        <Space >
-                            <Spin style={{width:'1200px', marginTop:'20px'}} tip="Đợi xí...">
-                            </Spin>
-                        </Space>
-                    </div>
-                    <div style={{ width: '98vw', height: '100vw' }} hidden={waitingFetching}>
-                        <div className='baogia-form'>
-                            <input className='btnlink'  onChange={handleProductUrlOnChange} type='text' placeholder='Nhập link sản phẩm cần mua'></input>
-                            <input className='btnquantity' min={1} type='number' placeholder='Nhập số lượng'></input>
-                            <Button type='primary' onClick={handleRequestProductOnClick}>TÌM KIẾM</Button>
-                        </div>
-                    </div>
+            <div className='opa'>
+
+            </div>
+            <div className='baogia-form' hidden={!waitingFetching}>
+                <Space >
+                    <Spin style={{ width: '1200px', marginTop: '20px' }} tip="Đợi xí...">
+                    </Spin>
+                </Space>
+            </div>
+            <div style={{ width: '98vw', height: '100vw' }} hidden={waitingFetching}>
+                <div className='baogia-form'>
+                    <input className='btnlink' onChange={handleProductUrlOnChange} type='text' placeholder='Nhập link sản phẩm cần mua'></input>
+                    <input className='btnquantity' min={1} type='number' placeholder='Nhập số lượng'></input>
+                    <Button type='primary' onClick={handleRequestProductOnClick}>TÌM KIẾM</Button>
                 </div>
             </div>
         </>
