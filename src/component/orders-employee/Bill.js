@@ -9,7 +9,7 @@ export default function Bill(props) {
             <h3>TỔNG CỘNG</h3>
           </div>
           <div style={{ width: '50%', textAlign: 'right' }}>
-            <h3>${props.order.price} VNĐ</h3>
+            <h3>{props.order.price} VNĐ</h3>
           </div>
         </div>
         <div style={{ width: '100%', display:'flex'}}>
@@ -17,7 +17,7 @@ export default function Bill(props) {
             <h3>CÒN LẠI</h3>
           </div>
           <div style={{ width: '50%', textAlign: 'right' }}>
-            <h3>${props.order.remainCost} VNĐ</h3>
+            <h3>{props.order.remainCost} VNĐ</h3>
           </div>
         </div>
     </>
