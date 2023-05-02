@@ -41,8 +41,8 @@ export default function OrderInfo(props) {
         dispatch(employeeUpdateOrderStatusAction(props.order.orderId, e.target.value, token))
             .then(() => {
                 employeeSetOrderStatus(e.target.value)
-                dispatch(employeeGetOrderByIdAction(props.order.orderId, token))
-                dispatch(employeeGetOrderChatAction(props.order.orderId, token))
+                dispatch(employeeGetOrderByIdAction(props.order.orderId))
+                dispatch(employeeGetOrderChatAction(props.order.orderId))
             })
             .catch(err => {
                 alert(err)
