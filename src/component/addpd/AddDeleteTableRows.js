@@ -44,6 +44,13 @@ function AddDeleteTableRows() {
 
                 navigate(`/detailod?orderId=${response.order.orderId}`)
             })
+            .catch((err) => {
+                console.log(err)
+                if (err.response.status === 401){
+                    alert('Lỗi xác thực, vui lòng đăng nhập lại')
+                    navigate('/login')
+                }
+            })
     }
 
     return (
@@ -73,7 +80,7 @@ function AddDeleteTableRows() {
                                     <td><Input type="number" min={1} max={10} defaultValue={'1'} /></td>
                                     <td><Input defaultValue={product.productWarrantable ? "Có" : "Không"} /></td>
                                     <td><Input defaultValue={product.productReturnable ? "Có" : "Không"} /></td>
-                                    <td><Input/></td>
+                                    <td><Input /></td>
                                     <td>
                                         <button style={{ fontSize: 20, border: 'none', backgroundColor: 'white', marginLeft: '13px' }} onClick={() => { handleDeleteProduct(index) }}><AiFillDelete /></button>
                                     </td>
@@ -84,7 +91,7 @@ function AddDeleteTableRows() {
                 </tbody>
 
             </table>
-            <Button type="primary" style={{ width: '30%', left: '35%', color: 'black', fontWeight: 600, margin: '20px 0px' }} onClick={requestCreateOrder}>YÊU CẦU BÁO GIÁ</Button>
+            <Button type="primary" style={{ width: '30%', left: '35%', color: 'black', fontWeight: 600, margin: '20px 0px' }} onClick={() => { requestCreateOrder() }}>YÊU CẦU BÁO GIÁ</Button>
         </div>
     )
 
