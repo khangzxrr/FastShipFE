@@ -158,7 +158,7 @@ export default function DetailOrders() {
                                 <h3>TỔNG CỘNG</h3>
                             </div>
                             <div style={{ width: '50%', textAlign: 'right' }}>
-                                <h3>{order.price} VNĐ</h3>
+                                <h3>{order.price},000 VNĐ</h3>
                             </div>
                         </div>
                         <div style={{ width: '100%', }}>
@@ -166,13 +166,13 @@ export default function DetailOrders() {
                                 <h3>CÒN LẠI</h3>
                             </div>
                             <div style={{ width: '50%', textAlign: 'right' }}>
-                                <h3>{order.remainCost} VNĐ</h3>
+                                <h3>{order.remainCost},000 VNĐ</h3>
                             </div>
                         </div>
 
                         {
                             order.status === "noPayYet" &&
-                            (<Button type="primary" style={{ width: '100%', color: 'black', fontWeight: 600 }} onClick={handleCreatePaymentOnClick}>Thanh toán Lần 1 (80%)</Button>)
+                            (<Button type="primary" style={{ width: '100%', color: 'black', fontWeight: 600 }} onClick={() => handleCreatePaymentOnClick()}>Thanh toán Lần 1 (80%)</Button>)
                         }
                     </div>
                 </div>
