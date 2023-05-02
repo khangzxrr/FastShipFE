@@ -33,8 +33,8 @@ const OrderDetailEmployee = () => {
         return
       }
       
-      dispatch(employeeGetOrderByIdAction(orderId, token))
-        .then(dispatch(employeeGetOrderChatAction(orderId, token)))
+      dispatch(employeeGetOrderByIdAction(orderId))
+        .then(dispatch(employeeGetOrderChatAction(orderId)))
         .catch(err => {
           if (err.response.status === 401 || err.response.status === 403){
             //alert('Bạn không có quyền thực thi việc này, vui lòng đăng nhập lại')
