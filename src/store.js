@@ -1,4 +1,4 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import {loginSlice} from "./features/login/loginSlice";
 import storage from 'redux-persist/lib/storage'
 import { persistReducer } from 'redux-persist'
@@ -30,5 +30,8 @@ const reducers = combineReducers({
 const persistedReducer = persistReducer(persistConfig, reducers)
 
 export default configureStore({
-    reducer: persistedReducer
+    reducer: persistedReducer,
+    middleware: getDefaultMiddleware({
+        serializableCheck: false
+    })
 })
