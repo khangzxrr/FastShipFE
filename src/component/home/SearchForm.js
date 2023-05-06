@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import "../home/home.css"
-import { Input,  Button, Space, Spin } from "antd";
+import { Input, Button, Space, Spin } from "antd";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { HubConnectionBuilder } from '@microsoft/signalr';
@@ -9,14 +9,15 @@ import { requestProductAction } from '../../features/requestProduct/requestProdu
 import { addProduct } from '../../features/requestProduct/requestProductSlice';
 import { logout } from '../../features/login/loginSlice';
 import { API_BASE_URL } from '../../features/axiosProfile';
+import { HttpTransportType } from '@microsoft/signalr';
 
-const onChange = (e) => {
-    console.log(`checked = ${e.target.checked}`);
-};
-const { TextArea } = Input;
+
+
+
+
 export default function () {
     const [productUrl, setProductUrl] = useState('')
-    const [waitingFetching, setwaitingFetching] = useState(false)
+    const [waitingFetching, setWaitingFetching] = useState(false)
     const [connection, setConnection] = useState(null)
 
     const loginInfo = useSelector(state => state.login)
@@ -29,7 +30,7 @@ export default function () {
     }
 
     function handleRequestProductOnClick() {
-        setwaitingFetching(true)
+        setWaitingFetching(true)
         dispatch(requestProductAction(productUrl, loginInfo.token))
             .catch((err) => {
                 console.log(err.response.status)
@@ -39,7 +40,7 @@ export default function () {
                     navigate("/login")
                 }
 
-                setwaitingFetching(false)
+                setWaitingFetching(false)
             })
 
 
@@ -48,44 +49,42 @@ export default function () {
     useEffect(() => {
 
         const connection = new HubConnectionBuilder()
-            .withUrl(API_BASE_URL + "/hub", { accessTokenFactory: () => loginInfo.token })
+            .withUrl(API_BASE_URL + "/hub", { 
+                skipNegotiation: false,
+                transport: HttpTransportType.WebSockets,
+                accessTokenFactory: () => loginInfo.token })
             .withAutomaticReconnect()
             .build()
 
         setConnection(connection)
-    }, [])
 
-    useEffect(() => {
+        connection
+            .start()
+            .then(() => {
+                console.log("connected")
+                connection.on("boardcast", (message) => {
 
-        if (connection != null && loginInfo != null) {
-            connection
-                .start()
-                .then(() => {
-                    console.log("connected")
-                    connection.on("boardcast", (message) => {
+                    const jsonObj = JSON.parse(message)
 
-                        const jsonObj = JSON.parse(message)
-
-                        if (jsonObj.message) {
-                            alert("Có lỗi xảy ra, vui lòng thử lại")
-                            setwaitingFetching(false)
-                            return
-                        }
-
-                        //success
-                        dispatch(addProduct(jsonObj))
-                        navigate("/add")
-                    });
-                })
-                .catch((err) => {
-                    if (err.errorType === "FailedToNegotiateWithServerError") {
-                        //alert('Không có quyền yêu cầu báo giá, vui lòng đăng nhập lại')
-                        dispatch(logout())
-                        navigate("/login")
+                    if (jsonObj.message) {
+                        alert("Có lỗi xảy ra, vui lòng thử lại")
+                        setWaitingFetching(false)
+                        return
                     }
-                })
-        }
-    }, [connection, loginInfo])
+
+                    //success
+                    dispatch(addProduct(jsonObj))
+                    navigate("/add")
+                });
+            })
+            .catch((err) => {
+                if (err.errorType === "FailedToNegotiateWithServerError") {
+                    //alert('Không có quyền yêu cầu báo giá, vui lòng đăng nhập lại')
+                    dispatch(logout())
+                    navigate("/login")
+                }
+            })
+    }, [])
 
     return (
         <>
