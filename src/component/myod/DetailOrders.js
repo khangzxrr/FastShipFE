@@ -9,6 +9,7 @@ import { logout } from '../../features/login/loginSlice';
 import Chat from './Chat';
 import { Link } from 'react-router-dom';
 import { getOrderChatAction } from '../../features/getOrderChat/getOrderChatAction';
+import { Utils } from '../../features/utils/Utils';
 export default function DetailOrders() {
     const { search } = useLocation()
     const { token } = useSelector(state => state.login)
@@ -158,7 +159,7 @@ export default function DetailOrders() {
                                 <h3>TỔNG CỘNG</h3>
                             </div>
                             <div style={{ width: '50%', textAlign: 'right' }}>
-                                <h3>{order.price},000 VNĐ</h3>
+                                <h3>{Utils.formatToVNDCurrency(order.price)}</h3>
                             </div>
                         </div>
                         <div style={{ width: '100%', }}>
@@ -166,7 +167,7 @@ export default function DetailOrders() {
                                 <h3>CÒN LẠI</h3>
                             </div>
                             <div style={{ width: '50%', textAlign: 'right' }}>
-                                <h3>{order.remainCost},000 VNĐ</h3>
+                                <h3>{Utils.formatToVNDCurrency(order.remainCost)}</h3>
                             </div>
                         </div>
 
