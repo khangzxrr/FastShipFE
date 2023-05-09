@@ -5,6 +5,7 @@ import HomeEmployee from "../pages/employee/employee-order";
 import OrderDetailEmployee from "../pages/employee/employee-orderdetail";
 import WarrantyList from "../pages/employee/employee-warranty";
 import WarrantyDetail from "../pages/employee/employee-warrantydetail";
+import Form from "../pages/guest/guest-form";
 import HomePage from "../pages/home";
 import Login from "../pages/login";
 import MyOrder from "../pages/order";
@@ -77,6 +78,10 @@ export const route = [
               {
                 path:"/employee-warrantydetail",
                 element:<WarrantyDetail/>
+              },
+              {
+                path:"/guest-form",
+                element:<Form/>
               }
         ]
     },

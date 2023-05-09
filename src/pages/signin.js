@@ -1,6 +1,5 @@
 import "../component/login/login.css"
 import ResgisterForm from "../component/register/Signin";
-import { Button } from "antd";
 const Signin = () => {
     return(
         <>
