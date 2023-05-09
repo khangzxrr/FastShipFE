@@ -19,10 +19,12 @@ export default function () {
     const [waitingFetching, setWaitingFetching] = useState(false)
     const [connection, setConnection] = useState(null)
 
-    const loginInfo = useSelector(state => state.login)
-
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    function handleCartOnClick() {
+        navigate('/add')
+    }
 
     function handleProductUrlOnChange(event) {
         setProductUrl(event.target.value)
@@ -33,25 +35,10 @@ export default function () {
 
         try{
             connection.invoke('AddProductUrlToFetchData', { productUrl })
-            alert('find product!');
         }catch(err) {
             alert('Có lỗi xảy ra, vui lòng tải lại trang và thử lại');
         }
         
-        // dispatch(requestProductAction(productUrl, loginInfo.token))
-        //     .catch((err) => {
-        //         console.log(err.response.status)
-        //         if (err.response.status === 401) {
-        //             //alert('Không có quyền yêu cầu báo giá, vui lòng đăng nhập lại')
-        //             dispatch(logout())
-        //             navigate("/login")
-        //         }
-
-        //         setWaitingFetching(false)
-        //     })
-
-
-
     }
 
     useEffect(() => {
@@ -106,7 +93,7 @@ export default function () {
                     <input className='btnlink' onChange={handleProductUrlOnChange} type='text' placeholder='Nhập link sản phẩm cần mua'></input>
                     <input className='btnquantity' min={1} type='number' placeholder='Nhập số lượng'></input>
                     <Button type='primary' onClick={handleRequestProductOnClick}>TÌM KIẾM</Button>
-                    <Button type='primary'>BÁO GIÁ NHANH</Button>
+                    <Button type='primary' onClick={handleCartOnClick}>GIỎ HÀNG</Button>
                 </div>
             </div>
         </>
