@@ -10,6 +10,7 @@ import { AiOutlinePlusSquare } from "react-icons/ai";
 import { createOrderAction } from "../../features/createOrder/createOrderAction";
 import { clearProduct } from "../../features/requestProduct/requestProductSlice";
 import { getOrderByIdSuccessfully } from "../../features/getOrderById/getOrderByIdSlice";
+
 function AddDeleteTableRows() {
     const requestProduct = useSelector(state => state.requestProduct)
 
@@ -34,7 +35,17 @@ function AddDeleteTableRows() {
     const { token } = useSelector(state => state.login)
 
     function requestCreateOrder() {
-        dispatch(createOrderAction(products, token))
+
+        console.log(token)
+
+        if (!token){
+            alert('Bạn chưa tạo tài khoản, vui lòng nhập thông tin để tiếp tục')
+            navigate('/guest-form')
+
+            return
+        }
+
+        dispatch(createOrderAction(products))
             .then((response) => {
                 console.log(response)
 
@@ -43,6 +54,7 @@ function AddDeleteTableRows() {
                 dispatch(getOrderByIdSuccessfully(response))
 
                 navigate(`/detailod?orderId=${response.order.orderId}`)
+
             })
             .catch((err) => {
                 console.log(err)
