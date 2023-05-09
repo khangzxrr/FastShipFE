@@ -1,6 +1,6 @@
 import axiosProfile from "../axiosProfile"
 
-export const createOrderAction = (productDetails, token)  => async dispatch =>  {
+export const createOrderAction = (productDetails)  => async dispatch =>  {
 
     const products = productDetails.map(
             function(product){ 
@@ -10,11 +10,6 @@ export const createOrderAction = (productDetails, token)  => async dispatch =>  
 
     const response = await axiosProfile.post('/Orders', {
         products
-    }, {
-        headers: {
-            "Content-type": "application/json",
-            "Authorization": `Bearer ${token}`
-        }
     })
 
     return Promise.resolve(response.data)
