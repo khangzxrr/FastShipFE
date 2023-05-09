@@ -9,7 +9,7 @@ export const FooterLayout = () => {
         <Footer className="footer" style={{ padding: "0px" }}>
             <img
               onClick={() => navigate("/")}
-              src="/logo.png"
+              src="/logopage.jpg"
               style={{
                 float: "left",
                 height: "100%",
