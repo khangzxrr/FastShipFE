@@ -42,17 +42,26 @@ export default function () {
 
     function handleRequestProductOnClick() {
         setWaitingFetching(true)
-        dispatch(requestProductAction(productUrl, loginInfo.token))
-            .catch((err) => {
-                console.log(err.response.status)
-                if (err.response.status === 401) {
-                    //alert('Không có quyền yêu cầu báo giá, vui lòng đăng nhập lại')
-                    dispatch(logout())
-                    navigate("/login")
-                }
 
-                setWaitingFetching(false)
-            })
+        try{
+            connection.invoke('AddProductUrlToFetchData', { productUrl })
+            alert('find product!');
+        }catch(err) {
+            alert('Có lỗi xảy ra, vui lòng tải lại trang và thử lại');
+        }
+        
+        // dispatch(requestProductAction(productUrl, loginInfo.token))
+        //     .catch((err) => {
+        //         console.log(err.response.status)
+        //         if (err.response.status === 401) {
+        //             //alert('Không có quyền yêu cầu báo giá, vui lòng đăng nhập lại')
+        //             dispatch(logout())
+        //             navigate("/login")
+        //         }
+
+        //         setWaitingFetching(false)
+        //     })
+
 
 
     }
@@ -62,8 +71,8 @@ export default function () {
         const connection = new HubConnectionBuilder()
             .withUrl(API_BASE_URL + "/hub", {
                 skipNegotiation: false,
-                transport: HttpTransportType.WebSockets,
-                accessTokenFactory: () => loginInfo.token })
+                transport: HttpTransportType.WebSockets
+            })
             .withAutomaticReconnect()
             .build()
 
@@ -73,7 +82,7 @@ export default function () {
             .start()
             .then(() => {
                 console.log("connected")
-                connection.on("boardcast", (message) => {
+                connection.on("fetched_new_product", (message) => {
 
                     const jsonObj = JSON.parse(message)
 
@@ -89,11 +98,7 @@ export default function () {
                 });
             })
             .catch((err) => {
-                if (err.errorType === "FailedToNegotiateWithServerError") {
-                    //alert('Không có quyền yêu cầu báo giá, vui lòng đăng nhập lại')
-                    dispatch(logout())
-                    navigate("/login")
-                }
+                alert(err.response.data);
             })
     }, [])
 
