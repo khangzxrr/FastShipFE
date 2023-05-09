@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import "../home/home.css"
-import { Input, Button, Space, Spin } from "antd";
+import { Button, Space, Spin , Modal} from "antd";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { HubConnectionBuilder } from '@microsoft/signalr';
@@ -10,12 +10,23 @@ import { addProduct } from '../../features/requestProduct/requestProductSlice';
 import { logout } from '../../features/login/loginSlice';
 import { API_BASE_URL } from '../../features/axiosProfile';
 import { HttpTransportType } from '@microsoft/signalr';
+import InputForm from './InputForm';
 
 
 
 
 
 export default function () {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
     const [productUrl, setProductUrl] = useState('')
     const [waitingFetching, setWaitingFetching] = useState(false)
     const [connection, setConnection] = useState(null)
@@ -49,7 +60,7 @@ export default function () {
     useEffect(() => {
 
         const connection = new HubConnectionBuilder()
-            .withUrl(API_BASE_URL + "/hub", { 
+            .withUrl(API_BASE_URL + "/hub", {
                 skipNegotiation: false,
                 transport: HttpTransportType.WebSockets,
                 accessTokenFactory: () => loginInfo.token })
@@ -102,6 +113,10 @@ export default function () {
                     <input className='btnlink' onChange={handleProductUrlOnChange} type='text' placeholder='Nhập link sản phẩm cần mua'></input>
                     <input className='btnquantity' min={1} type='number' placeholder='Nhập số lượng'></input>
                     <Button type='primary' onClick={handleRequestProductOnClick}>TÌM KIẾM</Button>
+                    <Button type='primary' style={{marginRight:''}} onClick={showModal}>BÁO GIÁ NHANH</Button>
+                    <Modal title="ĐẶT HÀNG NHANH" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                        <InputForm/>
+                    </Modal>
                 </div>
             </div>
         </>

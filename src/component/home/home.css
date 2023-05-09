@@ -17,7 +17,7 @@
     display: flex;
 }
 .btnlink {
-    width: 50%;
+    width: 48%;
     height: 70px;
     margin-top: 45px;
     margin-left: 4%;
@@ -30,6 +30,7 @@
     height: 70px;
     margin-top: 45px;
     margin-left: 2%;
+    margin-right: 2%;
     font-size: 20px;
     border: none;
     padding: 20px;
@@ -40,7 +41,7 @@
     border: none;
     cursor: pointer;
     margin-top: 45px;
-    margin-left: 2%;
+    margin-right: 2%;
     border-radius: 0px;
     color: black;
     font-weight: 600;
@@ -150,4 +151,7 @@
     margin-top: 50px;
     margin-left: 150px;
     background-color: yellow;
+  }
+  .inputform input{
+    width: 400px;
   }
