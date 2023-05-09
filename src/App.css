@@ -40,3 +40,16 @@
     border-radius: 18px;
     border: 1px solid #cfcece;
   }
+  .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 777;
+}

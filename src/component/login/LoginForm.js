@@ -4,9 +4,9 @@ import "../login/login.css"
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginAction } from '../../features/login/loginAction';
-
+import { useOverlay } from '../../OverlayContext';
 export default function LoginForm() {
-    const [waitingFetching, setWaitingFetching] = useState(false)
+    const { CreateOverlay } = useOverlay();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -30,8 +30,13 @@ export default function LoginForm() {
         setPassword(event.target.value);
     }
 
-    function loginButtonOnClick() {
-        setWaitingFetching(true)
+    function loginButtonOnClick(e) {
+        //loading
+        e.preventDefault();
+        e.stopPropagation();
+        CreateOverlay(<Spin tip="Loading"/>);
+        e.target.blur();
+        //
         dispatch(loginAction(email, password))
             .then((response) => {
                 console.log(response)
@@ -55,11 +60,9 @@ export default function LoginForm() {
                 <Input type='password' placeholder='NHẬP MẬT KHẨU' onChange={handlePasswordChange} />
                 <br />
                 <Link><p style={{ textAlign: "right", marginRight: '160px', color: 'grey' }}>Quên mật khẩu ?</p></Link>
-                <Button type='primary' onClick={loginButtonOnClick}>Đăng nhập</Button>
+                <Button type='primary' onClick={(e) => loginButtonOnClick(e)}>Đăng nhập</Button>
             </div>
-            <div hidden={!waitingFetching} style={{position:'absolute', width:'200px', height:'25px', textAlign:'center',marginLeft:'220px',marginTop:'15px'}}>
-                <Spin />
-            </div>
+
         </>
 
     )
