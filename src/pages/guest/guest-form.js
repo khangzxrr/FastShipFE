@@ -1,4 +1,4 @@
-import InputForm from "../../component/home/InputForm"
+import InputForm from "./InputForm"
 
 const Form = () => {
     return (

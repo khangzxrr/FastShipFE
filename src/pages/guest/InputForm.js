@@ -4,7 +4,7 @@ import {
   Input,
   Button
 } from 'antd'
-import "../home/home.css"
+import "../../component/home/home.css"
 export default function InputForm() {
   return (
     <>
