@@ -8,6 +8,9 @@ import WarrantyDetail from "../pages/employee/employee-warrantydetail";
 import Form from "../pages/guest/guest-form";
 import HomePage from "../pages/home";
 import Login from "../pages/login";
+import ManagerCurrency from "../pages/manager/manager-currency";
+import ManagerHome from "../pages/manager/manager-home";
+import ManagerRevenueDetails from "../pages/manager/manager-revenuedetail";
 import MyOrder from "../pages/order";
 import RegisterAccount from "../pages/register";
 import HomeShipper from "../pages/shipper/shipper-order";
@@ -82,6 +85,18 @@ export const route = [
               {
                 path:"/guest-form",
                 element:<Form/>
+              },
+              {
+                path:"/manager-home",
+                element:<ManagerHome/>
+              },
+              {
+                path:"/manager-revenuedetail",
+                element:<ManagerRevenueDetails/>
+              },
+              {
+                path:"/manager-currency",
+                element:<ManagerCurrency/>
               }
         ]
     },
