@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginAction } from '../../features/login/loginAction';
 import { useOverlay } from '../../OverlayContext';
 export default function LoginForm() {
-    const { CreateOverlay } = useOverlay();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -31,12 +30,6 @@ export default function LoginForm() {
     }
 
     function loginButtonOnClick(e) {
-        //loading
-        e.preventDefault();
-        e.stopPropagation();
-        CreateOverlay(<Spin tip="Loading"/>);
-        e.target.blur();
-        //
         dispatch(loginAction(email, password))
             .then((response) => {
                 console.log(response)
