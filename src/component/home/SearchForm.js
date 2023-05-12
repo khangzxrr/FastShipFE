@@ -4,13 +4,10 @@ import { Button, Space, Spin} from "antd";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { HubConnectionBuilder } from '@microsoft/signalr';
-import { useDispatch, useSelector } from 'react-redux';
-import { requestProductAction } from '../../features/requestProduct/requestProductAction';
+import { useDispatch} from 'react-redux';
 import { addProduct } from '../../features/requestProduct/requestProductSlice';
-import { logout } from '../../features/login/loginSlice';
 import { API_BASE_URL } from '../../features/axiosProfile';
 import { HttpTransportType } from '@microsoft/signalr';
-import { Link } from 'react-router-dom';
 
 
 
@@ -80,20 +77,22 @@ export default function () {
     return (
         <>
             <div className='opa'>
-
+                
             </div>
-            <div className='baogia-form' hidden={!waitingFetching}>
+            {waitingFetching && (
+            <div className='baogia-form'>
                 <Space >
                     <Spin style={{ width: '1200px', marginTop: '20px' }} tip="Đợi xí...">
                     </Spin>
                 </Space>
-            </div>
+            </div>)}
             <div style={{ width: '98vw', height: '100vw' }} hidden={waitingFetching}>
                 <div className='baogia-form'>
                     <input className='btnlink' onChange={handleProductUrlOnChange} type='text' placeholder='Nhập link sản phẩm cần mua'></input>
                     <input className='btnquantity' min={1} type='number' placeholder='Nhập số lượng'></input>
                     <Button type='primary' onClick={handleRequestProductOnClick}>TÌM KIẾM</Button>
                     <Button type='primary' onClick={handleCartOnClick}>GIỎ HÀNG</Button>
+                    
                 </div>
             </div>
         </>
