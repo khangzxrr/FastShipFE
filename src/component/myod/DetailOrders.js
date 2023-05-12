@@ -132,9 +132,13 @@ export default function DetailOrders() {
                                             <div className='product' style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px", width:'100%' }}>
                                                 <p ><img src={od.product.imageUrl} alt={od.product.name} style={{ float: 'left' }} />
                                                     <span style={{ fontSize: 20, fontWeight: 500 }}>{od.product.name}</span><br /><a href={od.product.url} target="_blank" rel="noopener noreferrer">Link Product</a>
-                                                    <br/><button style={{fontWeight:600, backgroundColor:'yellow', height:'20px', border:'none', borderRadius:'5px'}}>Gía:${od.productCost}</button>
-                                                    <br />Phụ thu: ${od.additionalCost}<br />Phí xử lí: ${od.processCost}<br />Số lượng: {od.quantity}
-                                                    <br />Phí ship đến kho US: ${od.shipCost}<br />Phí trọng lượng 1kg: ${od.product.costPerWeight}<br />
+                                                    <br/>
+                                                    <button style={{fontWeight:600, backgroundColor:'yellow', height:'20px', border:'none', borderRadius:'5px'}}>Giá sản phẩm:${od.productCost}</button>
+                                                    <br />Phụ thu: ${od.additionalCost}<br />
+                                                    Phí xử lí: ${od.processCost}<br />Số lượng: {od.quantity}
+                                                    <br />Phí ship đến kho US: ${od.shipCost}<br />
+                                                    Phí trọng lượng 1kg: ${od.product.costPerWeight}<br />
+                                                    Trọng lượng sau khi cân ở VN: 0 <br/>
                                                     Bảo hành: {od.product.warrantable ? 'có' : 'không'}<br />
                                                     {od.product.warrantable &&
                                                         (<span>Mô tả bảo hành: {od.product.warrantableDescription}</span>)}
@@ -157,6 +161,22 @@ export default function DetailOrders() {
                         <div style={{ width: '100%' }}>
                             <div style={{ width: '50%', color: 'grey' }}>
                                 <h3>TỔNG CỘNG</h3>
+                            </div>
+                            <div style={{ width: '50%', textAlign: 'right' }}>
+                                <h3>{Utils.formatToVNDCurrency(order.price)}</h3>
+                            </div>
+                        </div>
+                        <div style={{ width: '100%' }}>
+                            <div style={{ width: '50%', color: 'grey' }}>
+                                <h3>TỈ GIÁ CHUYỂN ĐỔI HIỆN TẠI</h3>
+                            </div>
+                            <div style={{ width: '50%', textAlign: 'right' }}>
+                                <h3>{Utils.formatToVNDCurrency(order.price)}</h3>
+                            </div>
+                        </div>
+                        <div style={{ width: '100%' }}>
+                            <div style={{ width: '50%', color: 'grey' }}>
+                                <h3>TỔNG CỘNG (VNĐ)</h3>
                             </div>
                             <div style={{ width: '50%', textAlign: 'right' }}>
                                 <h3>{Utils.formatToVNDCurrency(order.price)}</h3>
