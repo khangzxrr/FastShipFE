@@ -4,8 +4,6 @@ export class Utils {
     static apiDateFormat = 'YYYY/MM/DD'
 
     static formatToVNDCurrency(currency){
-        
-        console.log(currency)
 
         let vndFormat = Intl.NumberFormat('vi', {
             style: 'currency',
