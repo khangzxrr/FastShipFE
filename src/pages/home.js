@@ -13,7 +13,7 @@ const HomePage = () => {
         if (roleName === "MANAGER"){
             navigate("/manager-home")
         } else
-        if (roleName === "EMLPOYEE"){
+        if (roleName === "EMPLOYEE"){
             navigate("/employee-order")
         }
     }, [roleName]);
