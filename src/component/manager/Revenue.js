@@ -1,7 +1,10 @@
 import React from 'react'
 import { Button } from 'antd'
 import { Link } from 'react-router-dom'
-export default function Revenue() {
+import { Utils } from '../../features/utils/Utils'
+export default function Revenue(props) {
+
+    console.log(props)
     return (
         <>
             <div className='revenue'>
@@ -10,7 +13,7 @@ export default function Revenue() {
                     style={{ width: '100px', height: '100px', opacity: '0.5', marginTop: '10px' }}
                 />
                 <p>Doanh thu</p>
-                <h2>$1000000</h2>
+                <h2>{Utils.formatToVNDCurrency(props.totalPayment)}</h2>
                 <Link to="/manager-revenuedetail"><Button type='primary'>CHI TIẾT</Button></Link>
             </div>
         </>

@@ -1,92 +1,63 @@
-import React from 'react'
-import { Table, Tag, Input, DatePicker, Button } from 'antd';
+import React, { useEffect, useState } from 'react'
+import { Table, Tag, DatePicker, Button } from 'antd';
 import dayjs from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
-dayjs.extend(customParseFormat);
-const dateFormat = 'YYYY/MM/DD';
-const { Search } = Input;
+import { Utils } from '../../features/utils/Utils';
+import { useDispatch } from 'react-redux';
+import { managerGetPaymentsAction } from '../../features/managerGetPayments/managerGetPaymentsAction';
+
+
+
 export default function RevenueDetails() {
   const columns = [
     {
       title: 'ID',
-      dataIndex: 'id',
-      key: 'id',
+      dataIndex: 'paymentId',
+      key: 'paymentId',
       render: (text) => <a>{text}</a>,
     },
     {
       title: 'DATE',
-      dataIndex: 'date',
-      key: 'date',
+      dataIndex: 'paymentDate',
+      key: 'paymentDate',
     },
     {
-      title: 'ACTION',
-      dataIndex: 'action',
-      key: 'action',
+      title: 'DESCRIPTION',
+      dataIndex: 'paymentDescription',
+      key: 'paymentDescription',
     },
     {
-      title: 'TAGS',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: (_, { tags }) => (
-        <>
-          {tags.map((tag) => {
-            return (
-              <Tag color='green' key={tag}>
-                +{tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </>
-      ),
+      title: 'STATUS',
+      key: 'paymentStatus',
+      dataIndex: 'paymentStatus'
     },
     {
-      title: 'TOTAL',
-      key: 'total',
-      dataIndex: 'total'
+      title: 'TRANSACTIONAL ID',
+      key: 'transactionId',
+      dataIndex: 'transactionId'
     },
+    {
+      title: 'AMOUNT',
+      key: 'paymentCost',
+      dataIndex: 'paymentCost'
+    }
   ];
-  const data = [
-    {
-      key: '1',
-      id: '123',
-      date: 123,
-      action: 'TRANFER',
-      tags: ['1000'],
-      total: 1000
-    },
-    {
-      key: '1',
-      id: '123',
-      date: 123,
-      action: 'TRANFER',
-      tags: ['1000'],
-      total: 1000
-    },
-    {
-      key: '1',
-      id: '123',
-      date: 123,
-      action: 'TRANFER',
-      tags: ['1000'],
-      total: 1000
-    },
-    {
-      key: '1',
-      id: '123',
-      date: 123,
-      action: 'TRANFER',
-      tags: ['1000'],
-      total: 1000
-    },
-    {
-      key: '1',
-      id: '123',
-      date: 123,
-      action: 'TRANFER',
-      tags: ['1000'],
-      total: 1000
-    },
-  ];
+ 
+  const [payments, setPayments] = useState([])
+
+  function startDateOnChange(date, dateString) {
+    console.log(date, dateString);
+  }
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(managerGetPaymentsAction('aaa', 'bbb'))
+      .then(response => {
+        console.log(response)
+        setPayments(response.paymentRecords)
+      })
+  }, [])
+
   return (
     <>
       <div className='report'>
@@ -106,12 +77,12 @@ export default function RevenueDetails() {
       <div className='reportdetail'>
         <h2>BÁO CÁO DOANH THU</h2>
         <div className='searchrevenue'>
-          <Search placeholder="Search By ID" />
-          <DatePicker defaultValue={dayjs('2015/01/01', dateFormat)} format={dateFormat} style={{ margin: '0px 10px 0px 10px' }} />
+          <DatePicker defaultValue={dayjs(new Date())} format={Utils.dateFormat} style={{ margin: '0px 10px 0px 10px' }} onChange={startDateOnChange} />
+          <DatePicker defaultValue={dayjs(new Date())} format={Utils.dateFormat} style={{ margin: '0px 10px 0px 10px' }}  onChange={startDateOnChange} />
           <Button type='primary'>Search By Date</Button>
         </div>
         <div className='revenuedetail'>
-          <Table columns={columns} dataSource={data} />
+          <Table columns={columns} dataSource={payments} />
         </div>
       </div>
     </>
