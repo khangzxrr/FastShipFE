@@ -1,5 +1,7 @@
 
 export class Utils {
+    static dateFormat = 'DD/MM/YYYY'
+
     static formatToVNDCurrency(currency){
         
         console.log(currency)
