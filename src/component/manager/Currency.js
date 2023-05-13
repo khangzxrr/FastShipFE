@@ -1,8 +1,12 @@
 import {Table, Space, Modal, Input } from 'antd';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { managerGetCurrencyListAction } from '../../features/managerGetCurrencyList/managerGetCurrencyListAction';
+import { Utils } from '../../features/utils/Utils';
 export default function Currency() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
+  const showModal = (record) => {
+    console.log(record.id)
     setIsModalOpen(true);
   };
   const handleOk = () => {
@@ -19,69 +23,49 @@ export default function Currency() {
       render: (text) => <a>{text}</a>,
     },
     {
-      title: 'Ngoại tệ',
-      dataIndex: 'ngoaite',
-      key: 'ngoaite',
-    },
-    {
       title: 'Tên ngoại tệ',
-      dataIndex: 'ten',
-      key: 'ten',
+      dataIndex: 'fromCurrency',
+      key: 'fromCurrency',
     },
     {
       title: 'Tỷ giá',
-      key: 'tygia',
-      dataIndex: 'tygia'
+      key: 'rate',
+      dataIndex: 'rate',
+      render: (rate) => <a>{Utils.formatToVNDCurrency(rate)}</a>
     },
     {
       title: '',
       key: 'action',
+      dataIndex: 'id',
       render: (_, record) => (
+
+
         <Space size="middle">
-          <a onClick={showModal}>Chỉnh sửa</a>
+          <a onClick={() => { showModal(record)}}>Chỉnh sửa</a>
         </Space>
       ),
     },
   ];
-  const data = [
-    {
-      key: '1',
-      id: '1',
-      ngoaite: 'EUR',
-      ten: 'Đồng Euro',
-      tygia: '25.929,2',
-    },
-    {
-      key: '2',
-      id: '2',
-      ngoaite: 'JPY',
-      ten: 'Yên Nhật',
-      tygia:'174,84',
-    },
-    {
-      key: '1',
-      id: '1',
-      ngoaite: 'EUR',
-      ten: 'Đồng Euro',
-      tygia: '25.929,2',
-    },
-    {
-      key: '2',
-      id: '2',
-      ngoaite: 'JPY',
-      ten: 'Yên Nhật',
-      tygia:'174,84',
-    },
-  ];
+
+  const [currencies, setCurrencies] = useState([])
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(managerGetCurrencyListAction())
+      .then((response) => {
+        setCurrencies(response.currencyRecords)
+      })
+  }, [dispatch])
   return (
     <>
     <div className='currency'>
         <h2>TỶ GIÁ</h2>
         <h3>Đơn vị: VNĐ</h3>
-        <Table columns={columns} dataSource={data} />
+        <Table columns={columns} dataSource={currencies} />
     </div>
     <Modal title="CẬP NHẬT TỶ GIÁ" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-      <p>Tên ngoại tệ: </p>
+      <p>Số tiền VNĐ muốn sửa: </p>
       <Input/>
       </Modal>
     </>
