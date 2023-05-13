@@ -3,7 +3,6 @@ import Bill from "../../component/orders-employee/Bill"
 import OrderDetail from "../../component/orders-employee/OrderDetail"
 import OrderInfo from "../../component/orders-employee/OrderInfo"
 import ProductInfo from "../../component/orders-employee/ProductInfo"
-import Chat from "../../component/myod/Chat"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { employeeGetOrderByIdAction } from "../../features/employeeGetOrderById/employeeGetOrderByIdAction"
@@ -11,6 +10,7 @@ import { logout } from "../../features/login/loginSlice"
 import { employeeGetOrderChatAction } from "../../features/employeeGetOrderChat/employeeGetOrderChatAction"
 import EmployeeChat from "../../component/orders-employee/EmployeeChat"
 import DeliveryOption from "../../component/orders-employee/DeliveryOption"
+import UpdateWeight from "../../component/orders-employee/UpdateWeight"
 
 const OrderDetailEmployee = () => {
 
@@ -59,6 +59,7 @@ const OrderDetailEmployee = () => {
               </div>
               <div style={{width:'28%'}}>
               <DeliveryOption order={order} />
+              <UpdateWeight/>
               </div>
             </div>
             <div style={{width:'100%', display:'flex'}}>
