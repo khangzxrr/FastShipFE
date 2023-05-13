@@ -62,8 +62,8 @@
     margin: 20px 0px 20px 0px;
 }
 
-.report div{
-    width: 32%;
+.report .child{
+    width: 100%;
     text-align: center;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 2px;
@@ -78,4 +78,18 @@
     padding: 10px;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+.ant-picker.ant-picker-range.css-dev-only-do-not-override-1gkspyy{
+    border: none;
+    box-shadow: none;
+}
+.ant-picker-input.ant-picker-input-active{
+    box-shadow: none;
+    border: none;
+}
+.ant-picker-range-separator{
+    box-shadow: none;
+}
+.ant-picker-input{
+    box-shadow: none;
 }

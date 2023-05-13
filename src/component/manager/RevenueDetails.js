@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Table, Tag, DatePicker, Button } from 'antd';
 import dayjs from 'dayjs';
-import { Utils } from '../../features/utils/Utils';
-import { useDispatch } from 'react-redux';
-import { managerGetPaymentsAction } from '../../features/managerGetPayments/managerGetPaymentsAction';
-
-
-
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+dayjs.extend(customParseFormat);
+const dateFormat = 'YYYY/MM/DD';
+const { Search } = Input;
 export default function RevenueDetails() {
   const columns = [
     {
@@ -61,17 +59,10 @@ export default function RevenueDetails() {
   return (
     <>
       <div className='report'>
-        <div>
-          <h2>TODAY</h2>
-          <h3>+10000</h3>
-        </div>
-        <div>
-          <h2>THIS MONTH</h2>
-          <h3>+10000</h3>
-        </div>
-        <div>
+        <div className='child'>
           <h2>TOTAL</h2>
           <h3>10000000</h3>
+          <RangePicker style={{ width: '30%' }} />
         </div>
       </div>
       <div className='reportdetail'>
