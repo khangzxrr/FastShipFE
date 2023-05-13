@@ -1,6 +1,7 @@
 
 export class Utils {
     static dateFormat = 'DD/MM/YYYY'
+    static apiDateFormat = 'YYYY/MM/DD'
 
     static formatToVNDCurrency(currency){
         
