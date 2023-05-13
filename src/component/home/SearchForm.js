@@ -43,7 +43,7 @@ export default function () {
         const connection = new HubConnectionBuilder()
             .withUrl(API_BASE_URL + "/hub", {
                 skipNegotiation: false,
-                transport: HttpTransportType.WebSockets
+                transport: HttpTransportType.WebSockets,
             })
             .withAutomaticReconnect()
             .build()
