@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, Tag, Input, Button, Select } from 'antd';
+import { Table, Input } from 'antd';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { Link } from 'react-router-dom';
@@ -44,15 +44,7 @@ export default function ShipperManager() {
   return (
     <>
       <div className='report'>
-        <div>
-          <h2>TODAY</h2>
-          <h3>+1</h3><span>đơn hàng đã giao</span>
-        </div>
-        <div>
-          <h2>THIS MONTH</h2>
-          <h3>+100</h3><span>đơn hàng đã giao</span>
-        </div>
-        <div>
+        <div className='child'>
           <h2>TOTAL</h2>
           <h3>1000</h3><span>đơn hàng đã giao</span>
         </div>

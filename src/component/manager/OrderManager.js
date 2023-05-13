@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, Tag, Input, Button, Select } from 'antd';
+import { Table,  Input, Button, Select } from 'antd';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 dayjs.extend(customParseFormat);
@@ -55,15 +55,7 @@ export default function OrderManager() {
   return (
     <>
       <div className='report'>
-        <div>
-          <h2>TODAY</h2>
-          <h3>+1</h3>
-        </div>
-        <div>
-          <h2>THIS MONTH</h2>
-          <h3>+100</h3>
-        </div>
-        <div>
+        <div className='child'>
           <h2>TOTAL</h2>
           <h3>1000</h3>
         </div>
