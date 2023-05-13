@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Table, Tag, DatePicker, Button } from 'antd';
-import dayjs from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
-dayjs.extend(customParseFormat);
-const dateFormat = 'YYYY/MM/DD';
-const { Search } = Input;
+import { Table, DatePicker, Button } from 'antd';
+import dayjs from "dayjs"
+import { useDispatch } from 'react-redux';
+
+import { managerGetPaymentsAction } from '../../features/managerGetPayments/managerGetPaymentsAction';
+import { Utils } from '../../features/utils/Utils';
+
+const { RangePicker } = DatePicker;
+
 export default function RevenueDetails() {
   const columns = [
     {
@@ -41,39 +44,50 @@ export default function RevenueDetails() {
   ];
  
   const [payments, setPayments] = useState([])
+  const [totalPaymentsCost, setTotalPaymentsCost] = useState(0)
+  const [pageCount, setPageCount] = useState(0)
 
-  function startDateOnChange(date, dateString) {
-    console.log(date, dateString);
+  const [dates, setDates] = useState([dayjs(new Date()), dayjs(new Date())]);
+
+  function dateChange(dates) {
+    
+
+    if (dates[0] && dates[1]) {
+
+      const startDate = dayjs(dates[0])
+      const endDate = dayjs(dates[1])
+
+      setDates([startDate, endDate])
+      
+      console.log(startDate, endDate)
+    }
   }
 
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(managerGetPaymentsAction('aaa', 'bbb'))
+    dispatch(managerGetPaymentsAction(dates[0].format(Utils.apiDateFormat), dates[1].format(Utils.apiDateFormat)))
       .then(response => {
         console.log(response)
         setPayments(response.paymentRecords)
+        setPageCount(response.pageCount)
+        setTotalPaymentsCost(response.totalPayment)
       })
-  }, [])
+  }, [dates])
 
   return (
     <>
       <div className='report'>
         <div className='child'>
           <h2>TOTAL</h2>
-          <h3>10000000</h3>
-          <RangePicker style={{ width: '30%' }} />
+          <h3>{Utils.formatToVNDCurrency(totalPaymentsCost)}</h3>
+          <RangePicker style={{ width: '30%' }} onCalendarChange={dateChange} defaultValue={dates}/>
         </div>
       </div>
       <div className='reportdetail'>
         <h2>BÁO CÁO DOANH THU</h2>
-        <div className='searchrevenue'>
-          <DatePicker defaultValue={dayjs(new Date())} format={Utils.dateFormat} style={{ margin: '0px 10px 0px 10px' }} onChange={startDateOnChange} />
-          <DatePicker defaultValue={dayjs(new Date())} format={Utils.dateFormat} style={{ margin: '0px 10px 0px 10px' }}  onChange={startDateOnChange} />
-          <Button type='primary'>Search By Date</Button>
-        </div>
         <div className='revenuedetail'>
-          <Table columns={columns} dataSource={payments} />
+          <Table columns={columns} dataSource={payments} pagination={{total: pageCount, defaultPageSize: 10, showSizeChanger: false, pageSizeOptions: ['10']}}/>
         </div>
       </div>
     </>
