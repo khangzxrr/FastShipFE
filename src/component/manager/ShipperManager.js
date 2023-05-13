@@ -1,39 +1,70 @@
 import React from 'react'
-import { Table } from 'antd'
+import { Table, Tag, Input, Button, Select } from 'antd';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import { Link } from 'react-router-dom';
+dayjs.extend(customParseFormat);
+const { Search } = Input;
+const handleChange = (value) => {
+  console.log(value);
+};
 export default function ShipperManager() {
   const columns = [
     {
-      title: 'ID',
+      title: 'Shipper ID',
       dataIndex: 'id',
       key: 'id',
-      render: (text) => <a>{text}</a>,
+      render: (text) => <Link to='/'>{text}</Link>,
     },
     {
-      title: 'NAME',
+      title: 'Shipper Name',
       dataIndex: 'name',
       key: 'name',
     },
     {
-      title: 'REPORT',
-      dataIndex: 'report',
-      key: 'report',
+      title: 'Tổng số đơn đã nhận',
+      dataIndex: 'order',
+      key: 'order',
+    },
+    {
+      title: 'Tổng số tiền đã thu',
+      dataIndex: 'total',
+      key: 'total',
     },
   ];
   const data = [
     {
       key: '1',
       id: '123',
-      name: 123,
-      report: '123',
-
+      name: 'louis',
+      order:123,
+      total:'1000'
     },
-    
   ];
   return (
     <>
-      <div className='ordermanager'>
-        <h1>Shipper Management</h1>
-        <Table columns={columns} dataSource={data} />
+      <div className='report'>
+        <div>
+          <h2>TODAY</h2>
+          <h3>+1</h3><span>đơn hàng đã giao</span>
+        </div>
+        <div>
+          <h2>THIS MONTH</h2>
+          <h3>+100</h3><span>đơn hàng đã giao</span>
+        </div>
+        <div>
+          <h2>TOTAL</h2>
+          <h3>1000</h3><span>đơn hàng đã giao</span>
+        </div>
+      </div>
+      <div className='reportdetail'>
+        <h2>BÁO CÁO THEO SHIPPER</h2>
+        <div className='searchrevenue'>
+          <Search placeholder="Search for Shipper ID, name, ..." />
+        </div>
+        <div className='revenuedetail'>
+          <Table columns={columns} dataSource={data} />
+        </div>
       </div>
     </>
   )

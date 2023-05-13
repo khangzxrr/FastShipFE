@@ -1,5 +1,10 @@
 import React from 'react'
-import {Table, Tag } from 'antd';
+import { Table, Tag, Input, DatePicker, Button } from 'antd';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+dayjs.extend(customParseFormat);
+const dateFormat = 'YYYY/MM/DD';
+const { Search } = Input;
 export default function RevenueDetails() {
   const columns = [
     {
@@ -83,10 +88,32 @@ export default function RevenueDetails() {
     },
   ];
   return (
-    <div className='revenuedetail'>
-      <h1>REPORT OVERVIEW</h1>
-      <h2>$7,431.14 USD</h2>
-      <Table columns={columns} dataSource={data} />
-    </div>
+    <>
+      <div className='report'>
+        <div>
+          <h2>TODAY</h2>
+          <h3>+10000</h3>
+        </div>
+        <div>
+          <h2>THIS MONTH</h2>
+          <h3>+10000</h3>
+        </div>
+        <div>
+          <h2>TOTAL</h2>
+          <h3>10000000</h3>
+        </div>
+      </div>
+      <div className='reportdetail'>
+        <h2>BÁO CÁO DOANH THU</h2>
+        <div className='searchrevenue'>
+          <Search placeholder="Search By ID" />
+          <DatePicker defaultValue={dayjs('2015/01/01', dateFormat)} format={dateFormat} style={{ margin: '0px 10px 0px 10px' }} />
+          <Button type='primary'>Search By Date</Button>
+        </div>
+        <div className='revenuedetail'>
+          <Table columns={columns} dataSource={data} />
+        </div>
+      </div>
+    </>
   )
 }

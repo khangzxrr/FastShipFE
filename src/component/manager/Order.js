@@ -1,17 +1,17 @@
 import React from 'react'
 import { Button } from 'antd'
 import { Link } from 'react-router-dom'
-export default function Revenue() {
+export default function Order() {
     return (
         <>
             <div className='revenue'>
                 <img
-                    src="/wallet.jpeg"
+                    src="/product.png"
                     style={{ width: '100px', height: '100px', opacity: '0.5', marginTop: '10px' }}
                 />
-                <p>Doanh thu</p>
-                <h2>$1000000</h2>
-                <Link to="/manager-revenuedetail"><Button type='primary'>CHI TIẾT</Button></Link>
+                <p>Đơn đã tạo</p>
+                <h2>+100</h2>
+                <Link to="/manager-order"><Button type='primary'>CHI TIẾT</Button></Link>
             </div>
         </>
     )

@@ -1,57 +1,101 @@
 import React from 'react'
-import { Table } from 'antd'
+import { Table, Tag, Input, Button, Select } from 'antd';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+dayjs.extend(customParseFormat);
+const { Search } = Input;
+const handleChange = (value) => {
+  console.log(value);
+};
 export default function OrderManager() {
   const columns = [
     {
-      title: 'ID',
+      title: 'Order ID',
       dataIndex: 'id',
-      width: '30%',
+      key: 'id',
+      width: 200,
     },
     {
-      title: 'DATE',
+      title: 'Date',
       dataIndex: 'date',
+      key: 'date',
     },
     {
-      title: 'STATUS',
+      title: 'Customer',
+      dataIndex: 'customer',
+      key: 'customer',
+    },
+    {
+      title: 'Pricing',
+      dataIndex: 'price',
+      key: 'price',
+    },
+    {
+      title: 'Status',
       dataIndex: 'status',
-      filters: [
-        {
-          text: '1',
-          value: '1',
-        },
-        {
-          text: '2',
-          value: '2',
-        },
-      ],
-      onFilter: (value, record) => record.status.startsWith(value),
-      filterSearch: true,
-      width: '40%',
+      key: 'status',
+    },
+    {
+      title: 'Payment',
+      dataIndex: 'payment',
+      key: 'payment',
     },
   ];
   const data = [
     {
       key: '1',
       id: '123',
-      date: 32,
-      status: '1',
+      date: 123,
+      customer: 'louis',
+      price:123,
+      status:'on the way',
+      payment: 'visa',
     },
-    {
-      key: '2',
-      id: '123',
-      date: 42,
-      status: '2',
-    },
-
   ];
-  const onChange = (pagination, filters, sorter, extra) => {
-    console.log('params', pagination, filters, sorter, extra);
-  };
   return (
     <>
-      <div className='ordermanager'>
-        <h1>Order Management</h1>
-        <Table columns={columns} dataSource={data} onChange={onChange} />
+      <div className='report'>
+        <div>
+          <h2>TODAY</h2>
+          <h3>+1</h3>
+        </div>
+        <div>
+          <h2>THIS MONTH</h2>
+          <h3>+100</h3>
+        </div>
+        <div>
+          <h2>TOTAL</h2>
+          <h3>1000</h3>
+        </div>
+      </div>
+      <div className='reportdetail'>
+        <h2>BÁO CÁO ĐƠN HÀNG</h2>
+        <div className='searchrevenue'>
+          <Search placeholder="Search for order ID, customer, ..." />
+          <Select
+            labelInValue
+            defaultValue={{
+              value: 'On the way',
+              label: 'On the way',
+            }}
+            style={{ margin: '0px 10px 0px 10px', width: 500 }}
+            onChange={handleChange}
+            options={[
+              {
+                value: 'On the way',
+                label: 'On the way',
+              },
+              {
+                value: 'On the way',
+                label: 'On the way',
+              },
+            ]}
+          />
+          <Button type='primary'>Search By Status</Button>
+        </div>
+        <div className='revenuedetail'>
+          <Table columns={columns} dataSource={data} />
+        </div>
       </div>
     </>
   )

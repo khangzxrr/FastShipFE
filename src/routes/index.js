@@ -10,7 +10,10 @@ import HomePage from "../pages/home";
 import Login from "../pages/login";
 import ManagerCurrency from "../pages/manager/manager-currency";
 import ManagerHome from "../pages/manager/manager-home";
+import ManagerOrder from "../pages/manager/manager-order";
 import ManagerRevenueDetails from "../pages/manager/manager-revenuedetail";
+import ManagerShipper from "../pages/manager/manager-shipper";
+import ManagerShipperDetail from "../pages/manager/manager-shipperdetail";
 import MyOrder from "../pages/order";
 import RegisterAccount from "../pages/register";
 import HomeShipper from "../pages/shipper/shipper-order";
@@ -97,6 +100,18 @@ export const route = [
               {
                 path:"/manager-currency",
                 element:<ManagerCurrency/>
+              },
+              {
+                path:"/manager-order",
+                element:<ManagerOrder/>
+              },
+              {
+                path:"/manager-shipper",
+                element:<ManagerShipper/>
+              },
+              {
+                path:"/manager-shipperdetail",
+                element:<ManagerShipperDetail/>
               }
         ]
     },

@@ -18,13 +18,6 @@ export default function () {
             key: '2',
 
         },
-        {
-            label: (
-                <Link to='/manager-revenuedetail'>Lịch sử doanh thu</Link>
-            ),
-            key: '3',
-        },
-
     ];
     const menuProps = {
         items,

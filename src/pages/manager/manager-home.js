@@ -1,17 +1,17 @@
 
 import { useDispatch, useSelector } from "react-redux"
 import ManagerMenu from "../../component/manager/ManagerMenu"
-import OrderManager from "../../component/manager/OrderManager"
 import Revenue from "../../component/manager/Revenue"
-import ShipperManager from "../../component/manager/ShipperManager"
 import "../manager/manager.css"
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { logout } from "../../features/login/loginSlice";
+import Order from "../../component/manager/Order"
+import Shipper from "../../component/manager/Shipper"
 const ManagerHome = () => {
 
     const { roleName } = useSelector(state => state.login)
-    {}
+    { }
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -29,12 +29,14 @@ const ManagerHome = () => {
         <div className="container">
             <ManagerMenu />
             <div style={{ display: 'flex', marginTop: '20px' }}>
-                <div style={{ width: '28%', marginRight: '2%' }}>
+                <div style={{ width: '32%' }}>
                     <Revenue />
                 </div>
-                <div style={{ width: '70%' }}>
-                    <OrderManager />
-                    <ShipperManager />
+                <div style={{ width: '32%', marginLeft: '2%', marginRight: '2%' }}>
+                    <Shipper/>
+                </div>
+                <div style={{ width: '32%' }}>
+                    <Order/>
                 </div>
             </div>
 
