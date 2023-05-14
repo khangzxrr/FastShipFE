@@ -60,12 +60,6 @@ export default function OrderManager() {
   ];
   return (
     <>
-      <div className='report'>
-        <div className='child'>
-          <h2>TOTAL</h2>
-          <h3>1000</h3>
-        </div>
-      </div>
       <div className='reportdetail'>
         <h2>BÁO CÁO ĐƠN HÀNG</h2>
         <div className='searchrevenue'>

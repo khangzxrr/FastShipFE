@@ -43,12 +43,6 @@ export default function ShipperManager() {
   ];
   return (
     <>
-      <div className='report'>
-        <div className='child'>
-          <h2>TOTAL</h2>
-          <h3>1000</h3><span>đơn hàng đã giao</span>
-        </div>
-      </div>
       <div className='reportdetail'>
         <h2>BÁO CÁO THEO SHIPPER</h2>
         <div className='searchrevenue'>
