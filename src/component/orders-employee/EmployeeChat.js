@@ -1,28 +1,54 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Input, Button } from 'antd'
 import "../myod/detailod.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { employeeSendMessageToOrderAction } from '../../features/employeeSendMessageToOrder/employeeSendMessageToOrderAction';
+
+
+import { employeeConnectChatAction } from '../../features/employeeGetOrderChat/employeeConnectChatAction';
+import { employeeGetOrderChatAction } from '../../features/employeeGetOrderChat/employeeGetOrderChatAction';
 const { TextArea } = Input;
 export default function EmployeeChat(props) {
     const [message, setMessage] = useState("")
+    const [connection, setConnection] = useState(null)
 
     const { token } = useSelector(state => state.login)
 
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        
+        const connectionBuilder = employeeConnectChatAction(token)
+
+        connectionBuilder.on('boardcast', () => {
+            dispatch(employeeGetOrderChatAction(props.order.orderId))
+        })
+
+        connectionBuilder.start()
+        .then(() => {
+            setConnection(connectionBuilder)
+            console.log("connected")
+
+            connectionBuilder.invoke('ConnectToChatRoom', {
+                orderId: props.order.orderId
+            })
+        })
+
+
+    }, [])
 
     function handleTextAreaOnChange(event) {
         setMessage(event.target.value)
     }
 
     function sendMessage(){
-        dispatch(employeeSendMessageToOrderAction(props.order.orderId, message, token))
-        .then(() => {
-            setMessage("")
-        })
-        .catch(err => {
-            alert(err)
-        })
+        try{
+            connection.invoke('SendMessage', {
+                message
+            })
+        }catch(err){
+            alert('Có lỗi xảy ra, vui lòng tải lại trang và thử lại')
+        }
     }
 
     return (
