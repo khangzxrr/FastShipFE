@@ -8,9 +8,11 @@ import { createPaymentAction } from '../../features/createPayment/createPaymentA
 import { logout } from '../../features/login/loginSlice';
 import Chat from './Chat';
 import { Link } from 'react-router-dom';
-import { getOrderChatAction } from '../../features/getOrderChat/getOrderChatAction';
+
 import { Utils } from '../../features/utils/Utils';
+
 export default function DetailOrders() {
+
     const { search } = useLocation()
     const { token } = useSelector(state => state.login)
     const { order } = useSelector(state => state.getOrderById)
@@ -35,8 +37,6 @@ export default function DetailOrders() {
     useEffect(() => {
         const orderId = new URLSearchParams(search).get('orderId')
 
-        console.log(orderId)
-
         if (orderId == null) {
 
             //alert('không có thông tin orderId')
@@ -44,7 +44,6 @@ export default function DetailOrders() {
         }
 
         dispatch(getOrderByIdAction(orderId, token))
-            .then(dispatch(getOrderChatAction(orderId)))
             .catch((err) => {
                 if (err.response.status === 400) {
                     //alert('Lỗi khi xảy ra khi lấy thông tin order')
