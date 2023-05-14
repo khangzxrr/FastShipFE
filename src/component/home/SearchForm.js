@@ -47,13 +47,13 @@ export default function () {
             })
             .withAutomaticReconnect()
             .build()
-
-        setConnection(connection)
-
-        connection
             .start()
             .then(() => {
+                
                 console.log("connected")
+
+                setConnection(connection)
+
                 connection.on("fetched_new_product", (message) => {
 
                     const jsonObj = JSON.parse(message)
