@@ -3,18 +3,49 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { managerGetCurrencyListAction } from '../../features/managerGetCurrencyList/managerGetCurrencyListAction';
 import { Utils } from '../../features/utils/Utils';
+import { managerUpdateCurrencyRate } from '../../features/managerUpdateCurrencyRate/managerUpdateCurrencyRateAction';
 export default function Currency() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const [selectedCurrencyId, setSelectedCurrencyId] = useState(-1)
+  const [selectedCurrencyRate, setSelectedCurrencyRate] = useState(0.0)
+  const [currencies, setCurrencies] = useState([])
+
+  const dispatch = useDispatch()
+
   const showModal = (record) => {
     console.log(record.id)
-    setIsModalOpen(true);
+    setSelectedCurrencyId(record.id)
+    setSelectedCurrencyRate(record.rate)
+    setIsModalOpen(true)
   };
   const handleOk = () => {
+    dispatch(managerUpdateCurrencyRate(selectedCurrencyId, selectedCurrencyRate))
+      .then((response) => {
+        dispatch(managerGetCurrencyListAction())
+          .then((response) => {
+            setCurrencies(response.currencyRecords)
+          })
+        alert('cập nhật thành công')
+      })
+      .catch((err) => {
+        alert('cập nhật thất bại, vui lòng thử lại sau')
+      })
+
+
     setIsModalOpen(false);
   };
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
+  function handleRateInputOnChange(event) {
+    setSelectedCurrencyRate(event.target.value)
+
+    console.log(selectedCurrencyRate)
+  }
+
+
   const columns = [
     {
       title: 'ID',
@@ -47,9 +78,7 @@ export default function Currency() {
     },
   ];
 
-  const [currencies, setCurrencies] = useState([])
-
-  const dispatch = useDispatch()
+  
 
   useEffect(() => {
     dispatch(managerGetCurrencyListAction())
@@ -66,7 +95,7 @@ export default function Currency() {
     </div>
     <Modal title="CẬP NHẬT TỶ GIÁ" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
       <p>Số tiền VNĐ muốn sửa: </p>
-      <Input/>
+      <Input onChange={handleRateInputOnChange} value={selectedCurrencyRate}/>
       </Modal>
     </>
   )
