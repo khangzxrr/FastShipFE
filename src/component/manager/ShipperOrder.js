@@ -1,34 +1,29 @@
 import React from 'react'
-import { Table } from 'antd'
+
 export default function ShipperOrder() {
-    const columns = [
-        {
-            title: 'Name',
-            dataIndex: 'name',
-            key: 'name',
-        },
-        {
-            title: 'Age',
-            dataIndex: 'age',
-            key: 'age',
-        },
-        {
-            title: 'Address',
-            dataIndex: 'address',
-            key: 'address',
-        },
-    ];
-    const data = [
-        {
-            key: '1',
-            name: 'John Brown',
-            age: 32,
-            address: 'New York No. 1 Lake Park',
-        },
-    ];
     return (
         <>
             <h2>DANH SÁCH ĐƠN HÀNG ĐÃ NHẬN</h2>
+            <table className='shippertable'>
+                <tr>
+                    <th>OrderId</th>
+                    <th>Date</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>Alfreds Futterkiste</td>
+                    <td>Maria Anders</td>
+                    <td>Germany</td>
+                    <td>Ernst Handel</td>
+                </tr>
+                <tr>
+                    <td>Centro comercial Moctezuma</td>
+                    <td>Francisco Chang</td>
+                    <td>Mexico</td>
+                    <td>Roland Mendel</td>
+                </tr>
+            </table>
         </>
     )
 }

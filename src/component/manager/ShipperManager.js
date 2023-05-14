@@ -14,7 +14,7 @@ export default function ShipperManager() {
       title: 'Shipper ID',
       dataIndex: 'id',
       key: 'id',
-      render: (text) => <Link to='/'>{text}</Link>,
+      render: (text) => <Link to='/manager-shipperdetail'>{text}</Link>,
     },
     {
       title: 'Shipper Name',

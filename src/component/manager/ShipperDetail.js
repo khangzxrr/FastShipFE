@@ -1,7 +1,6 @@
 import React from 'react'
 import ShipperInfo from './ShipperInfo'
 import ShipperOrder from './ShipperOrder'
-
 export default function ShipperDetail() {
     return (
         <div className='shipperdetail' style={{display:'flex'}}>

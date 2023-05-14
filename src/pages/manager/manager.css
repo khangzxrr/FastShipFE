@@ -93,3 +93,17 @@
 .ant-picker-input{
     box-shadow: none;
 }
+.shippertable {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+.shippertable td,th{
+    text-align: left;
+    padding: 8px;
+  }
+  
+.shippertable tr:nth-child(even) {
+    background-color: #dddddd;
+  }
