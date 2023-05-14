@@ -39,7 +39,8 @@ export default function RevenueDetails() {
     {
       title: 'AMOUNT',
       key: 'paymentCost',
-      dataIndex: 'paymentCost'
+      dataIndex: 'paymentCost',
+      render: (amount) => <a>{Utils.formatToVNDCurrency(amount)}</a>,
     }
   ];
  
