@@ -16,6 +16,11 @@ export default function OrderManager() {
       width: 200,
     },
     {
+      title: 'Employee ID',
+      dataIndex: 'employee',
+      key: 'employee',
+    },
+    {
       title: 'Date',
       dataIndex: 'date',
       key: 'date',
@@ -45,6 +50,7 @@ export default function OrderManager() {
     {
       key: '1',
       id: '123',
+      employee:'1122',
       date: 123,
       customer: 'louis',
       price:123,
@@ -63,7 +69,7 @@ export default function OrderManager() {
       <div className='reportdetail'>
         <h2>BÁO CÁO ĐƠN HÀNG</h2>
         <div className='searchrevenue'>
-          <Search placeholder="Search for order ID, customer, ..." />
+          <Search placeholder="Search for order ID, employee ID, customer, ..." />
           <Select
             labelInValue
             defaultValue={{
