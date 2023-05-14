@@ -44,11 +44,17 @@
     }
     .mail button{
         border: none;
-        color: white;
-        background-color: #00a8ff;
+        background-color: yellow;
         padding: 5px 10px;
         border-radius: 5px;
         text-decoration: none;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        font-weight: bold;
+        font-size: 13px;
+    }
+    .viewbtn a{
+        text-decoration: none;
+        color: black;
     }
 </style>
 
@@ -56,7 +62,7 @@
     <div class="mail">
         <img src="public/logopage.jpg" alt="logo fastship" className="logomobile" />
         <p><span>Xin chào, </span>FastShip.com thông báo bạn nhận được một tin nhắn từ hệ thống. </p>
-        <p><span>Đơn hàng : ... |</span> <button type="button">Xem đơn hàng</button></p>
+        <p><span>Đơn hàng : ... |</span> <button class="viewbtn" type="button"><a href="">Xem đơn hàng</a></button></p>
         <p><span>Nội dung:</span></p>
         <div class="message">
             <p>...</p>
