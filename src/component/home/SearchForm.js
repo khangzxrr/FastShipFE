@@ -33,6 +33,7 @@ export default function () {
         try{
             connection.invoke('AddProductUrlToFetchData', { productUrl })
         }catch(err) {
+            console.log(err)
             alert('Có lỗi xảy ra, vui lòng tải lại trang và thử lại');
         }
         
@@ -40,21 +41,20 @@ export default function () {
 
     useEffect(() => {
 
-        const connection = new HubConnectionBuilder()
+        const connectionBuilder = new HubConnectionBuilder()
             .withUrl(API_BASE_URL + "/hub", {
                 skipNegotiation: false,
                 transport: HttpTransportType.WebSockets,
             })
             .withAutomaticReconnect()
             .build()
-            .start()
+
+            connectionBuilder.start()
             .then(() => {
                 
                 console.log("connected")
 
-                setConnection(connection)
-
-                connection.on("fetched_new_product", (message) => {
+                connectionBuilder.on("fetched_new_product", (message) => {
 
                     const jsonObj = JSON.parse(message)
 
@@ -68,9 +68,12 @@ export default function () {
                     dispatch(addProduct(jsonObj))
                     navigate("/add")
                 });
+
+
+                setConnection(connectionBuilder)
             })
             .catch((err) => {
-                alert(err.response.data);
+                console.log(err)
             })
     }, [])
 
