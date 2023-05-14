@@ -48,12 +48,9 @@ export default function UpdateWeight() {
     };
     const [value, setValue] = useState('');
     return (
-        <div style={{
-            width: '100%',
-            borderRadius: '20px', marginBottom: '30px', padding: '20px 20%', border: 'none', boxShadow: ' rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px'
-        }}>
-            <p>Khối lượng đơn hàng:</p>
-            <Button type='primary' onClick={showModal} style={{ color: 'black', width: '100%', }}>Cập nhật số kg</Button>
+        <>
+            
+            <Button type='primary' onClick={showModal} style={{ color: 'black', float:'right' }}>Cập nhật số kg</Button>
             <Modal title="Cập nhật khối lượng đơn hàng" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                 <NumericInput
                     style={{
@@ -63,6 +60,6 @@ export default function UpdateWeight() {
                     onChange={setValue}
                 />
             </Modal>
-        </div>
+        </>
     )
 }

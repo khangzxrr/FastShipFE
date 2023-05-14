@@ -1,5 +1,6 @@
 import React from 'react'
 import "../orders-employee/productCard.css"
+import UpdateWeight from './UpdateWeight'
 export default function ProductList(props) {
   return (
     <>
@@ -20,6 +21,8 @@ export default function ProductList(props) {
                     <span>Đổi trả: {od.product.returnable ? 'có' : 'không'}</span><br />
                     {od.product.returnable &&
                       (<span>Mô tả đổi trả: Chấp nhận {od.product.returnDuration} ngày đổi trả</span>)}
+                      <br/><span>Khối lượng:</span>
+                      <UpdateWeight/>
                   </p>
                 </div>
               </li>
