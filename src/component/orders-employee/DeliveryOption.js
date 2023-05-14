@@ -5,6 +5,7 @@ import { employeeCreateOrderShippingAction } from '../../features/employeeCreate
 import { employeeGetOrderByIdAction } from '../../features/employeeGetOrderById/employeeGetOrderByIdAction';
 import { employeeMarkFinishDeliveryBy3RdAction } from '../../features/employeeMarkFinishDeliveryBy3rd/employeeMarkFinishDeliveryBy3rdAction';
 import { employeeGetOrderChatAction } from '../../features/employeeGetOrderChat/employeeGetOrderChatAction';
+import { employeeMarkUserTakenFromWarehouseAction } from '../../features/employeeMarkUserTakenFromWarehouse/employeeMarkUserTakenFromWarehouseAction';
 
 
 export default function DeliveryOption(props) {
@@ -19,7 +20,6 @@ export default function DeliveryOption(props) {
                 if (response.message === "OK") {
 
                     dispatch(employeeGetOrderByIdAction(props.order.orderId))
-                    dispatch(employeeGetOrderChatAction(props.order.orderId))
 
                     alert('Đã giao đơn hàng cho shipper thành công');
                 }
@@ -30,12 +30,19 @@ export default function DeliveryOption(props) {
             })
     }
 
+    function userTakenFromWarehouse() {
+        dispatch(employeeMarkUserTakenFromWarehouseAction(props.order.orderId))
+            .then((response) => {
+                dispatch(employeeGetOrderByIdAction(props.order.orderId))
+
+                alert('Đã cập nhật thành công, người dùng đến kho nhận hàng');
+            })
+    }
+
     function markFinishBy3rdDeliver() {
         dispatch(employeeMarkFinishDeliveryBy3RdAction(props.order.orderId))
             .then(() => {
-
                 dispatch(employeeGetOrderByIdAction(props.order.orderId))
-                dispatch(employeeGetOrderChatAction(props.order.orderId))
 
                 alert('đã điều chỉnh trạng thái thành giao hàng thành công!');
             })
@@ -56,8 +63,11 @@ export default function DeliveryOption(props) {
                                 <Button style={{ color: 'black', width: '100%', marginBottom: '10px' }} type="primary" onClick={() => deliveryByShipper(false)}>
                                     Giao hàng bằng nhân viên
                                 </Button>
-                                <Button style={{ color: 'black', width: '100%' }} type="primary" onClick={() => deliveryByShipper(true)}>
+                                <Button style={{ color: 'black', width: '100%', marginBottom: '10px' }} type="primary" onClick={() => deliveryByShipper(true)}>
                                     Giao hàng bằng bên thứ 3
+                                </Button>
+                                <Button style={{ color: 'black', width: '100%' }} type="primary" onClick={() => userTakenFromWarehouse()}>
+                                    Người dùng đến kho nhận
                                 </Button>
                             </div>
                         )
