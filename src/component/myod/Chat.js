@@ -1,29 +1,59 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Input, Button } from 'antd'
 import "../myod/detailod.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { orderSendMessageAction } from '../../features/orderSendMessages/orderSendMessageAction';
+
 import { getOrderChatAction } from '../../features/getOrderChat/getOrderChatAction';
+import { getOrderChatHubAction } from '../../features/getOrderChat/getOrderChatHubAction';
+
 const { TextArea } = Input;
 export default function Chat(){
 
+    const [connection, setConnection] = useState(null)
     const [message, setMessage] = useState('')
+
+    const { token } = useSelector(state => state.login)
 
     const dispatch = useDispatch()
 
     const { chatMessages } = useSelector(state => state.getOrderChat)
     const { order } = useSelector(state => state.getOrderById)
 
+
+    useEffect(() => {
+
+        dispatch(getOrderChatAction(order.orderId))
+        
+        const connectionBuilder = getOrderChatHubAction(token)
+
+        connectionBuilder.on('boardcast', () => {
+            dispatch(getOrderChatAction(order.orderId))
+        })
+
+        connectionBuilder.start()
+            .then(() => {
+
+                setConnection(connectionBuilder)
+
+                connectionBuilder.invoke('ConnectToChatRoom', {
+                    orderId: order.orderId
+                })
+            })
+    }, [order])
+
     function handleTextChange(event) {
         setMessage(event.target.value)
     }
 
     function handleSendMessageOnClick() {
-        dispatch(orderSendMessageAction(order.orderId, message))
-        .then(() => {
-            setMessage("")
-            dispatch(getOrderChatAction(order.orderId))
-        })
+        try{
+            connection.invoke('SendMessage', {
+                message
+            })
+        }catch(err){
+            alert('Có lỗi xảy ra, vui lòng tải lại trang và thử lại')
+        }
     }
 
     return (
