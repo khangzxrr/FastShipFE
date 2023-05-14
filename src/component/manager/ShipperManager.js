@@ -1,55 +1,75 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Table, Input } from 'antd';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { managerGetOrderShippings } from '../../features/managerGetOrderShippings/managerGetOrderShippings';
 dayjs.extend(customParseFormat);
 const { Search } = Input;
-const handleChange = (value) => {
-  console.log(value);
-};
+
 export default function ShipperManager() {
+
+  const dispatch = useDispatch()
+
+  const [pageIndex, setPageIndex] = useState(0)
+  const [pageSize, setPageSize] = useState(10)
+  const [pageCount, setPageCount] = useState(1)
+
+  const [ordershippings, setOrderShippings] = useState([])
+
+  useEffect(() => {
+    dispatch(managerGetOrderShippings())
+      .then((response) => {
+        setPageCount(response.pageCount)
+        setOrderShippings(response.orderShippingRecords)  
+      })
+  }, [])
+
+  const handleChange = (value) => {
+    console.log(value);
+  };
+
   const columns = [
     {
-      title: 'Shipper ID',
+      title: 'ID',
       dataIndex: 'id',
       key: 'id',
-      render: (text) => <Link to='/manager-shipperdetail'>{text}</Link>,
     },
     {
-      title: 'Shipper Name',
-      dataIndex: 'name',
-      key: 'name',
+      title: 'Order ID',
+      dataIndex: 'orderId',
+      key: 'orderId',
+      render: (orderId) => <Link to={`/employee-orderdetail?orderId=${orderId}`}>{orderId}</Link>,
     },
     {
-      title: 'Tổng số đơn đã nhận',
-      dataIndex: 'order',
-      key: 'order',
+      title: 'Tên shipper',
+      dataIndex: 'shipperName',
+      key: 'shipperName',
     },
     {
-      title: 'Tổng số tiền đã thu',
-      dataIndex: 'total',
-      key: 'total',
+      title: 'Trạng thái',
+      dataIndex: 'shippingStatus',
+      key: 'shippingStatus',
+    },
+    {
+      title: 'Mô tả',
+      dataIndex: 'shippingDescription',
+      key: 'shippingDescription',
+    },
+    {
+      title: 'Ảnh kí nhận',
+      dataIndex: 'signatureImageUrl',
+      key: 'signatureImageUrl',
     },
   ];
-  const data = [
-    {
-      key: '1',
-      id: '123',
-      name: 'louis',
-      order:123,
-      total:'1000'
-    },
-  ];
+
   return (
     <>
       <div className='reportdetail'>
-        <h2>BÁO CÁO THEO SHIPPER</h2>
-        <div className='searchrevenue'>
-          <Search placeholder="Search for Shipper ID, name, ..." />
-        </div>
+        <h2>BÁO CÁO ĐƠN GIAO HÀNG</h2>
         <div className='revenuedetail'>
-          <Table columns={columns} dataSource={data} />
+          <Table columns={columns} dataSource={ordershippings} pagination={{total: pageCount, defaultPageSize: 10, showSizeChanger: false, pageSizeOptions: ['10']}}/>
         </div>
       </div>
     </>
