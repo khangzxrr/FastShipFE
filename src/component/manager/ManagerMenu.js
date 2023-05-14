@@ -11,13 +11,6 @@ export default function () {
             ),
             key: '1',
         },
-        {
-            label: (
-                <Link to='/manager-currency'>Cập nhật tỷ giá</Link>
-            ),
-            key: '2',
-
-        },
     ];
     const menuProps = {
         items,
@@ -34,6 +27,7 @@ export default function () {
                         </Space>
                     </Button>
                 </Dropdown>
+                <Link to='/manager-currency'><Button style={{color:'black'}} type='text'>Cập nhật tỷ giá</Button></Link>
             </Space>
         </div>
     )
