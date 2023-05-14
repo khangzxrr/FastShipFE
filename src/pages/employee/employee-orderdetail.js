@@ -59,7 +59,6 @@ const OrderDetailEmployee = () => {
               </div>
               <div style={{width:'28%'}}>
               <DeliveryOption order={order} />
-              <UpdateWeight/>
               </div>
             </div>
             <div style={{width:'100%', display:'flex'}}>
