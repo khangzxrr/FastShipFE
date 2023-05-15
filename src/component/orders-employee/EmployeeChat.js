@@ -18,6 +18,8 @@ export default function EmployeeChat(props) {
 
     useEffect(() => {
         
+        dispatch(employeeGetOrderChatAction(props.order.orderId))
+        
         const connectionBuilder = employeeConnectChatAction(token)
 
         connectionBuilder.on('boardcast', () => {
