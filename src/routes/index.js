@@ -8,12 +8,15 @@ import WarrantyDetail from "../pages/employee/employee-warrantydetail";
 import Form from "../pages/guest/guest-form";
 import HomePage from "../pages/home";
 import Login from "../pages/login";
+import CustomerManagement from "../pages/manager/customermanagement";
 import ManagerCurrency from "../pages/manager/manager-currency";
+import ManagerCustomerDetail from "../pages/manager/manager-customerdetail";
 import ManagerHome from "../pages/manager/manager-home";
 import ManagerOrder from "../pages/manager/manager-order";
 import ManagerRevenueDetails from "../pages/manager/manager-revenuedetail";
 import ManagerShipper from "../pages/manager/manager-shipper";
 import ManagerShipperDetail from "../pages/manager/manager-shipperdetail";
+import ShipperManagement from "../pages/manager/shippermanagement";
 import MyOrder from "../pages/order";
 import RegisterAccount from "../pages/register";
 import HomeShipper from "../pages/shipper/shipper-order";
@@ -112,6 +115,18 @@ export const route = [
               {
                 path:"/manager-shipperdetail",
                 element:<ManagerShipperDetail/>
+              },
+              {
+                path:"/shippermanagement",
+                element:<ShipperManagement/>
+              },
+              {
+                path:"/customermanagement",
+                element:<CustomerManagement/>
+              },
+              {
+                path:"/manager-customerdetail",
+                element:<ManagerCustomerDetail/>
               }
         ]
     },

@@ -9,13 +9,8 @@ dayjs.extend(customParseFormat);
 const { Search } = Input;
 
 export default function ShipperManager() {
-
   const dispatch = useDispatch()
-
-  const [pageIndex, setPageIndex] = useState(0)
-  const [pageSize, setPageSize] = useState(10)
   const [pageCount, setPageCount] = useState(1)
-
   const [ordershippings, setOrderShippings] = useState([])
 
   useEffect(() => {
@@ -25,11 +20,6 @@ export default function ShipperManager() {
         setOrderShippings(response.orderShippingRecords)  
       })
   }, [])
-
-  const handleChange = (value) => {
-    console.log(value);
-  };
-
   const columns = [
     {
       title: 'ID',

@@ -28,6 +28,10 @@ export default function () {
                     </Button>
                 </Dropdown>
                 <Link to='/manager-currency'><Button style={{color:'black'}} type='text'>Cập nhật tỷ giá</Button></Link>
+
+                <Link to='/shippermanagement'><Button style={{color:'black'}} type='text'>Shipper Management</Button></Link>
+
+                <Link to='/customermanagement'><Button style={{color:'black'}} type='text'>Customer Management</Button></Link>
             </Space>
         </div>
     )
