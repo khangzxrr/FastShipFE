@@ -5,6 +5,7 @@ import HomeEmployee from "../pages/employee/employee-order";
 import OrderDetailEmployee from "../pages/employee/employee-orderdetail";
 import WarrantyList from "../pages/employee/employee-warranty";
 import WarrantyDetail from "../pages/employee/employee-warrantydetail";
+import FastBuy from "../pages/fastbuy";
 import Form from "../pages/guest/guest-form";
 import HomePage from "../pages/home";
 import Login from "../pages/login";
@@ -127,7 +128,12 @@ export const route = [
               {
                 path:"/manager-customerdetail",
                 element:<ManagerCustomerDetail/>
-              }
+              },
+              {
+                path:"/fastbuy",
+                element:<FastBuy/>
+              },
+              
         ]
     },
 ];
