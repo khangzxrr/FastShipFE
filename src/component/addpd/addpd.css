@@ -22,3 +22,9 @@
 .voucher::placeholder{
     font-weight: 600;
 }
+.contactform{
+    width: 30%;
+    margin-right: 2%;
+    background-color: aliceblue;
+    padding: 10px;
+}

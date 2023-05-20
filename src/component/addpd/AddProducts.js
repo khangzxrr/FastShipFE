@@ -49,7 +49,7 @@ export default function AddProducts() {
           </Dropdown>
         </Space>
       </div>
-      <div  style={{display:'flex',width: '100%', marginBottom: '50px' }}>
+      <div  style={{display:'flex',width: '100%', marginBottom: '10px' }}>
         <AddProducts1 />
       </div>
     </div>
