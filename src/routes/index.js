@@ -3,6 +3,7 @@ import Add from "../pages/add";
 import Detail from "../pages/detailod";
 import HomeEmployee from "../pages/employee/employee-order";
 import OrderDetailEmployee from "../pages/employee/employee-orderdetail";
+import EmployeeRequest from "../pages/employee/employee-request";
 import WarrantyList from "../pages/employee/employee-warranty";
 import WarrantyDetail from "../pages/employee/employee-warrantydetail";
 import FastBuy from "../pages/fastbuy";
@@ -20,6 +21,7 @@ import ManagerShipperDetail from "../pages/manager/manager-shipperdetail";
 import ShipperManagement from "../pages/manager/shippermanagement";
 import MyOrder from "../pages/order";
 import RegisterAccount from "../pages/register";
+import Request from "../pages/request";
 import HomeShipper from "../pages/shipper/shipper-order";
 import OrderDetailShipper from "../pages/shipper/shipper-orderdetail";
 import Signin from "../pages/signin";
@@ -133,7 +135,14 @@ export const route = [
                 path:"/fastbuy",
                 element:<FastBuy/>
               },
-              
+              {
+                path:"/request",
+                element:<Request/>
+              },
+              {
+                path:"/employee-request",
+                element:<EmployeeRequest/>
+              },
         ]
     },
 ];
