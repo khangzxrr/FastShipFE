@@ -1,9 +1,13 @@
 import React from 'react'
-export default function RequestProducts() {
+import { Utils } from '../../features/utils/Utils'
+export default function RequestProducts(props) {
+
+    console.log(props.orderDetail)
+
     return (
         <div className='requestproducts' style={{ display: 'flex', padding: '10px' }}>
             <img
-                src="/service2.jpg"
+                src={props.orderDetail.product.imageUrl}
                 style={{
                     height: '150px',
                     width: '40%',
@@ -12,17 +16,21 @@ export default function RequestProducts() {
             />
             <div style={{ padding: '0px 10px', width: '60%' }}>
                 <div>
-                    <h2>Name:</h2>
-                    <p>Type:</p>
-                    <p>Quantity:</p>
-                    <p>Note:</p>
+                    <h2>Name: {props.orderDetail.product.name}</h2>
+                    <p>Category: {props.orderDetail.product.category}</p>
+                    <p>Quantity: {props.orderDetail.quantity}</p>
 
                 </div>
                 <div className='fee'>
-                    <p>Giá sản phẩm:1000</p>
-                    <p>Phí xử lý:100</p>
-                    <p>Phí phụ thu:100</p>
-                    <h4>Total:1200</h4>
+                    <p>Giá sản phẩm: {props.orderDetail.product.price}$</p>
+                    <p>Phí ship đến kho ở US: {props.orderDetail.shipCost}$</p>
+                    <p>Phí xử lý: {props.orderDetail.processCost === 0 ? 'Đang xử lí' : props.orderDetail.processCost + ' $'}</p>
+                    <p>Phí phụ thu: {props.orderDetail.additionalCost === 0 ? 'Đang xử lí' : props.orderDetail.processCost + ' $'}</p>
+                    <p>Tỉ giá chuyển đổi tiền tệ từ {props.orderDetail.product.productCurrencyExchangeRecord.currencyName} sang VNĐ {Utils.formatToVNDCurrency(props.orderDetail.product.productCurrencyExchangeRecord.rate)} </p>
+                    {
+                        props.orderDetail.totalCost === 0 ? <h4>Tổng giá: Chưa có giá chính xác</h4> : <h4>Tổng giá {props.orderDetail.totalCost}$</h4>
+                    }
+                    
                 </div>
             </div>
         </div>
