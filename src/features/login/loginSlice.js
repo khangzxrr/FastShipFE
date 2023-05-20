@@ -23,6 +23,7 @@ export const loginSlice = createSlice({
             state.email = ''
             state.phoneNumber = ''
             state.token = ''
+            state.roleName = ''
             console.log('logout! ' + state.isLogin)
         }
     }
