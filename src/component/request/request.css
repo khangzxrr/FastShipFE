@@ -1,6 +1,44 @@
 .requestproducts:hover {
-    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
-  }
-  .requestproducts{
-    margin-bottom: 10px;
-  }
+  box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+}
+
+.requestproducts {
+  margin-bottom: 10px;
+}
+
+.messages-chat .message {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.messages-chat{
+  overflow: scroll;
+  height: 300px;
+  padding: 0px 15px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.response {
+  float: right;
+  margin-right: 0px !important;
+  margin-left: auto;
+}
+
+.response .text {
+  background-color: #e3effd !important;
+  padding: 5px;
+  border-radius: 5px;
+}
+.customer {
+  text-align: right;
+}
+.ask .text{
+  background-color: antiquewhite !important;
+  padding: 5px;
+  border-radius: 5px;
+}
+.fee p,h4{
+  text-align: right;
+  font-size: 13px;
+}
