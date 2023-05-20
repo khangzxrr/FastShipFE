@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Input, Button } from 'antd'
 import "../myod/detailod.css"
 import { useDispatch, useSelector } from 'react-redux';
-import { orderSendMessageAction } from '../../features/orderSendMessages/orderSendMessageAction';
 
 import { getOrderChatAction } from '../../features/getOrderChat/getOrderChatAction';
 import { getOrderChatHubAction } from '../../features/getOrderChat/getOrderChatHubAction';
