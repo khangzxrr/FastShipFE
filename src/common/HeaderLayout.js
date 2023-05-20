@@ -26,6 +26,10 @@ const items = [
     label: "TIN TỨC",
     key: "news",
   },
+  {
+    label: <Link to='/fastbuy'>FASTBUY</Link>,
+    key: "thanhly",
+  },
 ];
 
 export const HeaderLayout = () => {
@@ -121,7 +125,7 @@ export const HeaderLayout = () => {
 
             }}
           />
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", width:'700px' }}>
             <Menu
               theme="light"
               mode="horizontal"
