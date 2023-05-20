@@ -103,7 +103,7 @@ function AddDeleteTableRows() {
                 </tbody>
 
             </table>
-            <Button type="primary" style={{ width: '30%', left: '35%', color: 'black', fontWeight: 600, margin: '20px 0px' }} onClick={() => { requestCreateOrder() }}>YÊU CẦU BÁO GIÁ</Button>
+            
         </div>
     )
 
