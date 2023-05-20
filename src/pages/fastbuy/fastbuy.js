@@ -1,6 +1,6 @@
-import FastBuyList from "../component/fastbuy/FastBuyList"
-import FastBuyMenu from "../component/fastbuy/FastBuyMenu"
-import FastBuySearch from "../component/fastbuy/FastBuySearch"
+import FastBuyList from "../../component/fastbuy/FastBuyList"
+import FastBuyMenu from "../../component/fastbuy/FastBuyMenu"
+import FastBuySearch from "../../component/fastbuy/FastBuySearch"
 const FastBuy = () => {
     return (
         <div className="container" style={{display:'flex', marginTop:'30px'}}>
