@@ -7,7 +7,7 @@ import Bill from "../../component/orders-shipper/Bill"
 const OrderDetailShipper = () => {
     return (
         <><div style={{
-            width: '90%', margin: '5px 5% 5px 5%', border: '1px solid grey',
+            width: '90%', margin: '5px 5% 5px 5%',
             borderRadius: '20px', padding: '10px 20px 0px 10px', border: 'none'
         }}>
             <h2><Link to={'/shipper-order'} style={{ color: 'orange', marginRight: '10px' }}><LeftOutlined /></Link>Thông tin đơn hàng</h2>

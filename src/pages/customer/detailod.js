@@ -1,4 +1,4 @@
-import DetailOrders from "../component/myod/DetailOrders"
+import DetailOrders from "../../component/myod/DetailOrders"
 
 const Detail = () =>{
     return(

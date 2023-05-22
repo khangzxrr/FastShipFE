@@ -1,4 +1,4 @@
-import MyOrders from "../component/myod/MyOrders"
+import MyOrders from "../../component/myod/MyOrders"
 const myod = () => {
     return (
         <>

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
-import ContentMiddle from "../component/home/ContentMiddle"
-import { ContentUpper } from "../component/home/ContentUpper"
+import ContentMiddle from "../../component/home/ContentMiddle"
+import { ContentUpper } from "../../component/home/ContentUpper"
 import { useSelector } from "react-redux"
 import { useEffect } from "react"
 

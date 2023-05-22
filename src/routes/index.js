@@ -1,6 +1,4 @@
 import {AppLayout} from "../common/AppLayout";
-import Add from "../pages/add";
-import Detail from "../pages/detailod";
 import HomeEmployee from "../pages/employee/employee-order";
 import OrderDetailEmployee from "../pages/employee/employee-orderdetail";
 import EmployeeRequest from "../pages/employee/employee-request";
@@ -8,8 +6,6 @@ import WarrantyList from "../pages/employee/employee-warranty";
 import WarrantyDetail from "../pages/employee/employee-warrantydetail";
 import FastBuy from "../pages/fastbuy/fastbuy";
 import Form from "../pages/guest/guest-form";
-import HomePage from "../pages/home";
-import Login from "../pages/login";
 import CustomerManagement from "../pages/manager/customermanagement";
 import ManagerCurrency from "../pages/manager/manager-currency";
 import ManagerCustomerDetail from "../pages/manager/manager-customerdetail";
@@ -19,13 +15,17 @@ import ManagerRevenueDetails from "../pages/manager/manager-revenuedetail";
 import ManagerShipper from "../pages/manager/manager-shipper";
 import ManagerShipperDetail from "../pages/manager/manager-shipperdetail";
 import ShipperManagement from "../pages/manager/shippermanagement";
-import MyOrder from "../pages/order";
-import RegisterAccount from "../pages/register";
 import Request from "../pages/customer/request";
 import HomeShipper from "../pages/shipper/shipper-order";
 import OrderDetailShipper from "../pages/shipper/shipper-orderdetail";
-import Signin from "../pages/signin";
-import Warranty from "../pages/warranty";
+import HomePage from "../pages/customer/home";
+import Login from "../pages/customer/login";
+import Signin from "../pages/customer/signin";
+import RegisterAccount from "../pages/customer/register";
+import Add from "../pages/customer/add";
+import MyOrder from "../pages/customer/order";
+import Detail from "../pages/customer/detailod";
+import Warranty from "../pages/customer/warranty";
 export const route = [
     {
         path: "/",
@@ -37,7 +37,7 @@ export const route = [
               },
               {
                 path:"/home",
-                element: <HomePage />,
+                element: <HomePage/>
               },
               {
                 path: "/login",

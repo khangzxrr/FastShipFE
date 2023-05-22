@@ -1,4 +1,4 @@
-import ResgisterForm from "../component/register/RegisterForm"
+import ResgisterForm from "../../component/register/RegisterForm"
 
 const RegisterAccount = () => {
     return(

@@ -10,8 +10,6 @@ import { logout } from "../../features/login/loginSlice"
 import { employeeGetOrderChatAction } from "../../features/employeeGetOrderChat/employeeGetOrderChatAction"
 import EmployeeChat from "../../component/orders-employee/EmployeeChat"
 import DeliveryOption from "../../component/orders-employee/DeliveryOption"
-import UpdateWeight from "../../component/orders-employee/UpdateWeight"
-
 const OrderDetailEmployee = () => {
 
     const { search } = useLocation()

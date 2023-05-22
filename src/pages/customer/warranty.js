@@ -1,5 +1,5 @@
-import ProductWarranty from "../component/warranty/ProductWarranty";
-import WarrantyPage from "../component/warranty/Warranty";
+import ProductWarranty from "../../component/warranty/ProductWarranty";
+import WarrantyPage from "../../component/warranty/Warranty";
 const Warranty = () => {
     return (
         <>
