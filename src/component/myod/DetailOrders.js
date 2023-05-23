@@ -93,6 +93,9 @@ export default function DetailOrders() {
                             direction='vertical'
                             items={[
                                 {
+                                    title: 'Waiting Price Quotating',
+                                },
+                                {
                                     title: 'Deposit',
                                 },
                                 {
