@@ -38,6 +38,8 @@ export default function LoginForm() {
                 console.log(ex)
                 if (ex.response.status == 400) {
                     alert('sai tài khoản hoặc mật khẩu')
+                }else{
+                    alert('có lỗi xảy ra, vui lòng thử lại')
                 }
             })
     }

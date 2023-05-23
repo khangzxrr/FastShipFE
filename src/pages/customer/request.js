@@ -32,7 +32,8 @@ const Request = () => {
 
         console.log(orderId)
 
-        dispatch(getOrderByIdAction(orderId)).then(() => {
+        dispatch(getOrderByIdAction(orderId))
+        .then(() => {
 
             if (order.status !== 'noPriceQuotation'){
                 alert('đơn hàng không thuộc đúng trạng thái để xử lí trang này!')
@@ -56,6 +57,11 @@ const Request = () => {
                         orderId: order.orderId
                     })
                 })
+        })
+        .catch((err) => {
+            alert('Lỗi, xin vui lòng thử lại sau')
+            navigate('/home')
+            return
         })
 
         

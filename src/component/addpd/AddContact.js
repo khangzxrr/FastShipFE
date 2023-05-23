@@ -32,7 +32,7 @@ export default function AddContact() {
             return
         }
 
-        dispatch(createOrderAction(products, customerDescription, address, phoneNumber))
+        dispatch(createOrderAction(products, customerDescription, newAddress, newPhoneNumber))
             .then((response) => {
                 console.log(response)
 
