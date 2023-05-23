@@ -1,15 +1,79 @@
-import React from 'react'
-import { Descriptions, Input, Divider, Typography } from 'antd'
-const { Title, Paragraph, Text, Link } = Typography;
+import React, { useEffect, useState } from 'react'
+import { Button, Descriptions, Input, Typography } from 'antd'
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { createOrderAction } from '../../features/createOrder/createOrderAction';
+const { Title, Paragraph} = Typography;
 export default function AddContact() {
+
+    const { products } = useSelector(state => state.requestProduct)
+    const { token, phoneNumber, address } = useSelector(state => state.login)
+
+    const [customerDescription, setCustomerDescription] = useState('')
+    const [newAddress, setAddress] = useState('')
+    const [newPhoneNumber, setPhoneNumber] = useState('')
+
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        setAddress(address)
+        setPhoneNumber(phoneNumber)
+    }, [phoneNumber, address])
+
+    function requestCreateOrder() {
+
+        console.log(token)
+
+        if (!token){
+            alert('Bạn chưa tạo tài khoản, vui lòng nhập thông tin để tiếp tục')
+            navigate('/guest-form')
+
+            return
+        }
+
+        dispatch(createOrderAction(products, customerDescription, address, phoneNumber))
+            .then((response) => {
+                console.log(response)
+
+                navigate(`/detailod?orderId=${response.order.orderId}`)
+
+            })
+            .catch((err) => {
+                console.log(err)
+                if (err.response.status === 401){
+                    alert('Lỗi xác thực, vui lòng đăng nhập lại')
+                    navigate('/login')
+                }
+                else
+                if (err.response.status === 400) {
+                    alert('Có một hoặc nhiều ô vẫn chưa được điền, vui lòng thử lại')
+                }
+            })
+    }
+
+    function onChangeDescription(event) {
+        setCustomerDescription(event.target.value)
+    }
+
+    function onChangeAddress(event) {
+        setAddress(event.target.value)
+    }
+
+    function onChangePhoneNumber(event) {
+        setPhoneNumber(event.target.value)
+    }
+
     return (
         <div style={{ display: 'flex', width: '90%', marginLeft: '5%', marginRight: '5%' }}>
             <div className='contactform'>
                 <Descriptions title="Contact Form" layout="vertical">
-                    <Descriptions.Item label="Email" span={3}><Input /></Descriptions.Item>
-                    <Descriptions.Item label="Telephone" span={3}><Input /></Descriptions.Item>
-                    <Descriptions.Item label="Address" span={3}><Input /></Descriptions.Item>
+                    <Descriptions.Item label="Customer description" span={3}><Input onChange={onChangeDescription}/></Descriptions.Item>
+                    <Descriptions.Item label="Delivery address" span={3}><Input onChange={onChangeAddress} value={newAddress}/></Descriptions.Item>
+                    <Descriptions.Item label="Phonenumber" span={3}><Input onChange={onChangePhoneNumber} value={newPhoneNumber}/></Descriptions.Item>
                 </Descriptions>
+
+                <Button onClick={requestCreateOrder} type="primary" style={{ width: '27%', left: '5%', color: 'black', fontWeight: 600, margin: '5px 0px' }} >YÊU CẦU BÁO GIÁ</Button>
             </div>
             <div style={{ width: '68%', backgroundColor:'aliceblue', padding:'0px 10px 0px 10px'}}>
                 <Typography>
