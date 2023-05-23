@@ -6,6 +6,7 @@ export const loginSlice = createSlice({
         isLogin: false,
         email: '',
         phoneNumber: '',
+        address: '',
         token: ''
     },
     reducers: {
@@ -14,6 +15,7 @@ export const loginSlice = createSlice({
 
             state.email = action.payload.email
             state.token = action.payload.token
+            state.address = action.payload.address
             state.phoneNumber = action.payload.phoneNumber
             state.roleName = action.payload.roleName
             

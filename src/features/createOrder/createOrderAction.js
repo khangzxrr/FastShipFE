@@ -1,6 +1,8 @@
 import axiosProfile from "../axiosProfile"
+import { getOrderByIdSuccessfully } from "../getOrderById/getOrderByIdSlice"
+import { clearProduct } from "../requestProduct/requestProductSlice"
 
-export const createOrderAction = (productDetails)  => async dispatch =>  {
+export const createOrderAction = (productDetails, customerDescription, address, phoneNumber)  => async dispatch =>  {
 
     const products = productDetails.map(
             function(product){ 
@@ -9,8 +11,15 @@ export const createOrderAction = (productDetails)  => async dispatch =>  {
         )
 
     const response = await axiosProfile.post('/Orders', {
-        products
+        products,
+        customerDescription,
+        address,
+        phoneNumber
     })
+
+    dispatch(clearProduct())
+    dispatch(getOrderByIdSuccessfully(response.data))
+    
 
     return Promise.resolve(response.data)
 }

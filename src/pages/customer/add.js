@@ -6,7 +6,6 @@ const Add = () =>{
         <div>
             <AddProducts/>
             <AddContact/>
-            <Button type="primary" style={{ width: '27%', left: '5%', color: 'black', fontWeight: 600, margin: '5px 0px' }} >YÊU CẦU BÁO GIÁ</Button>
         </div>
     )
 }

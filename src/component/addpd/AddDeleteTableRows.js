@@ -7,15 +7,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { removeProduct } from "../../features/requestProduct/requestProductSlice";
 import { AiOutlinePlusSquare } from "react-icons/ai";
-import { createOrderAction } from "../../features/createOrder/createOrderAction";
-import { clearProduct } from "../../features/requestProduct/requestProductSlice";
-import { getOrderByIdSuccessfully } from "../../features/getOrderById/getOrderByIdSlice";
 
 function AddDeleteTableRows() {
     const requestProduct = useSelector(state => state.requestProduct)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
+
+    useEffect(() => {
+        if (requestProduct.products.length == 0) {
+            navigate('/home')
+            return
+        }
+    }, [requestProduct])
 
 
     function handleAddNewProduct() {
@@ -31,39 +36,7 @@ function AddDeleteTableRows() {
             navigate("/home")
         }
     }
-    const { products } = useSelector(state => state.requestProduct)
-    const { token } = useSelector(state => state.login)
-
-    function requestCreateOrder() {
-
-        console.log(token)
-
-        if (!token){
-            alert('Bạn chưa tạo tài khoản, vui lòng nhập thông tin để tiếp tục')
-            navigate('/guest-form')
-
-            return
-        }
-
-        dispatch(createOrderAction(products))
-            .then((response) => {
-                console.log(response)
-
-                //clear added product
-                dispatch(clearProduct())
-                dispatch(getOrderByIdSuccessfully(response))
-
-                navigate(`/detailod?orderId=${response.order.orderId}`)
-
-            })
-            .catch((err) => {
-                console.log(err)
-                if (err.response.status === 401){
-                    alert('Lỗi xác thực, vui lòng đăng nhập lại')
-                    navigate('/login')
-                }
-            })
-    }
+    
 
     return (
         <div>

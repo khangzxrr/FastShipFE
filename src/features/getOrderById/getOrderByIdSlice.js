@@ -6,10 +6,13 @@ export const getOrderByIdSlice = createSlice({
         order: {}
     },
     reducers: {
+        clearOrder: (state) => {
+            state.order = {}
+        },
         getOrderByIdSuccessfully: (state, action) => {
             state.order = action.payload.order
         }
     }
 })
 
-export const { getOrderByIdSuccessfully } = getOrderByIdSlice.actions
+export const { getOrderByIdSuccessfully, clearOrder } = getOrderByIdSlice.actions

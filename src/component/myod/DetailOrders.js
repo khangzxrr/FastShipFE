@@ -38,17 +38,16 @@ export default function DetailOrders() {
         const orderId = new URLSearchParams(search).get('orderId')
 
         if (orderId == null) {
-
-            //alert('không có thông tin orderId')
+            alert('không có thông tin orderId')
             navigate('/home')
+            return
         }
 
         dispatch(getOrderByIdAction(orderId, token))
             .catch((err) => {
-                if (err.response.status === 400) {
-                    //alert('Lỗi khi xảy ra khi lấy thông tin order')
-                    navigate('/home')
-                }
+                alert('Lỗi khi xảy ra khi lấy thông tin order')
+                navigate('/home')
+                return
             })
 
     }, [search])
@@ -163,7 +162,10 @@ export default function DetailOrders() {
                             </ul>
                         </div>
                     </div>
-                    <div style={{ width: '30%' }}>
+
+                    { order.status !== "noPriceQuotation" && 
+                    (
+                        <div style={{ width: '30%' }}>
                         <h1>Thanh toán</h1>
                         <div style={{ width: '100%' }}>
                             <div style={{ width: '50%', color: 'grey' }}>
@@ -186,7 +188,9 @@ export default function DetailOrders() {
                             order.status === "noPayYet" &&
                             (<Button type="primary" style={{ width: '100%', color: 'black', fontWeight: 600 }} onClick={() => handleCreatePaymentOnClick()}>Thanh toán Lần 1 (80%)</Button>)
                         }
-                    </div>
+                    </div>)
+                    }
+                    
                 </div>
             </div>
         </>

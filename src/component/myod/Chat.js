@@ -50,6 +50,7 @@ export default function Chat(){
             connection.invoke('SendMessage', {
                 message
             })
+            setMessage('')
         }catch(err){
             alert('Có lỗi xảy ra, vui lòng tải lại trang và thử lại')
         }
