@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllOrdersAction } from '../../features/getAllOrders/getAllOrdersAction';
 import { logout } from '../../features/login/loginSlice';
+import { clearOrder } from '../../features/getOrderById/getOrderByIdSlice';
 const handleMenuClick = (e) => {
 
 };
@@ -55,11 +56,17 @@ const columns = [
     title: '',
     dataIndex: 'orderId',
     key: 'action',
-    render: (orderId) => (
+    render: (orderId, { orderStatus }) => {
+
+      let redirectUrl = (orderStatus === "noPriceQuotation") ? "/request" : "/detailod"
+      redirectUrl += "?orderId=" + orderId
+
+      return (
       <Space size="middle">
-        <Link to={{pathname:`/detailod`, search: `?orderId=${orderId}`}}><span>Chi tiết</span></Link>
+        <Link to={redirectUrl}><span>Chi tiết</span></Link>
       </Space>
-    ),
+      )
+    }
   },
 ];
 
@@ -73,6 +80,8 @@ export default function MyOrders() {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    dispatch(clearOrder())
+    
     dispatch(getAllOrdersAction(token))
       .catch((err) => {
         if (err.response.status === 401) {

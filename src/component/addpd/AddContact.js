@@ -36,7 +36,7 @@ export default function AddContact() {
             .then((response) => {
                 console.log(response)
 
-                navigate(`/detailod?orderId=${response.order.orderId}`)
+                navigate(`/request?orderId=${response.order.orderId}`)
 
             })
             .catch((err) => {
@@ -48,6 +48,8 @@ export default function AddContact() {
                 else
                 if (err.response.status === 400) {
                     alert('Có một hoặc nhiều ô vẫn chưa được điền, vui lòng thử lại')
+                } else{
+                    alert('Có lỗi xảy ra vui lòng thử lại')
                 }
             })
     }

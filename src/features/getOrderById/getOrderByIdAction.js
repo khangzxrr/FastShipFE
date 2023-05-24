@@ -8,5 +8,5 @@ export const getOrderByIdAction = (orderId) => async dispatch => {
 
     dispatch(getOrderByIdSuccessfully(response.data))
 
-    return Promise.resolve()
+    return Promise.resolve(response.data)
 }

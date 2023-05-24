@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOrderByIdAction } from "../../features/getOrderById/getOrderByIdAction";
 import { getOrderChatAction } from "../../features/getOrderChat/getOrderChatAction";
 import { getOrderChatHubAction } from "../../features/getOrderChat/getOrderChatHubAction";
+import { clearOrder } from "../../features/getOrderById/getOrderByIdSlice";
 
 const Request = () => {
 
@@ -33,10 +34,10 @@ const Request = () => {
         console.log(orderId)
 
         dispatch(getOrderByIdAction(orderId))
-        .then(() => {
-
-            if (order.status !== 'noPriceQuotation'){
-                alert('đơn hàng không thuộc đúng trạng thái để xử lí trang này!')
+        .then((response) => {
+            
+            if (response.order.status !== 'noPriceQuotation'){
+                alert('đơn hàng không thuộc đúng trạng thái để xử lí trang này! ')
                 navigate('/home')
                 return
             }
@@ -67,7 +68,7 @@ const Request = () => {
         
 
 
-    }, [searchParams])
+    }, [searchParams, dispatch])
 
     function handleOnSendMessage(message) {
         try{
