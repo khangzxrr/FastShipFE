@@ -73,7 +73,6 @@ const columns = [
 export default function MyOrders() {
 
   const { orders } = useSelector(state => state.getAllOrders)
-  const { token } = useSelector(state => state.login)
 
   const navigate = useNavigate()
 
@@ -82,7 +81,7 @@ export default function MyOrders() {
   useEffect(() => {
     dispatch(clearOrder())
     
-    dispatch(getAllOrdersAction(token))
+    dispatch(getAllOrdersAction())
       .catch((err) => {
         if (err.response.status === 401) {
           //alert('Không có quyền yêu cầu báo giá, vui lòng đăng nhập lại')
