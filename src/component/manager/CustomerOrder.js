@@ -1,29 +1,69 @@
+import { Table } from 'antd'
 import React from 'react'
+import { Utils } from '../../features/utils/Utils';
 
-export default function CustomerOrder() {
+export default function CustomerOrder(props) {
+
+    const columns = [
+        {
+          title: 'Order ID',
+          dataIndex: 'orderId',
+          key: 'orderId',
+        },
+        {
+          title: 'Ngày',
+          dataIndex: 'orderDate',
+          key: 'orderDate',
+        },
+        {
+          title: 'Trạng thái',
+          dataIndex: 'orderStatus',
+          key: 'orderStatus',
+        },
+        {
+          title: 'Tên người dùng',
+          dataIndex: 'customerName',
+          key: 'customerName',
+        },
+        {
+          title: 'Mô tả của người dùng',
+          dataIndex: 'customerDescription',
+          key: 'customerDescription',
+        },
+        {
+          title: 'Địa chỉ giao hàng',
+          dataIndex: 'deliveryAddress',
+          key: 'deliveryAddress',
+        },
+        {
+          title: 'Địa chỉ giao hàng',
+          dataIndex: 'deliveryAddress',
+          key: 'deliveryAddress',
+        },
+        {
+          title: 'SĐT Liên lạc',
+          dataIndex: 'contactPhoneNumber',
+          key: 'contactPhoneNumber',
+        },
+        {
+          title: 'Tổng tiền',
+          dataIndex: 'price',
+          key: 'price',
+          render: (price) => <a>{Utils.formatToVNDCurrency(price)}</a>,
+        },
+        {
+          title: 'Còn lại',
+          dataIndex: 'remainCost',
+          key: 'remainCost',
+          render: (price) => <a>{Utils.formatToVNDCurrency(price)}</a>,
+        },
+      ];
+
+
   return (
     <>
             <h2>DANH SÁCH ĐƠN HÀNG ĐÃ ĐẶT</h2>
-            <table className='shippertable'>
-                <tr>
-                    <th>OrderId</th>
-                    <th>Date</th>
-                    <th>Price</th>
-                    <th>Status</th>
-                </tr>
-                <tr>
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td>Germany</td>
-                    <td>Ernst Handel</td>
-                </tr>
-                <tr>
-                    <td>Centro comercial Moctezuma</td>
-                    <td>Francisco Chang</td>
-                    <td>Mexico</td>
-                    <td>Roland Mendel</td>
-                </tr>
-            </table>
+            <Table columns={columns} dataSource={props.orders} pagination={{ onChange:props.onPageChange, total: props.totalCount}}></Table>
         </>
   )
 }
