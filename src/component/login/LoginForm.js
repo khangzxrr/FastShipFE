@@ -4,8 +4,13 @@ import "../login/login.css"
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginAction } from '../../features/login/loginAction';
-import { useOverlay } from '../../OverlayContext';
+
+
+
 export default function LoginForm() {
+
+    const [loading, setLoading] = useState(false)
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -30,6 +35,9 @@ export default function LoginForm() {
     }
 
     function loginButtonOnClick(e) {
+
+        setLoading(true)
+
         dispatch(loginAction(email, password))
             .then((response) => {
                 console.log(response)
@@ -41,6 +49,9 @@ export default function LoginForm() {
                 }else{
                     alert('có lỗi xảy ra, vui lòng thử lại')
                 }
+            })
+            .finally(() => {
+                setLoading(false)
             })
     }
 
@@ -55,7 +66,11 @@ export default function LoginForm() {
                 <Input type='password' placeholder='NHẬP MẬT KHẨU' onChange={handlePasswordChange} />
                 <br />
                 <Link><p style={{ textAlign: "right", marginRight: '160px', color: 'grey' }}>Quên mật khẩu ?</p></Link>
-                <Button type='primary' onClick={(e) => loginButtonOnClick(e)}>Đăng nhập</Button>
+                
+                {!loading && (<Button type='primary' onClick={(e) => loginButtonOnClick(e)}>Đăng nhập</Button>)}
+                {loading && (<Spin />)}
+                
+                
             </div>
 
         </>
