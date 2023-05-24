@@ -4,6 +4,7 @@ import { Table } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { managerGetCustomersAction } from '../../features/managerGetCustomers/managerGetCustomersAction';
 import { setSelectedCustomer } from '../../features/managerGetCustomers/managerGetCustomersSlice';
+import { Utils } from '../../features/utils/Utils';
 export default function CustomerList() {
 
     const dispatch = useDispatch()
@@ -18,17 +19,17 @@ export default function CustomerList() {
       dispatch(managerGetCustomersAction(pageIndex - 1))
     }
 
+    function onLinkClicked(customer) {
+      dispatch(setSelectedCustomer(customer))
+    }
+
     const columns = [
         {
           title: 'ID',
           dataIndex: 'id',
           key: 'id',
           render:(text, customer) => {
-
-            console.log(customer)
-            dispatch(setSelectedCustomer(customer))
-
-            return <Link to={'/manager-customerdetail' }>{text}</Link>
+            return <Link to={'/manager-customerdetail' } onClick={() => onLinkClicked(customer)}>{text}</Link>
         }
         },
         {
@@ -45,6 +46,17 @@ export default function CustomerList() {
           title: 'phone number',
           dataIndex: 'phoneNumber',
           key: 'phoneNumber',
+        },
+        {
+          title: 'total orders',
+          dataIndex: 'totalOrdersCount',
+          key: 'totalOrdersCount'
+        },
+        {
+          title: 'total payments',
+          dataIndex: 'totalPaymentAmount',
+          key: 'totalPaymentAmount',
+          render: (amount) => (<a>{Utils.formatToVNDCurrency(amount)}</a>)
         }
       ];
   return (
