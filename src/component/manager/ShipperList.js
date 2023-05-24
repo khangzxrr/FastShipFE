@@ -53,6 +53,11 @@ export default function ShipperList() {
           title: 'Status',
           dataIndex: 'status',
           key: 'status'
+        },
+        {
+          title: 'Total order shippings',
+          dataIndex: 'totalOrderShippings',
+          key: 'totalOrderShippings'
         }
       ];
   return (
