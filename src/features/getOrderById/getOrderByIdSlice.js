@@ -3,11 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 export const getOrderByIdSlice = createSlice({
     name: 'getOrderById',
     initialState: {
-        order: {}
+        order: {
+            orderDetails: []
+        }
     },
     reducers: {
         clearOrder: (state) => {
-            state.order = {}
+            state.order = {
+                orderDetails: []
+            }
         },
         getOrderByIdSuccessfully: (state, action) => {
             state.order = action.payload.order
