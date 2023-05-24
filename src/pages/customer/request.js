@@ -9,8 +9,10 @@ import { getOrderByIdAction } from "../../features/getOrderById/getOrderByIdActi
 import { getOrderChatAction } from "../../features/getOrderChat/getOrderChatAction";
 import { getOrderChatHubAction } from "../../features/getOrderChat/getOrderChatHubAction";
 import { clearOrder } from "../../features/getOrderById/getOrderByIdSlice";
+import { Skeleton } from "antd";
 
 const Request = () => {
+    const [loading, setLoading] = useState(false)
 
     const [connection, setConnection] = useState(null)
 
@@ -32,6 +34,8 @@ const Request = () => {
         }
 
         console.log(orderId)
+
+        setLoading(true)
 
         dispatch(getOrderByIdAction(orderId))
         .then((response) => {
@@ -64,6 +68,9 @@ const Request = () => {
             navigate('/home')
             return
         })
+        .finally(() => {
+            setLoading(false)
+        })
 
         
 
@@ -86,15 +93,16 @@ const Request = () => {
             <div style={{width:'60%', marginRight:'2%', padding:'0px 20px 30px 20px'}}>
                 <h2>ORDER YOUR PRODUCTS</h2>
                 {
-                    order.orderDetails.map((orderDetail, index) => <RequestProducts key={index} orderDetail={orderDetail} /> )
+                    loading ? (<Skeleton />) : order.orderDetails.map((orderDetail, index) => <RequestProducts key={index} orderDetail={orderDetail} /> )
                 }
                 <h3 style={{textAlign:'right', marginRight:'20px'}}>TOTAL:20000</h3>
             </div>
             <div style={{width:'38%', padding:'0px 10px 10px 10px'}}>
                 <h2>THÔNG TIN REQUEST</h2>
-                <RequestInfo employeeName={order.employeeName} orderDate={order.orderDate} />
+                { loading ? (<Skeleton />) : (<RequestInfo employeeName={order.employeeName} orderDate={order.orderDate} />)}
                 <h2>NỘI DUNG TRAO ĐỔI</h2>
-                <RequestChat handleOnSendMessage={handleOnSendMessage} chatMessages={chatMessages}/>
+                { loading ? (<Skeleton />) : (<RequestChat handleOnSendMessage={handleOnSendMessage} chatMessages={chatMessages}/>)}
+                
             </div>
         </div>
     );
