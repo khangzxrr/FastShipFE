@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdArrowBackIosNew, MdArrowDropDown } from 'react-icons/md'
-import { Button, Space, Table, Tag, Dropdown } from 'antd'
+import { Button, Space, Table, Tag, Dropdown, Skeleton } from 'antd'
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllOrdersAction } from '../../features/getAllOrders/getAllOrdersAction';
@@ -72,6 +72,8 @@ const columns = [
 
 export default function MyOrders() {
 
+  const [loading, setLoading] = useState(false)
+
   const { orders } = useSelector(state => state.getAllOrders)
 
   const navigate = useNavigate()
@@ -79,6 +81,9 @@ export default function MyOrders() {
   const dispatch = useDispatch()
 
   useEffect(() => {
+
+    setLoading(true)
+
     dispatch(clearOrder())
     
     dispatch(getAllOrdersAction())
@@ -88,6 +93,9 @@ export default function MyOrders() {
           dispatch(logout())
           navigate("/login")
         }
+      })
+      .finally(() => {
+        setLoading(false)
       })
   }, [dispatch])
 
@@ -111,7 +119,10 @@ export default function MyOrders() {
       }}>
         <h2>ĐƠN HÀNG CỦA TÔI</h2>
         <p>Bạn hiện đang có <Link to={'/detailod'}>{orders.length}</Link> đơn hàng</p>
-        <Table style={{border:'none'}} columns={columns} dataSource={orders} />
+        
+        {loading ? (<Skeleton />) : (<Table style={{border:'none'}} columns={columns} dataSource={orders} />)}
+        
+        
       </div>
     </div>
   )
