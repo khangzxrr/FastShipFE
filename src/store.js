@@ -10,6 +10,7 @@ import { employeeGetOrderByIdSlice } from "./features/employeeGetOrderById/emplo
 import { employeeGetOrderChatSlice } from "./features/employeeGetOrderChat/employeeGetOrderChatSlice";
 import { getOrderChatSlice } from "./features/getOrderChat/getOrderChatSlice";
 import { managerGetShippersSlice } from "./features/managerGetShippers/managerGetShippersSlice";
+import { managerGetCustomersSlice } from "./features/managerGetCustomers/managerGetCustomersSlice";
 const persistConfig = {
     key: 'root',
     storage,
@@ -28,6 +29,7 @@ const reducers = combineReducers({
     employeeGetOrderChat: employeeGetOrderChatSlice.reducer,
 
     managerGetShippers: managerGetShippersSlice.reducer,
+    managerGetCustomers: managerGetCustomersSlice.reducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, reducers)

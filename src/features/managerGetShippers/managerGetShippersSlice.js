@@ -8,9 +8,6 @@ export const managerGetShippersSlice = createSlice({
         totalCount: 0
     },
     reducers: {
-        clearAllShippers: (state, action) => {
-            
-        },
         managerGetShippersSuccessfully: (state, action) => {
             state.shippers = action.payload.records
         }
