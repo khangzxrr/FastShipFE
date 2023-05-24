@@ -42,7 +42,6 @@ export const HeaderLayout = () => {
 
   function logoutOnClick() {
     dispatch(logout())
-    alert('Đã đăng xuất thành công!')
     navigate("/login")
   }
 
