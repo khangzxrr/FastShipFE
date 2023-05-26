@@ -10,23 +10,6 @@ export default function () {
 
     const { orders } = useSelector(state => state.employeeGetAllOrders)
 
-    const [orderList, setOrderList] = useState([])
-
-
-    useEffect(() => {
-        const mappedOrders = orders.map(o => {
-            return {
-                key: o.orderId,
-                id: (<Link to={`/employee-orderdetail?orderId=${o.orderId}`}>{o.orderId}</Link>),
-                ...o
-            }
-        })
-
-        setOrderList(mappedOrders)
-    }, [orders])
-
-
-
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const searchInput = useRef(null);
@@ -136,12 +119,13 @@ export default function () {
     const columns = [
         {
             title: 'ID Order',
-            dataIndex: 'id',
-            key: 'id',
+            dataIndex: 'orderId',
+            key: 'orderId',
             width: '30%',
             ...getColumnSearchProps('id'),
             sorter: (a, b) => a.id.length - b.id.length,
             sortDirections: ['descend', 'ascend'],
+            render: (id, { status }) => (status === 'noPriceQuotation' ? (<Link to={'/employee-request?orderId=' + id}>{id}</Link>): (<Link to={'/employee-orderdetail?orderId=' + id}>{id}</Link>))
         },
         {
             title: 'Order Date',
@@ -158,7 +142,7 @@ export default function () {
     ];
     return (
         <div>
-            <Table columns={columns} dataSource={orderList} />
+            <Table columns={columns} dataSource={orders} />
         </div>
     )
 }
