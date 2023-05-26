@@ -49,8 +49,7 @@ export default function UpdateWeight(props) {
     const [value, setValue] = useState('');
     return (
         <>
-            
-            <Button type='primary' onClick={showModal} style={{ color: 'black', float:'right' }}>Cập nhật số kg</Button>
+            <Button type='primary' onClick={showModal} style={{ color: 'black', width:'100%' }}>Cập nhật số kg</Button>
             <Modal title="Cập nhật khối lượng đơn hàng" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                 <InputNumber value={weight} onChange={weightOnChange}/>
             </Modal>

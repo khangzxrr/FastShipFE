@@ -63,7 +63,7 @@ export default function CustomerOrder(props) {
   return (
     <>
             <h2>DANH SÁCH ĐƠN HÀNG ĐÃ ĐẶT</h2>
-            <Table columns={columns} dataSource={props.orders} pagination={{ onChange:props.onPageChange, total: props.totalCount}}></Table>
+            <Table columns={columns} dataSource={props.orders} pagination={{ onChange:props.onPageChange, total: props.totalCount}}/>
         </>
   )
 }

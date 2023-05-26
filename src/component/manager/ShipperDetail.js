@@ -54,13 +54,14 @@ export default function ShipperDetail() {
     
 
     return (
-        <div className='shipperdetail' style={{display:'flex'}}>
-            <div style={{width:'28%', marginRight:'2%'}}>
-                <ShipperInfo shipper={shipper} />
-            </div>
-            <div style={{width:'70%'}}>
-                <ShipperOrder orders={orders} />
-            </div>
+        <div className='shipperdetail'>
+        <div style={{width:'100%', marginRight:'2%'}}>
+          <h2>THÔNG TIN SHIPPER</h2>
+          <ShipperInfo shipper={shipper} />
         </div>
+        <div style={{width:'100%'}}>
+        <ShipperOrder orders={orders} />
+        </div>
+    </div>
     )
 }

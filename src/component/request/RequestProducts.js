@@ -12,6 +12,7 @@ export default function RequestProducts(props) {
                     height: '150px',
                     width: '40%',
                     marginTop: '20px'
+                    , boxShadow:'rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px'
                 }}
             />
             <div style={{ padding: '0px 10px', width: '60%' }}>
@@ -19,14 +20,13 @@ export default function RequestProducts(props) {
                     <h2>Name: {props.orderDetail.product.name}</h2>
                     <p>Category: {props.orderDetail.product.category}</p>
                     <p>Quantity: {props.orderDetail.quantity}</p>
-
                 </div>
                 <div className='fee'>
                     <p>Giá sản phẩm: {props.orderDetail.product.price}$</p>
                     <p>Phí ship đến kho ở US: {props.orderDetail.shipCost}$</p>
                     <p>Phí xử lý: {props.orderDetail.processCost === 0 ? 'Đang xử lí' : props.orderDetail.processCost + ' $'}</p>
                     <p>Phí phụ thu: {props.orderDetail.additionalCost === 0 ? 'Đang xử lí' : props.orderDetail.processCost + ' $'}</p>
-                    <p>Tỉ giá chuyển đổi tiền tệ từ {props.orderDetail.product.productCurrencyExchangeRecord.currencyName} sang VNĐ {Utils.formatToVNDCurrency(props.orderDetail.product.productCurrencyExchangeRecord.rate)} </p>
+                    <p>Tỉ giá chuyển đổi tiền tệ từ {props.orderDetail.product.productCurrencyExchangeRecord.currencyName} sang VNĐ : {Utils.formatToVNDCurrency(props.orderDetail.product.productCurrencyExchangeRecord.rate)} </p>
                     {
                         props.orderDetail.totalCost === 0 ? <h4>Tổng giá: Chưa có giá chính xác</h4> : <h4>Tổng giá {props.orderDetail.totalCost}$</h4>
                     }

@@ -50,13 +50,11 @@ export default function DeliveryOption(props) {
 
 
     return (
-        <>
+        <>  
             {
                 (props.order.localOrderShippingStatus !== 'delivered' && props.order.status === 'inVNwarehouse') &&
-                (<div style={{
-                    width: '100%', border: '1px solid grey',
-                    borderRadius: '20px', marginBottom: '30px', padding: '20px 20%', border: 'none', boxShadow: ' rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px'
-                }}>
+                (<div>
+                            <h2>PHƯƠNG THỨC VẬN CHUYỂN</h2>
                     {
                         props.order.localOrderShippingStatus === "notInQueue" && (
                             <div>
@@ -76,7 +74,6 @@ export default function DeliveryOption(props) {
                         props.order.localOrderShippingStatus !== "notInQueue" && (
                             <div>
                                 <span>{props.order.localOrderShippingStatus === "inQueue" ? "Đang trong hàng chờ shipper nhận đơn" : "Shipper đã nhận đơn"} </span>
-
                                 {
                                     props.order.localOrderShippingStatus === "assignedTo3rdShipper" && (
                                         <Button style={{ color: 'black', width: '100%' }} type="primary" onClick={() => markFinishBy3rdDeliver()}>

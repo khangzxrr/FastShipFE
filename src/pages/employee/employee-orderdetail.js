@@ -12,64 +12,54 @@ import EmployeeChat from "../../component/orders-employee/EmployeeChat"
 import DeliveryOption from "../../component/orders-employee/DeliveryOption"
 const OrderDetailEmployee = () => {
 
-    const { search } = useLocation()
+  const { search } = useLocation()
 
-    const { token } = useSelector(state => state.login)
-    const { order } = useSelector(state => state.employeeGetOrderById)
+  const { token } = useSelector(state => state.login)
+  const { order } = useSelector(state => state.employeeGetOrderById)
 
-    const { chatMessages } = useSelector(state => state.employeeGetOrderChat)
+  const { chatMessages } = useSelector(state => state.employeeGetOrderChat)
 
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-    useEffect(() => {
-      const orderId = new URLSearchParams(search).get("orderId")
+  useEffect(() => {
+    const orderId = new URLSearchParams(search).get("orderId")
 
-      if (orderId == null){
-        alert("Không tồn tại orderId")
-        navigate("/employee-order")
-        return
-      }
-      
-      dispatch(employeeGetOrderByIdAction(orderId))
-        .then(dispatch(employeeGetOrderChatAction(orderId)))
-        .catch(err => {
-          if (err.response.status === 401 || err.response.status === 403){
-            //alert('Bạn không có quyền thực thi việc này, vui lòng đăng nhập lại')
-            dispatch(logout())
-            navigate('/login')
-          }
-        })
-    }, [search])
+    if (orderId == null) {
+      alert("Không tồn tại orderId")
+      navigate("/employee-order")
+      return
+    }
 
-    return(
-      <>
-      <div style={{
-            width: '90%', margin: '20px 5% 50px 5%', border: 'none',
-            borderRadius: '20px', padding: '10px 20px'
-          }}>
-            <h2>CHI TIẾT ĐƠN HÀNG</h2>
-            <div style={{width:'100%', display:'flex'}}>
-              <div style={{width:'70%', marginRight:'2%'}}>
-              <OrderDetail order={order}/>
-              <OrderInfo order={order}/>
-              <EmployeeChat chatMessages={chatMessages} order={order}/>
-              </div>
-              <div style={{width:'28%'}}>
-              <DeliveryOption order={order} />
-              </div>
-            </div>
-            <div style={{width:'100%', display:'flex'}}>
-              <div style={{width:'68%', marginRight:'2%'}}>
-                <ProductInfo order={order}/>
-              </div>
-              <div style={{width:'30%'}}>
-                <Bill order={order}/>
-              </div>
-            </div>    
-          </div>
-      </>
-        
-    )
+    dispatch(employeeGetOrderByIdAction(orderId))
+      .then(dispatch(employeeGetOrderChatAction(orderId)))
+      .catch(err => {
+        if (err.response.status === 401 || err.response.status === 403) {
+          //alert('Bạn không có quyền thực thi việc này, vui lòng đăng nhập lại')
+          dispatch(logout())
+          navigate('/login')
+        }
+      })
+  }, [search])
+
+  return (
+    <div className="container" style={{display:'flex',marginTop:'20px', marginBottom:'20px'}}>
+    <div style={{width:'60%', marginRight:'2%', padding:'0px 20px 30px 20px'}}>
+        <h2>CHI TIẾT ĐƠN HÀNG</h2>
+        <ProductInfo order={order} />
+        <h2>THANH TOÁN</h2>
+        <Bill order={order} />
+    </div>
+    <div style={{width:'38%', padding:'0px 10px 10px 10px'}}>
+        <DeliveryOption order={order} />
+        <h2>THÔNG TIN CUSTOMER</h2>
+        <OrderDetail order={order} />
+        <h2>CẬP NHẬT TRẠNG THÁI ĐƠN HÀNG</h2>
+        <OrderInfo order={order} />
+        <h2>NỘI DUNG TRAO ĐỔI</h2>
+        <EmployeeChat chatMessages={chatMessages} order={order} />
+    </div>
+</div>
+  )
 }
 export default OrderDetailEmployee

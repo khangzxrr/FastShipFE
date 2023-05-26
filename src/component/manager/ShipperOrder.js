@@ -3,9 +3,6 @@ import React from 'react'
 import { Utils } from '../../features/utils/Utils';
 
 export default function ShipperOrder(props) {
-
-    
-
     const columns = [
         {
           title: 'Order ID',
@@ -64,7 +61,7 @@ export default function ShipperOrder(props) {
     return (
         <>
             <h2>DANH SÁCH ĐƠN HÀNG ĐÃ NHẬN</h2>
-            <Table columns={columns} rowKey={'orderId'} dataSource={props.orders}></Table>
+            <Table columns={columns} rowKey={'orderId'} dataSource={props.orders}/>
         </>
     )
 }

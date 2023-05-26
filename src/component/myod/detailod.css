@@ -1,44 +1,42 @@
 .detail {
-    border: none;
-    border-radius: 20px;
-    padding: 20px;
-    margin-right: 20px;
+  border: none;
+  border-radius: 20px;
+  padding: 20px;
+  margin-right: 20px;
 }
 .detail2{
-    padding: 90px 5px;
-    border-radius: 20px;
-    border: none;
-    width: 30%;
+  padding: 90px 5px;
+  border-radius: 20px;
+  border: none;
+  width: 30%;
 }
 .detail3 div{
-    float: left;
+  float: left;
 }
 .main {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .products img {
-    width: 200px;
-    height: 200px;
-    margin-right: 10px;
-  }
-  .product {
-    padding: 5px;
-    border-radius: 10px;
-    margin-left: -30px;
-  }
-  .chatbox td{
-    padding: 2px;
-    border: 1px solid #AAAAAA;
-  }
-  .chatbox {
-    border-collapse: collapse;
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  .btnBaohanh{
-    float: right;
-    margin-top: -20px;
-    border: none;
-    color: black;
-  }
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.products img {
+  width: 200px;
+  height: 200px;
+  margin-right: 10px;
+}
+.product {
+  padding: 5px;
+  border-radius: 10px;
+  margin-left: -30px;
+}
+.chatbox td{
+  padding: 2px;
+  border: 1px solid #AAAAAA;
+}
+.chatbox {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.btnBaohanh{
+  color: black;
+  width: 100%;
+}
