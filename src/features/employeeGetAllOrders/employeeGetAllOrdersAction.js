@@ -2,13 +2,8 @@ import axiosProfile from "../axiosProfile"
 import { employeeGetAllOrdersSuccessfully } from "./employeeGetAllOrdersSlice"
 
 
-export const employeeGetAllOrdersAction = (token) => async dispatch => {
-    const response = await axiosProfile.get('/employee/orders', {
-        headers: {
-            "Content-type": "application/json",
-            "Authorization": `Bearer ${token}`
-        }
-    })
+export const employeeGetAllOrdersAction = () => async dispatch => {
+    const response = await axiosProfile.get('/employee/orders')
 
     dispatch(employeeGetAllOrdersSuccessfully(response.data))
 
