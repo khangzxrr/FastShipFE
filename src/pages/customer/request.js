@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOrderByIdAction } from "../../features/getOrderById/getOrderByIdAction";
 import { getOrderChatAction } from "../../features/getOrderChat/getOrderChatAction";
 import { getOrderChatHubAction } from "../../features/getOrderChat/getOrderChatHubAction";
-import { clearOrder } from "../../features/getOrderById/getOrderByIdSlice";
 import { Skeleton } from "antd";
 
 const Request = () => {
