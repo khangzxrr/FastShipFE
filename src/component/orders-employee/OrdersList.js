@@ -1,18 +1,21 @@
 import React, { useEffect } from 'react'
-import { Button, Input, Space, Table } from 'antd'
+import { Button, Input, Skeleton, Space, Table } from 'antd'
 import { useState, useRef } from 'react';
 import { SearchOutlined } from '@ant-design/icons/lib/icons';
 import Highlighter from "https://cdn.skypack.dev/react-highlight-words@0.20.0";
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-export default function () {
+export default function (props) {
+    
+    
 
     const { orders } = useSelector(state => state.employeeGetAllOrders)
 
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const searchInput = useRef(null);
+
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
         setSearchText(selectedKeys[0]);
@@ -142,7 +145,8 @@ export default function () {
     ];
     return (
         <div>
-            <Table columns={columns} dataSource={orders} />
+            {props.loading ? (<Skeleton />) : (<Table columns={columns} dataSource={orders} />)}
+            
         </div>
     )
 }
