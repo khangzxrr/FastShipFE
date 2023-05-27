@@ -1,6 +1,10 @@
 import axiosProfile from "../axiosProfile"
 
-export const createPaymentAction = (OrderId, callbackUrl, token) => async dispatch => {
+export const createPaymentAction = (OrderId, callbackUrl) => async (dispatch, getState) => {
+
+    const states = getState()
+
+    const { token } = states.login
 
     console.log(token)
 
