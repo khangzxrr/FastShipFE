@@ -45,22 +45,11 @@ const Request = () => {
                 return
             }
 
-            dispatch(getOrderChatAction(orderId))
-
-            const connectionBuilder = getOrderChatHubAction(token)
-            connectionBuilder.on('boardcast', () => {
-                dispatch(getOrderChatAction(order.orderId))
-            })
-    
-            connectionBuilder.start()
-                .then(() => {
-    
+            dispatch(getOrderChatHubAction(orderId))   
+                .then(connectionBuilder => {
                     setConnection(connectionBuilder)
-    
-                    connectionBuilder.invoke('ConnectToChatRoom', {
-                        orderId: order.orderId
-                    })
                 })
+            
         })
         .catch((err) => {
             alert('Lỗi, xin vui lòng thử lại sau')
