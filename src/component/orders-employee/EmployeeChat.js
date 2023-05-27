@@ -1,42 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { Input, Button } from 'antd'
 import "../myod/detailod.css"
-import { useDispatch, useSelector } from 'react-redux';
-import { employeeSendMessageToOrderAction } from '../../features/employeeSendMessageToOrder/employeeSendMessageToOrderAction';
+import { useDispatch, useSelector} from 'react-redux';
 
 
 import { employeeConnectChatAction } from '../../features/employeeGetOrderChat/employeeConnectChatAction';
-import { employeeGetOrderChatAction } from '../../features/employeeGetOrderChat/employeeGetOrderChatAction';
 const { TextArea } = Input;
 export default function EmployeeChat(props) {
     const [message, setMessage] = useState("")
     const [connection, setConnection] = useState(null)
 
-    const { token } = useSelector(state => state.login)
+    const { chatMessages } = useSelector(state => state.employeeGetOrderChat)
 
     const dispatch = useDispatch()
 
     useEffect(() => {
-
-        dispatch(employeeGetOrderChatAction(props.order.orderId))
-
-        const connectionBuilder = employeeConnectChatAction(token)
-
-        connectionBuilder.on('boardcast', () => {
-            dispatch(employeeGetOrderChatAction(props.order.orderId))
+        dispatch(employeeConnectChatAction(props.order.orderId)).then(connection => {
+            setConnection(connection)
         })
-
-        connectionBuilder.start()
-            .then(() => {
-                setConnection(connectionBuilder)
-                console.log("connected")
-
-                connectionBuilder.invoke('ConnectToChatRoom', {
-                    orderId: props.order.orderId
-                })
-            })
-
-
     }, [])
 
     function handleTextAreaOnChange(event) {
@@ -48,6 +29,7 @@ export default function EmployeeChat(props) {
             connection.invoke('SendMessage', {
                 message
             })
+            setMessage('')
         } catch (err) {
             alert('Có lỗi xảy ra, vui lòng tải lại trang và thử lại')
         }
@@ -55,37 +37,24 @@ export default function EmployeeChat(props) {
 
     return (
         <>
-            {/* <div className='chatbox' style={{
-                width: '100%',
-                borderRadius: '20px', padding: '10px 10px 20px 10px', boxShadow: ' rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px'
-            }}>
-                <h4 style={{ fontSize: '16px' }}>Nội dung trao đổi về đơn hàng này</h4>
-                <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '10px' }}>
-                    <tbody>
-                        {
-                            props.chatMessages.map((chatMessage) => (
-                                <tr>
-                                    <td>{chatMessage.isFromEmployee ? "Nhân viên" : "Khách hàng"}</td>
-                                    <td>{chatMessage.message}</td>
-                                </tr>
-                            ))
+        {
+        chatMessages.map(chatMessage => {
 
-                        }
-                    </tbody>
-                </table>
-                <TextArea style={{ marginBottom: '10px' }} onChange={handleTextAreaOnChange} />
-                <Button type='primary' style={{ color: 'black' }} onClick={sendMessage}>Gửi tin nhắn cho KH</Button>
-            </div> */}
-            <div className="messages-chat">
-                <div className="message">
-                    <div className=''>
-                        <p className=''></p>
-                        <p className="text"></p>
+            const askOrResposne = (chatMessage.isFromEmployee) ? 'response' : 'ask'
+            const customerOrEmployee = (chatMessage.isFromEmployee) ? 'Employee' : props.order.customerName
+            return (
+                <div className="message-chat">
+                    <div className={askOrResposne}>
+                        <p className='employee'>{customerOrEmployee}</p>
+                        <p className="text">{chatMessage.message}</p>
+                        <p className='time'>{chatMessage.createAt}</p>
                     </div>
                 </div>
-            </div>
-            <TextArea style={{ marginBottom: '10px' }} />
-            <Button type='primary' style={{ color: 'black' }} >Gửi tin nhắn cho CSKH</Button>
+            )
+        })
+        }
+            <TextArea style={{ marginBottom: '10px' }} onChange={handleTextAreaOnChange} value={message}/>
+            <Button type='primary' style={{ color: 'black' }} onClick={() => sendMessage()}>Gửi tin nhắn cho CSKH</Button>
         </>
 
     )
