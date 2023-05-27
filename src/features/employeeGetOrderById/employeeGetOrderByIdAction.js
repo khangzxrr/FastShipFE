@@ -7,5 +7,5 @@ export const employeeGetOrderByIdAction = (orderId) => async dispatch => {
 
     dispatch(employeeGetOrderByIdSuccessfully(response.data))
 
-    return Promise.resolve()
+    return Promise.resolve(response.data)
 }
