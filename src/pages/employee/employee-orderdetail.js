@@ -14,10 +14,7 @@ const OrderDetailEmployee = () => {
 
   const { search } = useLocation()
 
-  const { token } = useSelector(state => state.login)
   const { order } = useSelector(state => state.employeeGetOrderById)
-
-  const { chatMessages } = useSelector(state => state.employeeGetOrderChat)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -26,13 +23,11 @@ const OrderDetailEmployee = () => {
     const orderId = new URLSearchParams(search).get("orderId")
 
     if (orderId == null) {
-      alert("Không tồn tại orderId")
       navigate("/employee-order")
       return
     }
 
     dispatch(employeeGetOrderByIdAction(orderId))
-      .then(dispatch(employeeGetOrderChatAction(orderId)))
       .catch(err => {
         if (err.response.status === 401 || err.response.status === 403) {
           //alert('Bạn không có quyền thực thi việc này, vui lòng đăng nhập lại')
@@ -57,7 +52,7 @@ const OrderDetailEmployee = () => {
         <h2>CẬP NHẬT TRẠNG THÁI ĐƠN HÀNG</h2>
         <OrderInfo order={order} />
         <h2>NỘI DUNG TRAO ĐỔI</h2>
-        <EmployeeChat chatMessages={chatMessages} order={order} />
+        <EmployeeChat order={order} />
     </div>
 </div>
   )
