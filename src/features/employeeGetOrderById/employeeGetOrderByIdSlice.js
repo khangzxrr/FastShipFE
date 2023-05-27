@@ -3,7 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 export const employeeGetOrderByIdSlice = createSlice({
     name: 'employeeGetOrderById',
     initialState: {
-        order: {}
+        order: {
+            orderDetails: []
+        }
     },
     reducers: {
         employeeGetOrderByIdSuccessfully: (state, action) => {
