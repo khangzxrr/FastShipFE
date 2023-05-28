@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Input, Button } from 'antd'
-import "../myod/detailod.css"
-import { useDispatch, useSelector} from 'react-redux';
-
-
+import { useDispatch, useSelector } from 'react-redux';
 import { employeeConnectChatAction } from '../../features/employeeGetOrderChat/employeeConnectChatAction';
 const { TextArea } = Input;
 export default function EmployeeChat(props) {
@@ -37,23 +34,27 @@ export default function EmployeeChat(props) {
 
     return (
         <>
-        {
-        chatMessages.map(chatMessage => {
+            <div className="messages-chat">
+                {
+                    chatMessages.map(chatMessage => {
 
-            const askOrResposne = (chatMessage.isFromEmployee) ? 'response' : 'ask'
-            const customerOrEmployee = (chatMessage.isFromEmployee) ? 'Employee' : props.order.customerName
-            return (
-                <div className="message-chat">
-                    <div className={askOrResposne}>
-                        <p className='employee'>{customerOrEmployee}</p>
-                        <p className="text">{chatMessage.message}</p>
-                        <p className='time'>{chatMessage.createAt}</p>
-                    </div>
-                </div>
-            )
-        })
-        }
-            <TextArea style={{ marginBottom: '10px' }} onChange={handleTextAreaOnChange} value={message}/>
+                        const askOrResposne = (chatMessage.isFromEmployee) ? 'response' : 'ask'
+                        const customerOrEmployee = (chatMessage.isFromEmployee) ? 'Employee' : props.order.customerName
+                        return (
+                            <div className="message">
+                                <div className={askOrResposne}>
+                                    <p className=''>{customerOrEmployee}</p>
+                                    <p className='text'>{chatMessage.message}</p>
+                                    <p className='time'>{chatMessage.createAt}</p>
+                                </div>
+                            </div>
+
+
+                        )
+                    })
+                }
+            </div>
+            <TextArea style={{ marginBottom: '10px',resize:'none' }} onChange={handleTextAreaOnChange} value={message} />
             <Button type='primary' style={{ color: 'black' }} onClick={() => sendMessage()}>Gửi tin nhắn cho CSKH</Button>
         </>
 

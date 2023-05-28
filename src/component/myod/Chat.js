@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Input, Button } from 'antd'
 import "../myod/detailod.css"
 import { useDispatch, useSelector } from 'react-redux';
-
+import "../request/request.css"
 const { TextArea } = Input;
 
 export default function Chat(props) {
