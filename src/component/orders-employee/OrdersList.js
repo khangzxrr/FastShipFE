@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Button, Input, Skeleton, Space, Table } from 'antd'
 import { useState, useRef } from 'react';
 import { SearchOutlined } from '@ant-design/icons/lib/icons';
-import Highlighter from "https://cdn.skypack.dev/react-highlight-words@0.20.0";
+import { Highlighter } from 'react-highlight-words';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
