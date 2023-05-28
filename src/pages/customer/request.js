@@ -6,9 +6,9 @@ import "../../component/request/request.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrderByIdAction } from "../../features/getOrderById/getOrderByIdAction";
-import { getOrderChatAction } from "../../features/getOrderChat/getOrderChatAction";
 import { getOrderChatHubAction } from "../../features/getOrderChat/getOrderChatHubAction";
 import { Skeleton } from "antd";
+import { Utils } from "../../features/utils/Utils";
 
 const Request = () => {
     const [loading, setLoading] = useState(false)
@@ -17,7 +17,6 @@ const Request = () => {
 
     const [searchParams, setSearchParams] = useSearchParams()
 
-    const { token } = useSelector(state => state.login)
     const { order } = useSelector(state => state.getOrderById)
     const { chatMessages } = useSelector(state => state.getOrderChat)
 
@@ -83,7 +82,9 @@ const Request = () => {
                 {
                     loading ? (<Skeleton />) : order.orderDetails.map((orderDetail, index) => <RequestProducts key={index} orderDetail={orderDetail} /> )
                 }
-                <h3 style={{textAlign:'right', marginRight:'20px'}}>TOTAL:20000</h3>
+
+                <h3 style={{textAlign:'right', marginRight:'20px'}}>Tổng giá tạm tính: { order.price === 0 ? 'Chưa có giá chính xác' : Utils.formatToVNDCurrency(order.price) }</h3>
+
             </div>
             <div style={{width:'38%', padding:'0px 10px 10px 10px'}}>
                 <h2>THÔNG TIN REQUEST</h2>
