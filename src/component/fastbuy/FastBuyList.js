@@ -1,48 +1,7 @@
 import React from 'react'
 import { Card, List, Button } from 'antd'
-export default function FastBuyList() {
-  const data = [
-    {
-      title: <img
-        src="/service2.jpg"
-        alt="logo fastship"
-        style={{
-          height: "150px",
-          width: '100%',
-        }}
-      />,
-    },
-    {
-      title: <img
-        src="/service2.jpg"
-        alt="logo fastship"
-        style={{
-          height: "150px",
-          width: '100%',
-        }}
-      />,
-    },
-    {
-      title: <img
-        src="/service2.jpg"
-        alt="logo fastship"
-        style={{
-          height: "150px",
-          width: '100%',
-        }}
-      />,
-    },
-    {
-      title: <img
-        src="/service2.jpg"
-        alt="logo fastship"
-        style={{
-          height: "150px",
-          width: '100%',
-        }}
-      />,
-    },
-  ];
+export default function FastBuyList(props) {
+  
   return (
     <>
       <List
@@ -51,13 +10,13 @@ export default function FastBuyList() {
           column: 4,
         }}
         style={{marginTop:'20px'}}
-        dataSource={data}
+        dataSource={props.products}
         renderItem={(item) => (
           <List.Item>
             <Card title={item.title}>
-              <p>Name</p>
-              <p>Size, Color:</p>
-              <p>Price:</p>
+              <p>Category {item.category}</p>
+              <p>Name {item.name}</p>
+              <p>Price: {item.price}$</p>
               <Button type='primary' style={{color:'black', width:'100%'}}>Buy</Button>
             </Card>
           </List.Item>
