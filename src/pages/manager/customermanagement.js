@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux"
 import CustomerList from "../../component/manager/CustomerList"
 import ManagerMenu from "../../component/manager/ManagerMenu"
 import "../manager/manager.css"
