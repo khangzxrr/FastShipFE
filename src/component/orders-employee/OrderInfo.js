@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import {
-    Descriptions
+    Button,
+    Descriptions, Popconfirm
 } from 'antd'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { employeeUpdateOrderStatusAction } from '../../features/employeeUpdateOrderStatus/employeeUpdateOrderStatusAction'
-import { employeeGetOrderByIdAction } from '../../features/employeeGetOrderById/employeeGetOrderByIdAction'
-import { employeeSetOrderStatus } from '../../features/employeeGetOrderById/employeeGetOrderByIdSlice'
-import { employeeGetOrderChatAction } from '../../features/employeeGetOrderChat/employeeGetOrderChatAction'
 
 export default function OrderInfo(props) {
 
 
     const [currentStatus, setCurrentStatus] = useState("noPayYet")
 
-    const { token } = useSelector(state => state.login)
 
     const dispatch = useDispatch()
 
@@ -24,17 +21,18 @@ export default function OrderInfo(props) {
     function onStatusChange(e) {
 
         setCurrentStatus(e.target.value)
-        console.log(e.target.value)
 
-        dispatch(employeeUpdateOrderStatusAction(props.order.orderId, e.target.value, token))
+        dispatch(employeeUpdateOrderStatusAction(props.order.orderId, e.target.value))
             .then(() => {
-                employeeSetOrderStatus(e.target.value)
-                dispatch(employeeGetOrderByIdAction(props.order.orderId))
-                dispatch(employeeGetOrderChatAction(props.order.orderId))
+                
             })
             .catch(err => {
                 alert(err)
             })
+
+    }
+
+    function handleResell() {
 
     }
 
@@ -50,9 +48,19 @@ export default function OrderInfo(props) {
                         <option value={"inVNwarehouse"}> Đang ở kho VN</option>
                         <option value={"deliverToCustomer"}> Đang giao đến khách hàng</option>
                         <option value={"finished"}> Đã hoàn thành</option>
+                        <option value={"reselling"}> Bán lại đơn</option>
                     </select>
                 </Descriptions.Item>
             </Descriptions>
+
+            <Popconfirm    
+                    title="Xác nhận bán lại"
+                    description="Bạn có chắc chắn muốn bán lại tất cả sản phẩm của order này?"
+                    onConfirm={() => handleResell()}
+                >
+
+                    <Button type="primary" style={{color:'black'}}>XÁC NHẬN YÊU CẦU BÁO GIÁ</Button>
+                </Popconfirm>
         </>
     )
 }
