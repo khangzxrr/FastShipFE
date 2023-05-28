@@ -7,7 +7,12 @@ export default function UserInfo(props) {
     <Descriptions>
       <Descriptions.Item label="UserName" span={3}>{props.order.customerName}</Descriptions.Item>
       <Descriptions.Item label="Telephone" span={3}>{props.order.contactPhoneNumber}</Descriptions.Item>
-      <Descriptions.Item label="Description" span={3}>{props.order.customerDescription}</Descriptions.Item>
+
+      {
+        props.order.customerDescription !== '' &&
+          (<Descriptions.Item label="Description" span={3}>{props.order.customerDescription}</Descriptions.Item>)
+      }
+      
       <Descriptions.Item label="Address">
         {props.order.deliveryAddress}
       </Descriptions.Item>
