@@ -5,6 +5,7 @@ import {
 } from 'antd'
 import { useDispatch } from 'react-redux'
 import { employeeUpdateOrderStatusAction } from '../../features/employeeUpdateOrderStatus/employeeUpdateOrderStatusAction'
+import { employeeMarkResellOrderAction } from '../../features/employeeMarkResellOrder/employeeMarkResellOrderAction'
 
 export default function OrderInfo(props) {
 
@@ -33,7 +34,7 @@ export default function OrderInfo(props) {
     }
 
     function handleResell() {
-
+        dispatch(employeeMarkResellOrderAction(props.order.orderId))
     }
 
     return (
@@ -53,14 +54,20 @@ export default function OrderInfo(props) {
                 </Descriptions.Item>
             </Descriptions>
 
-            <Popconfirm    
-                    title="Xác nhận bán lại"
-                    description="Bạn có chắc chắn muốn bán lại tất cả sản phẩm của order này?"
-                    onConfirm={() => handleResell()}
-                >
+            {
+                props.order.status !== 'reselling' &&
+                (
+                    <Popconfirm    
+                        title="Xác nhận bán lại"
+                        description="Bạn có chắc chắn muốn bán lại tất cả sản phẩm của đơn này?"
+                        onConfirm={() => handleResell()}
+                    >
 
-                    <Button type="primary" style={{color:'black'}}>XÁC NHẬN YÊU CẦU BÁO GIÁ</Button>
-                </Popconfirm>
+                        <Button type="primary" style={{color:'black'}}>Bán lại đơn hàng này</Button>
+                    </Popconfirm>
+                )
+            }
+            
         </>
     )
 }
