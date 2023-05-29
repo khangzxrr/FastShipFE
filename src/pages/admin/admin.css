@@ -1,0 +1,16 @@
+.serverreport{
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        border-radius: 2px;
+        padding: 10px;
+        text-align: center;
+        margin-bottom: 30px;
+        height: 200px;
+}
+.account{
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        border-radius: 2px;
+        padding: 10px;
+        text-align: center;
+        margin-bottom: 30px;
+        height: 200px;
+}

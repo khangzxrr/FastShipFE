@@ -1,5 +1,4 @@
 import InputForm from "./InputForm"
-
 const Form = () => {
     return (
         <div className='container'>

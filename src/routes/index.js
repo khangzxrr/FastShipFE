@@ -27,6 +27,7 @@ import MyOrder from "../pages/customer/order";
 import Detail from "../pages/customer/detailod";
 import Warranty from "../pages/customer/warranty";
 import CountTime from "../pages/customer/counttime";
+import AdminHome from "../pages/admin/admin-home";
 export const route = [
   {
     path: "/",
@@ -143,6 +144,10 @@ export const route = [
       {
         path: "/employee-request",
         element: <EmployeeRequest />
+      },
+      {
+        path: "/admin-home",
+        element: <AdminHome/>
       },
     ]
   },

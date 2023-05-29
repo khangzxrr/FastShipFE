@@ -65,8 +65,6 @@ export default function InputForm() {
     })
    
   }
-
-
   return (
     <>
       <Form className='inputform'
@@ -99,7 +97,6 @@ export default function InputForm() {
         <Form.Item label="ĐỊA CHỈ">
           <Input onChange={handleChangeAddress}/>
         </Form.Item>
-
         <Button style={{ marginLeft: '150px', color: 'black' }} type='primary' onClick={handleOnRegister}>YÊU CẦU BÁO GIÁ</Button>
       </Form>
     </>
