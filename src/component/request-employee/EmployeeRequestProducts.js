@@ -1,9 +1,10 @@
 import React from 'react'
-import { Input, Button, Select, Descriptions, Modal, message } from 'antd'
+import { Input, Descriptions, Modal } from 'antd'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { employeeEditOrderDetailAction } from '../../features/employeeEditOrderDetail/employeeEditOrderDetailAction';
 import { Utils } from '../../features/utils/Utils';
+import {AiOutlineEdit} from 'react-icons/ai'
 export default function EmployeeRequestProducts(props) {
 
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -45,57 +46,53 @@ export default function EmployeeRequestProducts(props) {
 
   return (
 
-    <div className='requestproducts' style={{ display: 'flex', padding: '10px', marginRight:'2%' }}>
-      <div style={{width:'28%'}}>
+    <div className='requestproducts' style={{ display: 'flex', padding: '10px'}}>
+      <div style={{width:'28%', marginRight:'2%'}}>
         <img
           src={props.orderDetail.product.imageUrl}
           style={{
-            height: '150px',
+            height: 'auto',
             width: '100%',
             position:'relative',
             marginTop:'20px'
           }}
         />
-        <Modal title="INSERT" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <Modal title="Chỉnh sửa" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
           <Descriptions layout="vertical">
-            <Descriptions.Item label={propertyName} ><Input onChange={handleEditModelValueChange} value={value}/></Descriptions.Item>
+            <Descriptions.Item label={propertyName}><Input onChange={handleEditModelValueChange} value={value}/></Descriptions.Item>
           </Descriptions>
         </Modal>
       </div>
-      <div style={{ padding: '0px 10px', width: '70%', lineHeight:'22px'}}>
-        <h2 style={{wordWrap:'break-word'}}>Name: {props.orderDetail.product.name}</h2>
-        
-        <p>Type: {props.orderDetail.product.category} </p>
-
-        <p><a onClick={() => showEditModal('productDescription', props.orderDetail.product.description)}>Mô tả:</a> {props.orderDetail.product.description}</p>
-        <p><a onClick={() => showEditModal('quantity', props.orderDetail.quantity)}>Số lượng:</a> {props.orderDetail.quantity} cái</p>
-        <p><a onClick={() => showEditModal('shipCost', props.orderDetail.shipCost)}>Phí ship đến kho US:</a> {props.orderDetail.shipCost}$</p>
-        <p><a onClick={() => showEditModal('productCost', props.orderDetail.productCost)}>Giá:</a> {props.orderDetail.productCost}$</p>
-        <p><a onClick={() => showEditModal('processCost', props.orderDetail.processCost)}>Phí xử lý:</a> {props.orderDetail.processCost}$</p>
-        <p><a onClick={() => showEditModal('additionalCost', props.orderDetail.additionalCost)}>Phí phụ thu:</a> {props.orderDetail.additionalCost}$</p>
-        <p><a onClick={() => showEditModal('costPerWeight', props.orderDetail.costPerWeight)}>Phí mỗi kí(kg):</a> {props.orderDetail.costPerWeight}$</p>
-        <p><a onClick={() => showEditModal('productWarrantable', props.orderDetail.product.warrantable)}>bảo hành: </a> {props.orderDetail.product.warrantable ? 'có' : 'không'}</p>
+      <div style={{ padding: '0px 10px', width: '70%', lineHeight:'10px'}}>
+        <h2 style={{wordWrap:'break-word', lineHeight:'30px'}}>Name: {props.orderDetail.product.name}</h2>
+        <p>Loại: {props.orderDetail.product.category} </p>
+        <p>Mô tả: {props.orderDetail.product.description} <a onClick={() => showEditModal('productDescription', props.orderDetail.product.description)}><AiOutlineEdit/></a></p>
+        <p>Tiền tệ: {props.orderDetail.product.productCurrencyExchangeRecord.currencyName} <a onClick={() => showEditModal('currencyName', props.orderDetail.product.productCurrencyExchangeRecord.currencyName)}><AiOutlineEdit/></a></p>
+        <p>Bảo hành: {props.orderDetail.product.warrantable ? 'Có' : 'Không'} <a onClick={() => showEditModal('productWarrantable', props.orderDetail.product.warrantable)}><AiOutlineEdit/></a></p>
         {
           props.orderDetail.product.warrantable ? 
-            <p><a onClick={() => showEditModal('warrantyDescription', props.orderDetail.product.warrantyDescription)}>mô tả bảo hành: </a> {props.orderDetail.product.warrantyDescription}</p>
+            <p>Mô tả đổi trả: {props.orderDetail.product.warrantyDescription} <a onClick={() => showEditModal('warrantyDescription', props.orderDetail.product.warrantyDescription)}><AiOutlineEdit/></a></p>
              : 
             <p></p>
         }
 
-        <p><a onClick={() => showEditModal('productReturnable', props.orderDetail.product.returnable)}>đổi trả: </a> {props.orderDetail.product.returnable ? 'có' : 'không'}</p>
+        <p>Đổi trả: {props.orderDetail.product.returnable ? 'Có' : 'Không'} <a onClick={() => showEditModal('productReturnable', props.orderDetail.product.returnable)}><AiOutlineEdit/></a></p>
         {
           props.orderDetail.product.returnable ? 
-            <p><a onClick={() => showEditModal('returnDescription', props.orderDetail.product.returnDescription)}>mô tả đổi trả: </a> {props.orderDetail.product.returnDescription}</p>
+            <p>Mô tả đổi trả: {props.orderDetail.product.returnDescription} <a onClick={() => showEditModal('returnDescription', props.orderDetail.product.returnDescription)}><AiOutlineEdit/></a></p>
              : 
             <p></p>
         }
-
-        <p><a onClick={() => showEditModal('currencyName', props.orderDetail.product.productCurrencyExchangeRecord.currencyName)}>Tiền tệ:</a> {props.orderDetail.product.productCurrencyExchangeRecord.currencyName}</p>
+        <div style={{textAlign:'right'}}>
+        <p>Số lượng: {props.orderDetail.quantity} cái <a onClick={() => showEditModal('quantity', props.orderDetail.quantity)}><AiOutlineEdit/></a></p>
+        <p>Phí ship đến kho US: {props.orderDetail.shipCost}$ <a onClick={() => showEditModal('shipCost', props.orderDetail.shipCost)}><AiOutlineEdit/></a></p>
+        <p>Giá: {props.orderDetail.productCost}$ <a onClick={() => showEditModal('productCost', props.orderDetail.productCost)}><AiOutlineEdit/></a></p>
+        <p>Phí xử lý: {props.orderDetail.processCost}$ <a onClick={() => showEditModal('processCost', props.orderDetail.processCost)}><AiOutlineEdit/></a> </p>
+        <p>Phí phụ thu: {props.orderDetail.additionalCost}$ <a onClick={() => showEditModal('additionalCost', props.orderDetail.additionalCost)}><AiOutlineEdit/></a></p>
+        <p>Phí mỗi kí(kg): {props.orderDetail.costPerWeight}$ <a onClick={() => showEditModal('costPerWeight', props.orderDetail.costPerWeight)}><AiOutlineEdit/></a></p>
         <p>Tỉ giá chuyển sang VNĐ: {Utils.formatToVNDCurrency(props.orderDetail.product.productCurrencyExchangeRecord.rate)}</p>
-
-
-     
-          <span style={{ fontWeight: 'bold' }}>Tổng cộng: {props.orderDetail.totalCost}$</span>
+          <p style={{ fontWeight: 'bold' }}>Tổng cộng: {props.orderDetail.totalCost}$</p>
+        </div>
       </div>
     </div>
   )

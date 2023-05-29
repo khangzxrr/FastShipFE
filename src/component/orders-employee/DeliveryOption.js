@@ -43,7 +43,7 @@ export default function DeliveryOption(props) {
             .then(() => {
                 dispatch(employeeGetOrderByIdAction(props.order.orderId))
 
-                alert('đã điều chỉnh trạng thái thành giao hàng thành công!');
+                alert('Đã điều chỉnh trạng thái thành giao hàng thành công!');
             })
     }
 

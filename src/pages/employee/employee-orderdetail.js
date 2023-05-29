@@ -10,6 +10,7 @@ import { logout } from "../../features/login/loginSlice"
 import { employeeGetOrderChatAction } from "../../features/employeeGetOrderChat/employeeGetOrderChatAction"
 import EmployeeChat from "../../component/orders-employee/EmployeeChat"
 import DeliveryOption from "../../component/orders-employee/DeliveryOption"
+import EmployeeResell from "../../component/request-employee/EmployeeResell"
 const OrderDetailEmployee = () => {
 
   const { search } = useLocation()
@@ -40,7 +41,9 @@ const OrderDetailEmployee = () => {
   return (
     <div className="container" style={{display:'flex',marginTop:'20px', marginBottom:'20px'}}>
     <div style={{width:'60%', marginRight:'2%', padding:'0px 20px 30px 20px'}}>
-        <h2>CHI TIẾT ĐƠN HÀNG</h2>
+        <h2>CHI TIẾT ĐƠN HÀNG
+          <span style={{float:'right'}}><EmployeeResell/></span>
+        </h2>
         <ProductInfo order={order} />
         <h2>THANH TOÁN</h2>
         <Bill order={order} />

@@ -98,15 +98,12 @@ const EmployeeRequest = () => {
                     description="Bạn có chắc chắn muốn báo giá cho người dùng? (hành động này không thể quay lại)"
                     onConfirm={() => handleConfirmPriceQuotation()}
                 >
-
-                    <Button type="primary" style={{color:'black'}}>XÁC NHẬN YÊU CẦU BÁO GIÁ</Button>
+                    <Button type="primary" style={{color:'black', float:'right', fontWeight:'bold'}}>XÁC NHẬN YÊU CẦU BÁO GIÁ</Button>
                 </Popconfirm>
-                
-                
-                <Button type="primary" style={{color:'black', backgroundColor:'red', marginLeft:'10px'}}>CANCEL</Button>
+                <Button type="primary" style={{color:'black', backgroundColor:'red', marginRight:'10px', float:'right', fontWeight:'bold'}}>CANCEL</Button>
             </div>
             <div style={{width:'38%', padding:'0px 10px 10px 10px'}}>
-                <h2>THÔNG TIN ORDER</h2>
+                <h2>THÔNG TIN ĐƠN HÀNG</h2>
                 <EmployeeRequestInfo order={order}/>
                 <h2>NỘI DUNG TRAO ĐỔI</h2>
                 <EmployeeRequestChat order={order} chatMessages={chatMessages} handleOnSendMessage={handleOnSendMessage}/>
