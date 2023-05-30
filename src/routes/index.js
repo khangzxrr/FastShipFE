@@ -182,7 +182,7 @@ export const route = [
     ]
   },
   {
-    path: "/counttime",
+    path: "/count-redirect-payment",
     element: <CountTime />
   }
 ];
