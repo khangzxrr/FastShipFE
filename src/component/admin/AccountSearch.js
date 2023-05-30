@@ -33,15 +33,15 @@ export default function AccountSearch() {
                     <Descriptions.Item label="Password" span={3}><Input/></Descriptions.Item>
                     <Descriptions.Item label="Email" span={2}><Input/></Descriptions.Item>
                     <Descriptions.Item label="Role" span={1}><Select
-      defaultValue="lucy"
+      defaultValue="Employee"
       style={{
         width: '100%',
       }}
       onChange={handleChange}
       options={[
         {
-          value: 'Employee',
-          label: 'employee',
+          value: 'employee',
+          label: 'Employee',
         },
       ]}
     /></Descriptions.Item>

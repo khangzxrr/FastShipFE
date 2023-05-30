@@ -6,7 +6,7 @@ const AdminServer = () => {
     return (
         <div className='container'>
             <AdminMenu/>
-            <div>
+            <div className="revenuedetail">
                 
             </div>
         </div>
