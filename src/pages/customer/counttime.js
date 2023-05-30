@@ -1,15 +1,22 @@
 import { Statistic} from "antd"
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const { Countdown } = Statistic;
-const onChange = (val) => {
-    if (typeof val === 'number' && 4.95 * 1000 < val && val < 5 * 1000) {
-        console.log('changed!');
-    }
-};
+
 const CountTime = () => {
+
+    const { order } = useSelector(state => state.getOrderById)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    function onFinish() {
+        navigate('/detailod?orderId=' + order.orderId)    
+    }
+
     return (
         <div style={{width:'100%', textAlign:'center'}}>
-                <Countdown value={Date.now() + 10 * 1000} onChange={onChange}/>
-                <p>Đang cập nhật ...</p>
+                <Countdown value={Date.now() + 10 * 1000} onFinish={onFinish}/>
+                <p>Vui lòng chờ giây lát, chúng tôi đang cập nhật thanh toán của bạn</p>
         </div>
     )
 }

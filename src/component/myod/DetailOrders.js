@@ -23,7 +23,7 @@ export default function DetailOrders() {
     const navigate = useNavigate()
 
     function handleCreatePaymentOnClick() {
-        dispatch(createPaymentAction(order.orderId, window.location.href))
+        dispatch(createPaymentAction(order.orderId, window.location.origin))
             .then(response => window.location.href = response.payUrl)
             .catch(err => {
                 if (err.response.status === 401) {
@@ -36,7 +36,6 @@ export default function DetailOrders() {
         const orderId = new URLSearchParams(search).get('orderId')
 
         if (orderId == null) {
-            alert('không có thông tin orderId')
             navigate('/home')
             return
         }
@@ -140,7 +139,7 @@ export default function DetailOrders() {
                                 <h1>Thanh toán
                                     {
                                         order.status === "noPayYet" &&
-                                        (<Button type="primary" style={{ width: '30%', color: 'black', fontWeight: 600, float: 'right' }} onClick={() => handleCreatePaymentOnClick()}>Thanh toán Lần 1 (80%)</Button>)
+                                        (<Button type="primary" style={{ width: '30%', color: 'black', fontWeight: 600, float: 'right' }} onClick={() => handleCreatePaymentOnClick()}>Thanh toán Lần 1 ({Utils.formatToVNDCurrency(order.firstPaymentAmount)})</Button>)
                                     }
                                 </h1>
 
