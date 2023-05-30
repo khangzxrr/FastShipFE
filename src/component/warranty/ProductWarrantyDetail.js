@@ -1,4 +1,6 @@
 import React from 'react'
+import { Button } from 'antd'
+import { Link } from 'react-router-dom'
 export default function ProductWarrantyDetail() {
     return (
         <div className='requestproducts' style={{ display: 'flex', padding: '10px' }}>
@@ -13,7 +15,7 @@ export default function ProductWarrantyDetail() {
                         , boxShadow: 'rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px'
                     }}
                 />
-
+<Link to={"/warranty"}><Button className='btnBaohanh' type='primary'>YÊU CẦU BẢO HÀNH/ ĐỔI TRẢ</Button></Link>
             </div>
             <div style={{ padding: '0px 10px', width: '60%' }}>
                 <div>
