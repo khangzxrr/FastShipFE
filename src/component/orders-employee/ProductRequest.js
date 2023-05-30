@@ -1,4 +1,5 @@
 import React from 'react'
+import OptionWarranty from './OptionWarranty'
 
 export default function ProductRequest() {
   return (
@@ -17,7 +18,7 @@ export default function ProductRequest() {
       </div>
       <div style={{ padding: '0px 10px', width: '60%' }}>
         <div>
-          <h2>Tên sản phẩm</h2>
+          <h2>Tên sản phẩm<span style={{float:'right'}}><OptionWarranty/></span></h2>
           <p>Số lượng: </p>
           <p>Khối lượng: </p>
           <div className='fee'>

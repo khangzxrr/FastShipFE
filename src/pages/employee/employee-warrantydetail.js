@@ -1,6 +1,8 @@
 import ChatWarrantyDetail from "../../component/orders-employee/ChatWarrantyDetail"
+import DeliveryWarranty from "../../component/orders-employee/DeliveryWarranty"
 import InforWanrrantyDetail from "../../component/orders-employee/InforWanrrantyDetail"
 import ProductRequest from "../../component/orders-employee/ProductRequest"
+import ResellWarranty from "../../component/orders-employee/ResellWarranty"
 import UpdateStatusWarranty from "../../component/orders-employee/UpdateStatusWarranty"
 
 const EmployeeWarrantyDetail = () =>{
@@ -11,9 +13,10 @@ const EmployeeWarrantyDetail = () =>{
             <ProductRequest/>
         </div>
         <div style={{width:'38%', padding:'0px 10px 10px 10px'}}>
+            <DeliveryWarranty/>
             <h2>THÔNG TIN ĐƠN HÀNG</h2>
             <InforWanrrantyDetail/>
-            <h2>CẬP NHẬT TRẠNG THÁI ĐƠN HÀNG</h2>
+            <h2>CẬP NHẬT TRẠNG THÁI ĐƠN HÀNG <span style={{float:'right'}}><ResellWarranty/></span></h2>
             <UpdateStatusWarranty/>
             <h2>NỘI DUNG TRAO ĐỔI</h2>
             <ChatWarrantyDetail/>

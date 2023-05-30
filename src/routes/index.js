@@ -32,6 +32,8 @@ import AdminAccounts from "../pages/admin/admin-accounts";
 import WarrantyDetail from "../pages/customer/warrantydetail";
 import EmployeeWarrantyDetail from "../pages/employee/employee-warrantydetail";
 import EmployeeWarrantyRequest from "../pages/employee/employee-warrantyrequest";
+import CustomerWarrantyList from "../pages/customer/warrantylist";
+import EmployeeRequestWarranty from "../pages/employee/employee-requestwarranty";
 export const route = [
   {
     path: "/",
@@ -168,6 +170,14 @@ export const route = [
       {
         path: "/employee-warrantyrequest",
         element: <EmployeeWarrantyRequest/>
+      },
+      {
+        path: "/warrantylist",
+        element: <CustomerWarrantyList/>
+      },
+      {
+        path: "/employee-requestwarranty",
+        element: <EmployeeRequestWarranty/>
       },
     ]
   },

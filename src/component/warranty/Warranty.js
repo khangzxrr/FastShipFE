@@ -1,11 +1,9 @@
 import React from 'react'
 import {
+    Descriptions,
     Button,
-    Form,
     Input,
-    Radio,
-    Select,
-    Upload
+    Radio, Upload
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons';
 const { TextArea } = Input;
@@ -18,17 +16,17 @@ export default function WarrantyPage() {
     };
     return (
         <>
-            <Form>
-                <Form.Item label="Dịch vụ">
+            <Descriptions>
+                <Descriptions.Item label="Dịch vụ" span={3}>
                     <Radio.Group>
                         <Radio value="1">Bảo hành</Radio>
                         <Radio value="2">Đổi trả</Radio>
                     </Radio.Group>
-                </Form.Item>
-                <Form.Item label="Lý do">
-                    <TextArea style={{resize:'none'}} />
-                </Form.Item>
-                <Form.Item label="Hình ảnh" valuePropName="fileList" getValueFromEvent={normFile}>
+                </Descriptions.Item>
+                <Descriptions.Item label="Nội dung" span={3}>
+                    <TextArea style={{ resize: 'none' }} />
+                </Descriptions.Item>
+                <Descriptions.Item label="Hình ảnh" span={3} valuePropName="fileList" getValueFromEvent={normFile}>
                     <Upload style={{ width: '100%' }} action="/upload.do" listType="picture-card">
                         <div>
                             <PlusOutlined />
@@ -41,13 +39,9 @@ export default function WarrantyPage() {
                             </div>
                         </div>
                     </Upload>
-                </Form.Item>
-                <Form.Item wrapperCol={{
-                    offset: 4,
-                }}>
-                    <Button type='primary' style={{ color: 'black' }}>Gửi</Button>
-                </Form.Item>
-            </Form>
+                </Descriptions.Item>
+            </Descriptions >
+            <Button type='primary' style={{ color: 'black', float:'right', fontWeight:'bold', width:'20%' }}>Gửi</Button>
         </>
     )
 }
