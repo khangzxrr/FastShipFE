@@ -27,7 +27,6 @@ export default function DetailOrders() {
             .then(response => window.location.href = response.payUrl)
             .catch(err => {
                 if (err.response.status === 401) {
-                    //alert('Bạn không có quyền thanh toán, vui lòng đăng nhập lại')
                     dispatch(logout())
                     navigate('/login')
                 }
