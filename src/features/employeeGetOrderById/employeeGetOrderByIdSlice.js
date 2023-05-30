@@ -8,8 +8,17 @@ export const employeeGetOrderByIdSlice = createSlice({
         }
     },
     reducers: {
+        clearEmployeeGetOrderById: (state, action) => {
+            state.order = {
+                orderDetails: []
+            }
+        },
         employeeGetOrderByIdSuccessfully: (state, action) => {
             state.order = action.payload.order
+
+            if (state.order === {}){
+                state.order.orderDetails = []
+            }
         },
         employeeSetOrderStatus: (state, action) => {
             state.order.status = action.payload
@@ -17,4 +26,4 @@ export const employeeGetOrderByIdSlice = createSlice({
     }
 })
 
-export const { employeeGetOrderByIdSuccessfully, employeeSetOrderStatus } = employeeGetOrderByIdSlice.actions
+export const { employeeGetOrderByIdSuccessfully, employeeSetOrderStatus, clearEmployeeGetOrderById } = employeeGetOrderByIdSlice.actions

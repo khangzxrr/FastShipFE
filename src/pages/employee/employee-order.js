@@ -17,6 +17,7 @@ const HomeEmployee = () => {
   const { orders } = useSelector(state => state.employeeGetAllOrders)
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   useEffect(() => {
 
@@ -25,6 +26,11 @@ const HomeEmployee = () => {
     dispatch(employeeGetAllOrdersAction())
       .catch(err => {
         console.log('err')
+
+        if (err.response.status === 401 || err.response.status === 400) {
+          navigate('/login')
+        }
+
         Utils.showErrorNoti(messageApi, 'Có lỗi xảy ra, vui lòng thử lại')
       })
       .finally(() => {
