@@ -1,20 +1,15 @@
-import InforWarranty from "../../component/orders-employee/InforWarranty"
-import ProductRequest from "../../component/orders-employee/ProductRequest"
 const EmployeeWarrantyDetail = () =>{
     return(
-        <>
-        <h1 style={{margin:'30px 5% 30px 5%'}}>YÊU CẦU BẢO HÀNH/ĐỔI TRẢ</h1>
-        <div style={{display:'flex', width:'100%', padding:'0% 5%'}}>
-            <div style={{width:'30%',padding:' 10px 0px',marginBottom:'40px',borderRadius:'10px', marginRight:'5%'}}>
-                <h3>Thông tin sản phẩm</h3>
-                <ProductRequest/>
-            </div>
-            <div style={{width:'60%', boxShadow:'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',padding:' 10px 30px',marginBottom:'40px', borderRadius:'10px'}}>
-            <h3>Phiếu yêu cầu</h3>
-            <InforWarranty />
-            </div>
-            
-        </div></>
+        <div className="container" style={{display:'flex',marginTop:'20px', marginBottom:'20px'}}>
+        <div style={{width:'60%', marginRight:'2%', padding:'0px 20px 30px 20px'}}>
+            <h2>CHI TIẾT ĐƠN HÀNG</h2>
+        </div>
+        <div style={{width:'38%', padding:'0px 10px 10px 10px'}}>
+            <h2>THÔNG TIN CUSTOMER</h2>
+            <h2>CẬP NHẬT TRẠNG THÁI ĐƠN HÀNG</h2>
+            <h2>NỘI DUNG TRAO ĐỔI</h2>
+        </div>
+    </div>
     )
 }
 export default EmployeeWarrantyDetail

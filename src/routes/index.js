@@ -30,6 +30,8 @@ import AdminHome from "../pages/admin/admin-home";
 import AdminServer from "../pages/admin/admin-server";
 import AdminAccounts from "../pages/admin/admin-accounts";
 import WarrantyDetail from "../pages/customer/warrantydetail";
+import EmployeeWarrantyDetail from "../pages/employee/employee-warrantydetail";
+import EmployeeWarrantyRequest from "../pages/employee/employee-warrantyrequest";
 export const route = [
   {
     path: "/",
@@ -93,7 +95,7 @@ export const route = [
       },
       {
         path: "/employee-warrantydetail",
-        element: <WarrantyDetail />
+        element:<EmployeeWarrantyDetail/>
       },
       {
         path: "/guest-form",
@@ -162,6 +164,10 @@ export const route = [
       {
         path: "/warrantydetail",
         element: <WarrantyDetail/>
+      },
+      {
+        path: "/employee-warrantyrequest",
+        element: <EmployeeWarrantyRequest/>
       },
     ]
   },
