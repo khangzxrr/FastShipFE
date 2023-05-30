@@ -3,7 +3,6 @@ import HomeEmployee from "../pages/employee/employee-order";
 import OrderDetailEmployee from "../pages/employee/employee-orderdetail";
 import EmployeeRequest from "../pages/employee/employee-request";
 import WarrantyList from "../pages/employee/employee-warranty";
-import WarrantyDetail from "../pages/employee/employee-warrantydetail";
 import FastBuy from "../pages/fastbuy/fastbuy";
 import Form from "../pages/guest/guest-form";
 import CustomerManagement from "../pages/manager/customermanagement";
@@ -30,6 +29,7 @@ import CountTime from "../pages/customer/counttime";
 import AdminHome from "../pages/admin/admin-home";
 import AdminServer from "../pages/admin/admin-server";
 import AdminAccounts from "../pages/admin/admin-accounts";
+import WarrantyDetail from "../pages/customer/warrantydetail";
 export const route = [
   {
     path: "/",
@@ -158,6 +158,10 @@ export const route = [
       {
         path: "/admin-accounts",
         element: <AdminAccounts/>
+      },
+      {
+        path: "/warrantydetail",
+        element: <WarrantyDetail/>
       },
     ]
   },

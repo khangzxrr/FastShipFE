@@ -1,15 +1,19 @@
 import React from 'react'
 import { Dropdown, Space } from 'antd'
 import {CiMenuKebab} from 'react-icons/ci'
-export default function EmployeeResell() {
+export default function Option() {
     const items = [
         {
-            label: <a>Bán lại sản phẩm này</a>,
-            key: '0',
+            label: <a>Tạo đơn bảo hành</a>,
+            key: '1',
+        },
+        {
+            label: <a>Cập nhật số kg</a>,
+            key: '2',
         },
     ];
-    return (
-        <Dropdown
+  return (
+    <Dropdown
             menu={{
                 items,
             }}
@@ -18,9 +22,9 @@ export default function EmployeeResell() {
         >
             <a style={{color:'black'}} onClick={(e) => e.preventDefault()}>
                 <Space>
-                <CiMenuKebab/>
+                    <CiMenuKebab/>
                 </Space>
             </a>
         </Dropdown>
-    )
+  )
 }

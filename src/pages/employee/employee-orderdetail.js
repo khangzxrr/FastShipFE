@@ -41,9 +41,7 @@ const OrderDetailEmployee = () => {
   return (
     <div className="container" style={{display:'flex',marginTop:'20px', marginBottom:'20px'}}>
     <div style={{width:'60%', marginRight:'2%', padding:'0px 20px 30px 20px'}}>
-        <h2>CHI TIẾT ĐƠN HÀNG
-          <span style={{float:'right'}}><EmployeeResell/></span>
-        </h2>
+        <h2>CHI TIẾT ĐƠN HÀNG</h2>
         <ProductInfo order={order} />
         <h2>THANH TOÁN</h2>
         <Bill order={order} />
@@ -52,7 +50,7 @@ const OrderDetailEmployee = () => {
         <DeliveryOption order={order} />
         <h2>THÔNG TIN CUSTOMER</h2>
         <OrderDetail order={order} />
-        <h2>CẬP NHẬT TRẠNG THÁI ĐƠN HÀNG</h2>
+        <h2>CẬP NHẬT TRẠNG THÁI ĐƠN HÀNG <span style={{float:'right'}}><EmployeeResell/></span></h2>
         <OrderInfo order={order} />
         <h2>NỘI DUNG TRAO ĐỔI</h2>
         <EmployeeChat order={order} />

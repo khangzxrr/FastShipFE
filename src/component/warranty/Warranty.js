@@ -8,6 +8,7 @@ import {
     Upload
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons';
+const { TextArea } = Input;
 export default function WarrantyPage() {
     const normFile = (e) => {
         if (Array.isArray(e)) {
@@ -17,34 +18,18 @@ export default function WarrantyPage() {
     };
     return (
         <>
-            <Form
-                labelCol={{
-                    span: 4,
-                }}
-                wrapperCol={{
-                    span: 14,
-                }}
-                layout="horizontal"
-                style={{
-                    maxWidth: 600,
-                }}
-            >
-                <Form.Item label="Service">
+            <Form>
+                <Form.Item label="Dịch vụ">
                     <Radio.Group>
                         <Radio value="1">Bảo hành</Radio>
                         <Radio value="2">Đổi trả</Radio>
                     </Radio.Group>
                 </Form.Item>
-                <Form.Item label="Nội dung">
-                    <Input />
-                </Form.Item>
                 <Form.Item label="Lý do">
-                    <Select>
-                        <Select.Option value="demo">Demo</Select.Option>
-                    </Select>
+                    <TextArea style={{resize:'none'}} />
                 </Form.Item>
                 <Form.Item label="Hình ảnh" valuePropName="fileList" getValueFromEvent={normFile}>
-                    <Upload action="/upload.do" listType="picture-card">
+                    <Upload style={{ width: '100%' }} action="/upload.do" listType="picture-card">
                         <div>
                             <PlusOutlined />
                             <div
@@ -52,14 +37,15 @@ export default function WarrantyPage() {
                                     marginTop: 8,
                                 }}
                             >
-                                Upload
+                                Tải lên
                             </div>
                         </div>
                     </Upload>
                 </Form.Item>
-                <Form.Item wrapperCol={{offset: 4,
-      }}>
-                    <Button type='primary' style={{color:'black'}}>Gửi</Button>
+                <Form.Item wrapperCol={{
+                    offset: 4,
+                }}>
+                    <Button type='primary' style={{ color: 'black' }}>Gửi</Button>
                 </Form.Item>
             </Form>
         </>

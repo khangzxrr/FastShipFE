@@ -1,6 +1,6 @@
 import InforWarranty from "../../component/orders-employee/InforWarranty"
 import ProductRequest from "../../component/orders-employee/ProductRequest"
-const WarrantyDetail = () =>{
+const EmployeeWarrantyDetail = () =>{
     return(
         <>
         <h1 style={{margin:'30px 5% 30px 5%'}}>YÊU CẦU BẢO HÀNH/ĐỔI TRẢ</h1>
@@ -17,4 +17,4 @@ const WarrantyDetail = () =>{
         </div></>
     )
 }
-export default WarrantyDetail
+export default EmployeeWarrantyDetail
