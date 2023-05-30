@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/login/loginSlice";
 import { BsFillCartCheckFill } from "react-icons/bs"
+import { clearEmployeeGetOrderById } from "../features/employeeGetOrderById/employeeGetOrderByIdSlice";
 const { Header } = Layout;
 const items = [
   {
@@ -42,6 +43,7 @@ export const HeaderLayout = () => {
 
   function logoutOnClick() {
     dispatch(logout())
+    dispatch(clearEmployeeGetOrderById())
     navigate("/login")
   }
 
