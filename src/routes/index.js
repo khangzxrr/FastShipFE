@@ -28,6 +28,8 @@ import Detail from "../pages/customer/detailod";
 import Warranty from "../pages/customer/warranty";
 import CountTime from "../pages/customer/counttime";
 import AdminHome from "../pages/admin/admin-home";
+import AdminServer from "../pages/admin/admin-server";
+import AdminAccounts from "../pages/admin/admin-accounts";
 export const route = [
   {
     path: "/",
@@ -148,6 +150,14 @@ export const route = [
       {
         path: "/admin-home",
         element: <AdminHome/>
+      },
+      {
+        path: "/admin-server",
+        element: <AdminServer/>
+      },
+      {
+        path: "/admin-accounts",
+        element: <AdminAccounts/>
       },
     ]
   },
