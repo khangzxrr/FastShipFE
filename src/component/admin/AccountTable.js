@@ -1,16 +1,26 @@
-import React from 'react'
-import { Table, Space, Popconfirm, Input } from 'antd';
+import React, { useEffect, useState } from 'react'
+import { Table, Space } from 'antd';
 import AccountSearch from './AccountSearch';
-const { Search } = Input;
+import { useDispatch } from 'react-redux';
+import { adminGetAccountsAction } from '../../features/adminGetAccounts/adminGetAccountsAction';
 export default function AccountTable() {
-    const dataSource = [
-        {
-            key: '1',
-            id: '1',
-            name: 'abc',
-            role: 'abc',
-        },
-    ];
+
+    const [accounts, setAccounts] = useState([])
+    const [total, setTotal] = useState(0)
+
+    const dispatch = useDispatch()
+
+    function getAccounts(pageIndex = 1) {
+        dispatch(adminGetAccountsAction(pageIndex - 1))
+        .then(response => {
+            setAccounts(response.records)
+            setTotal(response.totalCount)
+        })
+    }
+
+    useEffect(() => {
+        getAccounts()
+    }, [])
 
     const columns = [
         {
@@ -19,24 +29,36 @@ export default function AccountTable() {
             key: 'id',
         },
         {
-            title: 'Name',
-            dataIndex: 'name',
-            key: 'name',
+            title: 'First name',
+            dataIndex: 'firstName',
+            key: 'firstName',
+        },
+        {
+            title: 'Last name',
+            dataIndex: 'lastName',
+            key: 'lastName',
+        },
+        {
+            title: 'Email',
+            dataIndex: 'email',
+            key: 'email',
+        },
+        {
+            title: 'PasswordHash',
+            dataIndex: 'passwordHash',
+            key: 'passwordHash',
         },
         {
             title: 'Role',
-            dataIndex: 'role',
-            key: 'role',
+            dataIndex: 'roleName',
+            key: 'roleName',
         },
         {
             title: '',
             dataIndex: '',
             key: '',
             render: () => <Space>
-                <a>Insert</a>
-                <Popconfirm title="Sure to disable?">
-                    <a>Disable</a>
-                </Popconfirm>
+                <a>Update</a>
             </Space>
         },
     ];
@@ -45,7 +67,7 @@ export default function AccountTable() {
             <h2>Account Management</h2>
             <AccountSearch/>
             <div className='revenuedetail'>
-                <Table columns={columns} dataSource={dataSource} />
+                <Table columns={columns} dataSource={accounts} pagination={{ total, onChange: getAccounts}} />
             </div>
         </div>
     )
