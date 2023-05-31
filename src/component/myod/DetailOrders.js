@@ -40,10 +40,10 @@ export default function DetailOrders() {
         dispatch(checkIsExistOngoingProductReturn(orderDetail.product.id))
         .then(response => {
             if (response.isExist === true) {
-                navigate('/product-return-detail?id=' + response.productReturnId)
+                navigate('/product-issue-detail?id=' + response.productIssueId)
             } else {
                 dispatch(setRequestProductReturnOrderDetail(orderDetail))
-                navigate('/request-product-return')
+                navigate('/request-product-issue')
             }
         })
 
