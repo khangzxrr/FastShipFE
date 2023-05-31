@@ -1,12 +1,11 @@
 import React from 'react'
-import OptionReturn from './OptionReturn'
 
-export default function ProductReturnDetail() {
+export default function ProductReturnDetail(props) {
   return (
     <div className='requestproducts' style={{ display: 'flex', padding: '10px' }}>
       <div style={{ width: '40%' }}>
         <img
-          src=''
+          src={props.product.imageUrl}
           style={{
             height: '150px',
             width: '100%',
@@ -18,16 +17,12 @@ export default function ProductReturnDetail() {
       </div>
       <div style={{ padding: '0px 10px', width: '60%' }}>
         <div>
-          <h2>Tên sản phẩm<span style={{ float: 'right' }}><OptionReturn/></span></h2>
-          <p>Số lượng: </p>
-          <p>Khối lượng: </p>
-          <div className='fee'>
-            <p>Giá sản phẩm: </p>
-            <p>Phụ thu:</p>
-            <p>Phí xử lý: </p>
-            <p>Phí ship đến kho US: </p>
-            <p>Phí trọng lượng theo kg: </p>
-          </div>
+          <h2>Tên sản phẩm: {props.product.name}</h2>
+          <a href={props.product.url}>Link Product</a><br />
+          <p>Bảo hành: {props.product.warrantable ? 'Có' : 'Không'}</p>
+          {props.product.warrantable && (<p>{props.product.warrantyDescription}</p>)}
+          <p>Đổi trả: {props.product.returnable ? 'Có' : 'Không'}</p>
+          {props.product.returnable && (<p>{props.product.returnDescription}</p>)}
         </div>
       </div>
     </div>
