@@ -87,10 +87,7 @@ export const route = [
         path: "/shipper-orderdetail",
         element: <OrderDetailShipper />
       },
-      {
-        path: "/warranty",
-        element: <Warranty />
-      },
+      
       {
         path: "/employee-warranty",
         element: <WarrantyList />
@@ -164,16 +161,20 @@ export const route = [
         element: <AdminAccounts/>
       },
       {
-        path: "/warrantydetail",
+        path: "/product-return-list",
+        element: <CustomerWarrantyList/>
+      },
+      {
+        path: "/request-product-return",
+        element: <Warranty />
+      },
+      {
+        path: "/product-return-detail",
         element: <WarrantyDetail/>
       },
       {
         path: "/employee-warrantyrequest",
         element: <EmployeeWarrantyRequest/>
-      },
-      {
-        path: "/warrantylist",
-        element: <CustomerWarrantyList/>
       },
       {
         path: "/employee-requestwarranty",
