@@ -10,6 +10,7 @@ import Chat from './Chat';
 import { Utils } from '../../features/utils/Utils';
 import { getOrderChatHubAction } from '../../features/getOrderChat/getOrderChatHubAction';
 import { setRequestProductReturnOrderDetail } from '../../features/requestProductReturn/requestProductReturnSlice';
+import { checkIsExistOngoingProductReturn } from '../../features/checkIsExistOngoingProductReturnByProductId/checkIsExistOngoingProductReturnByProductIdAction';
 
 export default function DetailOrders() {
     const { search } = useLocation()
@@ -36,8 +37,17 @@ export default function DetailOrders() {
     function handleRequestReturn(orderDetail) {
         console.log(orderDetail)
 
-        dispatch(setRequestProductReturnOrderDetail(orderDetail))
-        navigate('/request-product-return')
+        dispatch(checkIsExistOngoingProductReturn(orderDetail.product.id))
+        .then(response => {
+            if (response.isExist === true) {
+                navigate('/product-return-detail?id=' + response.productReturnId)
+            } else {
+                dispatch(setRequestProductReturnOrderDetail(orderDetail))
+                navigate('/request-product-return')
+            }
+        })
+
+        
         
     }
 
