@@ -35,6 +35,7 @@ import CustomerWarrantyList from "../pages/customer/warrantylist";
 import EmployeeRequestWarranty from "../pages/employee/employee-requestwarranty";
 import AdminCreateAccount from "../pages/admin/admin-createaccount";
 import AdminInsertAccount from "../pages/admin/admin-insertaccount";
+import EmployeeProductReturnDetail from "../pages/employee/employee-productreturndetail ";
 export const route = [
   {
     path: "/",
@@ -183,6 +184,10 @@ export const route = [
       {
         path:"/admin-insertaccount",
         element:<AdminInsertAccount/>
+      },
+      {
+        path:"/employee-productreturndetail",
+        element:<EmployeeProductReturnDetail/>
       }
     ]
   },
