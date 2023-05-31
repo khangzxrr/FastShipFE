@@ -1,8 +1,8 @@
 import axiosProfile from "../axiosProfile"
 
-export const requestProductReturnAction = (orderDetailId, isWarranty, series, description, medias) => async dispatch => {
+export const requestProductIssueAction = (orderDetailId, isWarranty, series, description, medias) => async dispatch => {
 
-    const response = await axiosProfile.post('/productReturn/request', {
+    const response = await axiosProfile.post('/productIssue/request', {
         orderDetailId,
         isWarranty,
         series,

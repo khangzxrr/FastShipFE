@@ -3,7 +3,7 @@ import axiosProfile from "../axiosProfile"
 export const checkIsExistOngoingProductReturn = (productId) => async dispatch => {  
     console.log(productId)
 
-    const response = await axiosProfile.get('/productReturn/isExistActive', {
+    const response = await axiosProfile.get('/productIssue/isExistActive', {
         params: {
             productId
         }

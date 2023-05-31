@@ -1,7 +1,7 @@
 import axiosProfile from "../axiosProfile"
 
 export const getProductReturnByIdAction = (id) => async dispatch => {
-    const response = await axiosProfile.get('/productReturn', {
+    const response = await axiosProfile.get('/productIssue', {
         params: {
             id
         }
