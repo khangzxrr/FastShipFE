@@ -7,9 +7,9 @@ import { getOrderByIdAction } from '../../features/getOrderById/getOrderByIdActi
 import { createPaymentAction } from '../../features/createPayment/createPaymentAction';
 import { logout } from '../../features/login/loginSlice';
 import Chat from './Chat';
-import { Link } from 'react-router-dom';
 import { Utils } from '../../features/utils/Utils';
 import { getOrderChatHubAction } from '../../features/getOrderChat/getOrderChatHubAction';
+import { setRequestProductReturnOrderDetail } from '../../features/requestProductReturn/requestProductReturnSlice';
 
 export default function DetailOrders() {
     const { search } = useLocation()
@@ -32,6 +32,15 @@ export default function DetailOrders() {
                 }
             })
     }
+
+    function handleRequestReturn(orderDetail) {
+        console.log(orderDetail)
+
+        dispatch(setRequestProductReturnOrderDetail(orderDetail))
+        navigate('/request-product-return')
+        
+    }
+
     useEffect(() => {
         const orderId = new URLSearchParams(search).get('orderId')
 
@@ -105,7 +114,12 @@ export default function DetailOrders() {
                                             , boxShadow: 'rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px'
                                         }}
                                     />
-                                    <Link to={"/warranty"}><Button className='btnBaohanh' type='primary'>YÊU CẦU BẢO HÀNH/ ĐỔI TRẢ</Button></Link>
+
+                                    {
+                                        order.status === 'finished' &&
+                                        (<Button className='btnBaohanh' type='primary' onClick={() => handleRequestReturn(od)}>YÊU CẦU BẢO HÀNH/ ĐỔI TRẢ</Button>)
+                                    }
+                                    
 
                                 </div>
                                 <div style={{ padding: '0px 10px', width: '60%' }}>
