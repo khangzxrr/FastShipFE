@@ -1,12 +1,12 @@
 import React from 'react'
-import { Button } from 'antd'
-import { Link } from 'react-router-dom'
-export default function ProductWarrantyDetail() {
+
+export default function ProductWarrantyDetail(props) {
+    
     return (
         <div className='requestproducts' style={{ display: 'flex', padding: '10px' }}>
             <div style={{ width: '40%' }}>
                 <img
-                    src=''
+                    src={props.product.imageUrl}
                     style={{
                         height: '150px',
                         width: '100%',
@@ -15,22 +15,15 @@ export default function ProductWarrantyDetail() {
                         , boxShadow: 'rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px'
                     }}
                 />
-<Link to={"/warranty"}><Button className='btnBaohanh' type='primary'>YÊU CẦU BẢO HÀNH/ ĐỔI TRẢ</Button></Link>
             </div>
             <div style={{ padding: '0px 10px', width: '60%' }}>
                 <div>
-                    <h2>Tên sản phẩm</h2>
-                    <a href=''>Link Product</a><br />
-                    <p>Số lượng: </p>
-                    <p>Khối lượng: </p>
-                    <p>Bảo hành: </p>
-                    <div className='fee'>
-                        <p>Giá sản phẩm: </p>
-                        <p>Phụ thu: </p>
-                        <p>Phí xử lý: </p>
-                        <p>Phí ship đến kho US: </p>
-                        <p>Phí trọng lượng theo kg: </p>
-                    </div>
+                    <h2>Tên sản phẩm: {props.product.name}</h2>
+                    <a href={props.product.url}>Link Product</a><br />
+                    <p>Bảo hành: {props.product.warrantable ? 'Có' : 'Không'}</p>
+                    {props.product.warrantable && (<p>{props.product.warrantyDescription}</p>)}
+                    <p>Đổi trả: {props.product.returnable ? 'Có' : 'Không'}</p>
+                    {props.product.returnable && (<p>{props.product.returnDescription}</p>)}
                 </div>
             </div>
         </div>
