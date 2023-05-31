@@ -142,6 +142,15 @@ export const HeaderLayout = () => {
                 </Button>
               </Link>)
             }
+
+            {roleName === "EMPLOYEE" &&
+              (<Link to="/employee-product-issues">
+                <Button style={{ fontSize: 11 }} >
+                  Những sản phẩm đổi trả / bảo hành
+                </Button>
+              </Link>)
+            }
+
             {roleName === "CUSTOMER" &&
               (<Link to="/order">
                 <Button style={{ fontSize: 11 }} >
