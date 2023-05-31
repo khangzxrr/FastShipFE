@@ -31,7 +31,6 @@ import AdminServer from "../pages/admin/admin-server";
 import AdminAccounts from "../pages/admin/admin-accounts";
 import WarrantyDetail from "../pages/customer/warrantydetail";
 import EmployeeWarrantyDetail from "../pages/employee/employee-warrantydetail";
-import EmployeeWarrantyRequest from "../pages/employee/employee-warrantyrequest";
 import CustomerWarrantyList from "../pages/customer/warrantylist";
 import EmployeeRequestWarranty from "../pages/employee/employee-requestwarranty";
 import AdminCreateAccount from "../pages/admin/admin-createaccount";
@@ -88,15 +87,6 @@ export const route = [
       {
         path: "/shipper-orderdetail",
         element: <OrderDetailShipper />
-      },
-      
-      {
-        path: "/employee-warranty",
-        element: <WarrantyList />
-      },
-      {
-        path: "/employee-warrantydetail",
-        element:<EmployeeWarrantyDetail/>
       },
       {
         path: "/guest-form",
@@ -175,12 +165,16 @@ export const route = [
         element: <WarrantyDetail/>
       },
       {
-        path: "/employee-warrantyrequest",
-        element: <EmployeeWarrantyRequest/>
-      },
-      {
         path: "/employee-requestwarranty",
         element: <EmployeeRequestWarranty/>
+      },
+      {
+        path: "/employee-warranty",
+        element: <WarrantyList />
+      },
+      {
+        path: "/employee-warrantydetail",
+        element:<EmployeeWarrantyDetail/>
       },
       {
         path:"/admin-createaccount",
