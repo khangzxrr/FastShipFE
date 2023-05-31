@@ -2,7 +2,7 @@ import { AppLayout } from "../common/AppLayout";
 import HomeEmployee from "../pages/employee/employee-order";
 import OrderDetailEmployee from "../pages/employee/employee-orderdetail";
 import EmployeeRequest from "../pages/employee/employee-request";
-import WarrantyList from "../pages/employee/employee-warranty";
+import EmployeeProductIssues from "../pages/employee/employeeProductIssuesList";
 import FastBuy from "../pages/fastbuy/fastbuy";
 import Form from "../pages/guest/guest-form";
 import CustomerManagement from "../pages/manager/customermanagement";
@@ -24,12 +24,12 @@ import RegisterAccount from "../pages/customer/register";
 import Add from "../pages/customer/add";
 import MyOrder from "../pages/customer/order";
 import Detail from "../pages/customer/detailod";
-import Warranty from "../pages/customer/warranty";
+import RequestProductIssue from "../pages/customer/requestProductIssue";
 import CountTime from "../pages/customer/counttime";
 import AdminHome from "../pages/admin/admin-home";
 import AdminServer from "../pages/admin/admin-server";
 import AdminAccounts from "../pages/admin/admin-accounts";
-import WarrantyDetail from "../pages/customer/warrantydetail";
+import ProductIssueDetail from "../pages/customer/productIssueDetail";
 import EmployeeWarrantyDetail from "../pages/employee/employee-warrantydetail";
 import CustomerWarrantyList from "../pages/customer/warrantylist";
 import EmployeeRequestWarranty from "../pages/employee/employee-requestwarranty";
@@ -158,23 +158,23 @@ export const route = [
         element: <CustomerWarrantyList/>
       },
       {
-        path: "/request-product-return",
-        element: <Warranty />
+        path: "/request-product-issue",
+        element: <RequestProductIssue />
       },
       {
-        path: "/product-return-detail",
-        element: <WarrantyDetail/>
+        path: "/product-issue-detail",
+        element: <ProductIssueDetail/>
       },
       {
-        path: "/employee-requestwarranty",
+        path: "/employee-request-warranty",
         element: <EmployeeRequestWarranty/>
       },
       {
-        path: "/employee-warranty",
-        element: <WarrantyList />
+        path: "/employee-product-issues",
+        element: <EmployeeProductIssues />
       },
       {
-        path: "/employee-warrantydetail",
+        path: "/employee-warranty-detail",
         element:<EmployeeWarrantyDetail/>
       },
       {
