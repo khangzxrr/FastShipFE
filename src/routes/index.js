@@ -34,6 +34,8 @@ import EmployeeWarrantyDetail from "../pages/employee/employee-warrantydetail";
 import EmployeeWarrantyRequest from "../pages/employee/employee-warrantyrequest";
 import CustomerWarrantyList from "../pages/customer/warrantylist";
 import EmployeeRequestWarranty from "../pages/employee/employee-requestwarranty";
+import AdminCreateAccount from "../pages/admin/admin-createaccount";
+import AdminInsertAccount from "../pages/admin/admin-insertaccount";
 export const route = [
   {
     path: "/",
@@ -180,10 +182,18 @@ export const route = [
         path: "/employee-requestwarranty",
         element: <EmployeeRequestWarranty/>
       },
+      {
+        path:"/admin-createaccount",
+        element:<AdminCreateAccount/>
+      },
+      {
+        path:"/admin-insertaccount",
+        element:<AdminInsertAccount/>
+      }
     ]
   },
   {
-    path: "/count-redirect-payment",
+    path: "/counttime",
     element: <CountTime />
   }
 ];

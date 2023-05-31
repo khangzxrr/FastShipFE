@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Table, Space } from 'antd';
+import { Table, Space, Radio } from 'antd';
 import AccountSearch from './AccountSearch';
 import { useDispatch } from 'react-redux';
 import { adminGetAccountsAction } from '../../features/adminGetAccounts/adminGetAccountsAction';
+import { Link } from 'react-router-dom';
 export default function AccountTable() {
 
     const [accounts, setAccounts] = useState([])
@@ -12,10 +13,10 @@ export default function AccountTable() {
 
     function getAccounts(pageIndex = 1) {
         dispatch(adminGetAccountsAction(pageIndex - 1))
-        .then(response => {
-            setAccounts(response.records)
-            setTotal(response.totalCount)
-        })
+            .then(response => {
+                setAccounts(response.records)
+                setTotal(response.totalCount)
+            })
     }
 
     useEffect(() => {
@@ -58,16 +59,27 @@ export default function AccountTable() {
             dataIndex: '',
             key: '',
             render: () => <Space>
-                <a>Update</a>
+                <Link to='/admin-insertaccount'>Update</Link>
+            </Space>
+        },
+        {
+            title: '',
+            dataIndex: '',
+            key: '',
+            render: () => <Space>
+                <Radio.Group>
+                    <Radio value="1">Disable</Radio>
+                    <Radio value="2">Enable</Radio>
+                </Radio.Group>
             </Space>
         },
     ];
     return (
         <div className='reportdetail'>
             <h2>Account Management</h2>
-            <AccountSearch/>
+            <AccountSearch />
             <div className='revenuedetail'>
-                <Table columns={columns} dataSource={accounts} pagination={{ total, onChange: getAccounts}} />
+                <Table columns={columns} dataSource={accounts} pagination={{ total, onChange: getAccounts }} />
             </div>
         </div>
     )
