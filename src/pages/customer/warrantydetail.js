@@ -44,19 +44,17 @@ const WarrantyDetail = () => {
             </div>
             <div className="container" style={{ display: 'flex', marginTop: '20px', marginBottom: '20px' }}>
                 <div style={{ width: '60%', marginRight: '2%', padding: '0px 20px 30px 20px' }}>
-                    <h2>CHI TIẾT ĐƠN HÀNG ĐANG ĐƯỢC BẢO HÀNH / ĐỔI TRẢ</h2>
+                    <h2>CHI TIẾT ĐƠN HÀNG ĐANG ĐƯỢC ĐỔI TRẢ</h2>
                     <ProductWarrantyDetail product={productReturn.productRecord}/>
                 </div>
                 <div style={{ width: '38%', padding: '0px 10px 10px 10px' }}>
-                    <h2>THÔNG TIN KHÁCH HÀNG</h2>
+                    <h2>THÔNG TIN ĐỔI TRẢ</h2>
                     <Descriptions>
                         <Descriptions.Item label="Status" span={3}>{productReturn.status}</Descriptions.Item>
                         <Descriptions.Item label="returnDate" span={3}>{productReturn.returnDate}</Descriptions.Item>
                         <Descriptions.Item label="returnReason" span={3}>{productReturn.returnReason}</Descriptions.Item>
                         <Descriptions.Item label="Thuộc loại" span={3}>{productReturn.isWarranty ? 'Bảo hành' : 'Đổi trả'}</Descriptions.Item>
                     </Descriptions>
-                    <h2>NỘI DUNG TRAO ĐỔI</h2>
-                    <ChatWarranty/>
                 </div>
             </div>
         </>
