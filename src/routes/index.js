@@ -186,7 +186,7 @@ export const route = [
         element:<AdminInsertAccount/>
       },
       {
-        path:"/employee-productreturndetail",
+        path:"/employee-product-return-detail",
         element:<EmployeeProductReturnDetail/>
       }
     ]
