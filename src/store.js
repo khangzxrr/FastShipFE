@@ -12,6 +12,7 @@ import { getOrderChatSlice } from "./features/getOrderChat/getOrderChatSlice";
 import { managerGetShippersSlice } from "./features/managerGetShippers/managerGetShippersSlice";
 import { managerGetCustomersSlice } from "./features/managerGetCustomers/managerGetCustomersSlice";
 import { requestProductReturnSlice } from "./features/requestProductReturn/requestProductReturnSlice";
+import { employeeUpdateProductIssueSlice } from "./features/employeeUpdateProductIssue/employeeUpdateProductIssueSlice";
 const persistConfig = {
     key: 'root',
     storage,
@@ -29,6 +30,8 @@ const reducers = combineReducers({
     employeeGetAllOrders: employeeGetAllOrdersSlice.reducer,
     employeeGetOrderById: employeeGetOrderByIdSlice.reducer,
     employeeGetOrderChat: employeeGetOrderChatSlice.reducer,
+
+    employeeUpdateProductIssue: employeeUpdateProductIssueSlice.reducer,
 
     managerGetShippers: managerGetShippersSlice.reducer,
     managerGetCustomers: managerGetCustomersSlice.reducer,
