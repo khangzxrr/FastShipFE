@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function ProductWarranty() {
+export default function ProductWarranty(props) {
     return (
-        <div className='requestproducts' style={{ display: 'flex', padding: '10px', width:'100%' }}>
+        <div className='requestproducts' style={{ display: 'flex', padding: '10px', width: '100%' }}>
             <img
-                src=''
+                src={props.product.imageUrl}
                 style={{
                     height: '150px',
                     width: '40%',
@@ -14,17 +14,15 @@ export default function ProductWarranty() {
             />
             <div style={{ padding: '0px 10px', width: '60%' }}>
                 <div>
-                    <h2>Name: </h2>
-                    <p>Category: </p>
-                    <p>Quantity:</p>
-                    <p>Tỉ giá chuyển đổi tiền tệ từ  sang VNĐ :</p>
-                </div>
-                <div className='fee'>
-                    <p>Giá sản phẩm: </p>
-                    <p>Phí ship đến kho ở US: </p>
-                    <p>Phí xử lý: </p>
-                    <p>Phí phụ thu: </p>
-                    <h4>Tổng giá:</h4>
+                    <h2>{props.product.name}</h2>
+                    <a href={props.product.url}>Link Product</a><br />
+                    <p>Số lượng đã mua: {props.quantity}</p>
+                    <p>Bảo hành: {props.product.warrantable ? 'Có' : 'Không'}</p>
+                    {props.product.warrantable &&
+                        (<span>Mô tả bảo hành: {props.product.warrantableDescription}</span>)}
+                    <p>Đổi trả: {props.product.returnable ? 'Có' : 'Không'}</p>
+                    {props.product.returnable &&
+                        (<p>Mô tả đổi trả: Chấp nhận {props.product.returnDuration} ngày đổi trả</p>)}
                 </div>
             </div>
         </div>
