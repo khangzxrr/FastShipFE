@@ -4,22 +4,29 @@ export default function StepWarranty() {
   return (
     <Steps
     progressDot
-    current=''
+    current={0}
     items={[
         {
-            title: 'Waiting Price Quotating',
+            title: 'Yêu cầu',
         },
         {
-            title: 'Deposit',
+            title: 'Đang duyệt',
         },
         {
-            title: 'Waiting ordering',
+            title: 'Đã nhận sản phẩm',
         },
         {
-            title: 'Ordering from seller',
+            title: 'Đã gửi đi bảo hành',
         },
         {
-            title: 'Delivery US to VN',
+            title: 'Đã về kho việt nam',
+        },
+        {
+            title: 'Đang giao',
+        },
+
+        {
+            title: 'Thành công',
         },
         {
             title: 'In VN warehouse',
