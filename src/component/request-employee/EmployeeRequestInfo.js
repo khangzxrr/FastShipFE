@@ -1,12 +1,29 @@
 import React from 'react'
-import { Descriptions } from 'antd'
+import { Descriptions, Button, Modal, Input } from 'antd'
+import { AiOutlineEdit } from 'react-icons/ai'
+import { useState } from 'react';
 export default function EmployeeRequestInfo(props) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   return (
-    <Descriptions>
-    <Descriptions.Item label="Customer Name" span={3}>{props.order.customerName}</Descriptions.Item>
-    <Descriptions.Item label="DateTime Request" span={3}>{props.order.orderDate}</Descriptions.Item>
-    <Descriptions.Item label="Phone Number" span={3}>{props.order.contactPhoneNumber}</Descriptions.Item>
-    <Descriptions.Item label="Address" span={3}>{props.order.deliveryAddress}</Descriptions.Item>
-  </Descriptions>
+    <>
+      <Descriptions>
+        <Descriptions.Item label="Tên khách hàng" span={3}>{props.order.customerName}</Descriptions.Item>
+        <Descriptions.Item label="Ngày yêu cầu" span={3}>{props.order.orderDate}</Descriptions.Item>
+        <Descriptions.Item label="SĐT" span={3}>{props.order.contactPhoneNumber}</Descriptions.Item>
+        <Descriptions.Item label="Địa chỉ" span={3}>{props.order.deliveryAddress} <a  onClick={showModal}><AiOutlineEdit /></a></Descriptions.Item>
+      </Descriptions>
+      <Modal title="Thay đổi địa chỉ" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <Input/>
+      </Modal>
+    </>
   )
 }

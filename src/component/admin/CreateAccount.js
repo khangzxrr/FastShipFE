@@ -25,7 +25,7 @@ export default function CreateAccount() {
           rules={[
             {
               required: true,
-              message: "Please input your name!",
+              message: "Nhập tên!",
             },
           ]}
         >
@@ -40,7 +40,7 @@ export default function CreateAccount() {
           rules={[
             {
               required: true,
-              message: "Please input your numberphone!",
+              message: "Nhập số điện thoại!",
             },
           ]}
         >
@@ -57,7 +57,7 @@ export default function CreateAccount() {
           rules={[
             {
               required: true,
-              message: "Please input your mail!",
+              message: "Nhập mail!",
             },
           ]}
         >
@@ -73,12 +73,14 @@ export default function CreateAccount() {
           rules={[
             {
               required: true,
-              message: "Please choose role!",
+              message: "Chọn vai trò!",
             },
           ]}
         >
           <Select size="large">
-            <Option value="Employee">Employee</Option>
+            <Option value="Employee">Nhân viên</Option>
+            <Option value="Customer">Khách hàng</Option>
+            <Option value="Manager">Quản lý</Option>
           </Select>
         </Form.Item>
       </Col>
@@ -104,7 +106,7 @@ export default function CreateAccount() {
           rules={[
             {
               required: true,
-              message: "Please input your password!",
+              message: "Nhập mật khẩu!",
             },
           ]}
           hasFeedback
@@ -122,7 +124,7 @@ export default function CreateAccount() {
           rules={[
             {
               required: true,
-              message: "Please confirm your password!",
+              message: "Nhập mật khẩu xác thực!",
             },
             ({ getFieldValue }) => ({
               validator(_, value) {
@@ -131,7 +133,7 @@ export default function CreateAccount() {
                 }
                 return Promise.reject(
                   new Error(
-                    "The two passwords that you entered do not match!"
+                    "Không trùng!"
                   )
                 );
               },

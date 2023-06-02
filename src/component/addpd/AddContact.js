@@ -67,15 +67,15 @@ export default function AddContact() {
     }
 
     return (
-        <div style={{ display: 'flex', width: '90%', marginLeft: '5%', marginRight: '5%' }}>
+        <div style={{ display: 'flex', width: '90%', marginLeft: '5%', marginRight: '5%', marginBottom:'20px' }}>
             <div className='contactform'>
-                <Descriptions title="Contact Form" layout="vertical">
-                    <Descriptions.Item label="Customer description" span={3}><Input onChange={onChangeDescription}/></Descriptions.Item>
-                    <Descriptions.Item label="Delivery address" span={3}><Input onChange={onChangeAddress} value={newAddress}/></Descriptions.Item>
-                    <Descriptions.Item label="Phonenumber" span={3}><Input onChange={onChangePhoneNumber} value={newPhoneNumber}/></Descriptions.Item>
+                <Descriptions title="THÔNG TIN LIÊN HỆ" layout="vertical">
+                    <Descriptions.Item label="Ghi chú" span={3}><Input onChange={onChangeDescription}/></Descriptions.Item>
+                    <Descriptions.Item label="Địa chỉ giao hàng" span={3}><Input onChange={onChangeAddress} value={newAddress}/></Descriptions.Item>
+                    <Descriptions.Item label="Số điện thoại" span={3}><Input onChange={onChangePhoneNumber} value={newPhoneNumber}/></Descriptions.Item>
                 </Descriptions>
 
-                <Button onClick={requestCreateOrder} type="primary" style={{ width: '27%', left: '5%', color: 'black', fontWeight: 600, margin: '5px 0px' }} >YÊU CẦU BÁO GIÁ</Button>
+                <Button onClick={requestCreateOrder} type="primary" style={{ color: 'black', fontWeight: 600, margin: '5px 0px' }} >YÊU CẦU BÁO GIÁ</Button>
             </div>
             <div style={{ width: '68%', backgroundColor:'aliceblue', padding:'0px 10px 0px 10px'}}>
                 <Typography>

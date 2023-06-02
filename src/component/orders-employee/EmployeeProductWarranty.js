@@ -14,9 +14,9 @@ export default function EmployeeProductWarranty() {
             />
             <div style={{ padding: '0px 10px', width: '60%' }}>
                 <div>
-                    <h2>Name: </h2>
-                    <p>Category: </p>
-                    <p>Quantity:</p>
+                    <h2>Tên: </h2>
+                    <p>Loại: </p>
+                    <p>Số lượng:</p>
                     <p>Tỉ giá chuyển đổi tiền tệ từ  sang VNĐ :</p>
                 </div>
                 <div className='fee'>

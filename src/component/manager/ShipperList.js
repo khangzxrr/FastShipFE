@@ -40,22 +40,22 @@ export default function ShipperList() {
           }
         },
         {
-          title: 'Name',
+          title: 'Tên',
           dataIndex: 'name',
           key: 'name'
         },
         {
-          title: 'Shipping Address',
+          title: 'Địa chỉ',
           dataIndex: 'shippingAddress',
           key: 'shippingAddress'
         },
         {
-          title: 'Status',
+          title: 'Trạng thái',
           dataIndex: 'status',
           key: 'status'
         },
         {
-          title: 'Total order shippings',
+          title: 'Tổng đơn giao',
           dataIndex: 'totalOrderShippings',
           key: 'totalOrderShippings'
         }

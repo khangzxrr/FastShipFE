@@ -17,9 +17,9 @@ export default function RequestProducts(props) {
             />
             <div style={{ padding: '0px 10px', width: '60%' }}>
                 <div>
-                    <h2>Name: {props.orderDetail.product.name}</h2>
-                    <p>Category: {props.orderDetail.product.category}</p>
-                    <p>Quantity: {props.orderDetail.quantity}</p>
+                    <h2>{props.orderDetail.product.name}</h2>
+                    <p>Loại: {props.orderDetail.product.category}</p>
+                    <p>Số lượng: {props.orderDetail.quantity}</p>
                 </div>
                 <div className='fee'>
                     <p>Giá sản phẩm: {props.orderDetail.product.price}$</p>

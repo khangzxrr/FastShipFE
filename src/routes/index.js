@@ -36,6 +36,9 @@ import EmployeeRequestWarranty from "../pages/employee/employee-requestwarranty"
 import AdminCreateAccount from "../pages/admin/admin-createaccount";
 import AdminInsertAccount from "../pages/admin/admin-insertaccount";
 import EmployeeProductReturnDetail from "../pages/employee/employee-productreturndetail ";
+import Rules from "../pages/chinhsach/chinhsach";
+import BangGia from "../pages/banggia/banggia";
+import Update from "../pages/customer/update";
 
 export const route = [
   {
@@ -189,6 +192,18 @@ export const route = [
       {
         path:"/employee-product-issue-resolve",
         element:<EmployeeProductReturnDetail/>
+      },
+      {
+        path:"/chinhsach",
+        element:<Rules/>
+      },
+      {
+        path:"/banggia",
+        element:<BangGia/>
+      }
+      , {
+        path:"/update",
+        element:<Update/>
       }
     ]
   },

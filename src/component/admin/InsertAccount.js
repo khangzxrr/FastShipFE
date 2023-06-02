@@ -25,7 +25,7 @@ export default function InsertAccount() {
                         rules={[
                             {
                                 required: true,
-                                message: "Please input your name!",
+                                message: "Nhập tên!",
                             },
                         ]}
                     >
@@ -40,7 +40,7 @@ export default function InsertAccount() {
                         rules={[
                             {
                                 required: true,
-                                message: "Please input your numberphone!",
+                                message: "Nhập số điện thoại!",
                             },
                         ]}
                     >
@@ -57,7 +57,7 @@ export default function InsertAccount() {
                         rules={[
                             {
                                 required: true,
-                                message: "Please input your mail!",
+                                message: "Nhập email!",
                             },
                         ]}
                     >
@@ -73,7 +73,7 @@ export default function InsertAccount() {
                         rules={[
                             {
                                 required: true,
-                                message: "Please choose role!",
+                                message: "Chọn vai trò!",
                             },
                         ]}
                     >

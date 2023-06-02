@@ -80,28 +80,22 @@ export default function DetailOrders() {
                     current={order.progressStatus}
                     items={[
                         {
-                            title: 'Waiting Price Quotating',
+                            title: 'Đang đợi order hàng',
                         },
                         {
-                            title: 'Deposit',
+                            title: 'Đang mua hàng từ người bán',
                         },
                         {
-                            title: 'Waiting ordering',
+                            title: 'Đang giao từ US về VN',
                         },
                         {
-                            title: 'Ordering from seller',
+                            title: 'Đang ở kho VN',
                         },
                         {
-                            title: 'Delivery US to VN',
+                            title: 'Đang giao đến khách hàng',
                         },
                         {
-                            title: 'In VN warehouse',
-                        },
-                        {
-                            title: 'On delivery',
-                        },
-                        {
-                            title: 'Completed',
+                            title: 'Đã hoàn thành',
                         },
                     ]}
                 />
@@ -187,7 +181,7 @@ export default function DetailOrders() {
                     }
                 </div>
                 <div style={{ width: '38%', padding: '0px 10px 10px 10px' }}>
-                    <h2>THÔNG TIN CUSTOMER</h2>
+                    <h2>THÔNG TIN KHÁCH HÀNG</h2>
                     <Descriptions>
                         <Descriptions.Item label="UserName" span={3}>{order.customerName}</Descriptions.Item>
                         <Descriptions.Item label="Telephone" span={3}>{order.contactPhoneNumber}</Descriptions.Item>

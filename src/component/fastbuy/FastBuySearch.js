@@ -6,7 +6,6 @@ export default function FastBuySearch() {
   return (
     <>
         <Search
-      placeholder="input search text"
       allowClear
       enterButton="Search"
       size="large"

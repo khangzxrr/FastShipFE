@@ -55,7 +55,7 @@ export default function EmployeeChat(props) {
                 }
             </div>
             <TextArea style={{ marginBottom: '10px',resize:'none' }} onChange={handleTextAreaOnChange} value={message} />
-            <Button type='primary' style={{ color: 'black' }} onClick={() => sendMessage()}>Gửi tin nhắn cho CSKH</Button>
+            <Button type='primary' style={{ color: 'black' }} onClick={() => sendMessage()}>Gửi tin nhắn</Button>
         </>
 
     )

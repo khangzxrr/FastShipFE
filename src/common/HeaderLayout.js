@@ -16,11 +16,11 @@ const items = [
     key: "service",
   },
   {
-    label: "BẢNG GIÁ",
+    label: <Link to='/banggia'>BẢNG GIÁ</Link>,
     key: "price,"
   },
   {
-    label: "CHÍNH SÁCH",
+    label: <Link to='/chinhsach'>CHÍNH SÁCH</Link>,
     key: "rule",
   },
   {
