@@ -12,11 +12,15 @@ import { employeeConnectChatAction } from "../../features/employeeGetOrderChat/e
 const EmployeeRequest = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [search, setSearch] = useSearchParams()
+
+    const [cancelReason, setCancelReason] = useState('')
+
     const [messageApi, messageContextHolder] = message.useMessage()
     const [hubConnectionBuilder, setHubConnectionBuilder] = useState(null)
 
     const { order } = useSelector(state => state.employeeGetOrderById)
     const { chatMessages } = useSelector(state => state.employeeGetOrderChat)
+
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -25,6 +29,16 @@ const EmployeeRequest = () => {
         setTimeout(() => {
             navigate('/employee-order')
         }, 2000)
+    }
+
+    function handleDenyOrder() {
+        dispatch(employeeUpdateOrderStatusAction(order.orderId, 'denied', cancelReason))
+            .then(() => {
+                navigate('/employee-orderdetail?orderId=' + order.orderId)
+            })
+            .catch(err => {
+                Utils.showErrorNoti(messageApi, 'Có lỗi xảy ra, vui lòng tải lại & thử lại')
+            })
     }
 
     function handleConfirmPriceQuotation() {
@@ -75,15 +89,22 @@ const EmployeeRequest = () => {
             })
 
     }, [])
+
     const showModal = () => {
         setIsModalOpen(true);
     };
-    const handleOk = () => {
+
+    const handleCancelOk = () => {
+
+        handleDenyOrder()
+
         setIsModalOpen(false);
     };
-    const handleCancel = () => {
-        setIsModalOpen(false);
-    };
+
+
+    function handleCancelReasonOnChange(event) {
+        setCancelReason(event.target.value)
+    }
 
 
     return (
@@ -115,8 +136,8 @@ const EmployeeRequest = () => {
                 <h2>NỘI DUNG TRAO ĐỔI</h2>
                 <EmployeeRequestChat order={order} chatMessages={chatMessages} handleOnSendMessage={handleOnSendMessage} />
             </div>
-            <Modal title="Lí do hủy" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                <Input />
+            <Modal title="Lí do hủy" open={isModalOpen} onOk={() => handleCancelOk()} >
+                <Input onChange={handleCancelReasonOnChange} />
             </Modal>
         </div>
     );
