@@ -18,11 +18,7 @@ export default function EmployeeProductIssueList(props) {
     console.log(productIssue)
     dispatch(setSelectedProductIssue(productIssue))
     
-    if (productIssue.isWarranty) {
-      navigate('/employee-warranty-detail')
-    } else {
-      navigate('/employee-product-return-detail')
-    }
+    navigate('/employee-product-issue-resolve')
   }
 
   const columns = [
@@ -46,7 +42,7 @@ export default function EmployeeProductIssueList(props) {
       title: 'Finish',
       dataIndex: 'finishStatus',
       key: 'finishStatus',
-      render: (finishStatus) =>  <Badge color={finishStatus === 'processed' ? 'green' : 'red'}  text={finishStatus} /> 
+      render: (finishStatus, {status }) =>  <Badge color={status !== 'finish' ? 'orange' : 'green'}  text={status === 'finish' ? 'finish' : 'on going'} /> 
     },
     {
       title: 'Ngày yêu cầu',
@@ -62,7 +58,7 @@ export default function EmployeeProductIssueList(props) {
         borderRadius: '20px', padding: '10px 20px', boxShadow: ' rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px', border: 'none'
       }}>
         <h2>Danh sách yêu cầu</h2>
-        <Table columns={columns} dataSource={props.productIssues}  style={{border:'none'}} pagination={{ total:props.total, onChange: onPageChange }}/>
+        <Table rowKey={"id"} columns={columns} dataSource={props.productIssues}  style={{border:'none'}} pagination={{ total:props.total, onChange: onPageChange }}/>
       </div>
     </div>
   )
