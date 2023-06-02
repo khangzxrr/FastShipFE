@@ -20,7 +20,7 @@ const items = [
     key: "price,"
   },
   {
-    label: "CHÍNH SÁCH",
+    label: <Link to='/chinhsach'>CHÍNH SÁCH</Link>,
     key: "rule",
   },
   {
