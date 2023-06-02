@@ -10,7 +10,7 @@ const EmployeeProductReturnDetail = () => {
     return (
         <div className="container" style={{ display: 'flex', marginTop: '20px', marginBottom: '20px' }}>
             <div style={{ width: '60%', marginRight: '2%', padding: '0px 20px 30px 20px' }}>
-                <h2>CHI TIẾT ĐƠN HÀNG</h2>
+                <h2>CHI TIẾT ĐƠN HÀNG <a>{productIssue.isWarranty ? 'BẢO HÀNH' : 'ĐỔI TRẢ'}</a></h2>
                 <ProductReturnDetail product={productIssue.productRecord}/>
             </div>
             <div style={{ width: '38%', padding: '0px 10px 10px 10px' }}>
