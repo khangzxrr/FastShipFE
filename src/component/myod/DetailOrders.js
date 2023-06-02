@@ -11,6 +11,7 @@ import { Utils } from '../../features/utils/Utils';
 import { getOrderChatHubAction } from '../../features/getOrderChat/getOrderChatHubAction';
 import { setRequestProductReturnOrderDetail } from '../../features/requestProductReturn/requestProductReturnSlice';
 import { checkIsExistOngoingProductReturn } from '../../features/checkIsExistOngoingProductReturnByProductId/checkIsExistOngoingProductReturnByProductIdAction';
+import Moment from 'react-moment';
 
 export default function DetailOrders() {
     const { search } = useLocation()
@@ -188,7 +189,7 @@ export default function DetailOrders() {
                     </Descriptions>
                     <h2>THÔNG TIN ĐƠN HÀNG</h2>
                     <Descriptions>
-                        <Descriptions.Item span={3} label="Order Date">{order.orderDate}</Descriptions.Item>
+                        <Descriptions.Item span={3} label="Order Date"><Moment date={order.orderDate} format='DD/MM/YYYY HH:mm'></Moment></Descriptions.Item>
                         <Descriptions.Item span={3} label="Note">{order.customerDescription}</Descriptions.Item>
                         <Descriptions.Item span={3} label="Delivery Address">{order.deliveryAddress}</Descriptions.Item>
                         <Descriptions.Item span={3} label="Contact Phone Number">{order.contactPhoneNumber}</Descriptions.Item>
