@@ -82,8 +82,6 @@ export const HeaderLayout = () => {
               <Link to="/signin">Đăng Ký</Link>
             </div>
           }
-
-
         </div>
       </div>
       <Header className="header"

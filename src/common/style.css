@@ -12,9 +12,15 @@
   .href a:hover {
     text-decoration: underline;
   }
-  
   .links div {
     padding: 10px 0px;
+    line-height: 20px;
+  }
+  .links a{
+    color: black;
+  }
+  .links a:hover{
+    text-decoration: underline;
   }
   .containerHeader {
     display: flex;

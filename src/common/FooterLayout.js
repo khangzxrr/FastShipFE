@@ -1,104 +1,75 @@
 import React from "react";
-import { Col, Layout, Row } from "antd";
-import {useNavigate } from 'react-router-dom'
+import { Col, Layout, Row } from "antd"
+import { IoMdArrowDropright } from 'react-icons/io'
+import {ImLocation} from 'react-icons/im'
+import {AiFillPhone} from 'react-icons/ai'
+import {AiOutlineMail} from 'react-icons/ai'
+import {AiFillFacebook, AiOutlineCheck} from 'react-icons/ai'
 const { Footer } = Layout;
-
 export const FooterLayout = () => {
-    const navigate = useNavigate();
     return (
         <Footer className="footer" style={{ padding: "0px" }}>
-            <img
-              onClick={() => navigate("/")}
-              src="/logopage.jpg"
-              style={{
-                float: "left",
-                height: "100%",
-                width: 200,
-                margin:'20px 5%',
-              }}
-            />
-            <div style={{ backgroundColor: "white", padding: "10px 0", boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px'}}>
-                <div className="container" style={{ color: "black", display: "flex"}}>
-                    <Row gutter={[24, 6]}>
-                        <Col style={{ fontSize: 24, fontWeight: 600 }} span={6}>
-                            Công ty TNHH
+
+            <div style={{ backgroundColor: "white", padding: "10px 0", boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px' }}>
+                <div className="container" style={{ color: "black", display: "flex" }}>
+                    <Row gutter={[24, 8]}>
+                        <Col style={{ fontSize: 24, fontWeight: 600 }} span={8}>
+                            Tài khoản
                         </Col>
-                        <Col style={{ fontSize: 24, fontWeight: 600 }} span={6}>
-                            Thông tin chung
+                        <Col style={{ fontSize: 24, fontWeight: 600 }} span={8}>
+                            Thông tin liên hệ
                         </Col>
-                        <Col style={{ fontSize: 24, fontWeight: 600 }} span={6}>
-                            Hỗ trợ người dùng
+                        <Col style={{ fontSize: 24, fontWeight: 600 }} span={8}>
+                            Chính sách
                         </Col>
-                        <Col style={{ fontSize: 24, fontWeight: 600 }} span={6}>
-                            Liên hệ
-                        </Col>
-                        <Col span={6}>
+                        <Col span={8}>
                             <div className="links">
                                 <div>
-                                    <p>Địa chỉ</p>
-                                    <span>28Bis Mạc Đĩnh Chi, Phường Đa Kao, Quận 1, Thành Phố Hồ Chí Minh, Việt Nam</span>
+                                    <IoMdArrowDropright /> <a>Tài khoản</a>
                                 </div>
                                 <div>
-                                    <p>Số chứng nhận ĐKKD</p>
-                                    <span>0314758651, Cấp Ngày 29/11/2017, Tại Sở Kế Hoạch Và Đầu Tư Thành Phố Hồ Chí Minh</span>
+                                    <IoMdArrowDropright /> <a>Tạo đơn hàng</a>
                                 </div>
                                 <div>
-                                    <p>Số Giấy Phép Sàn Thương Mại Điện Tử</p>
-                                    <span>0314758651/KD-0368</span>
+                                    <IoMdArrowDropright /> <a>Đăng ký thành viên</a>
+                                </div>
+                                <div>
+                                    <IoMdArrowDropright /> <a>Giới thiệu</a>
+                                </div>
+                                <div>
+                                    <IoMdArrowDropright /> <a>Liên hệ</a>
                                 </div>
                             </div>
                         </Col>
-                        <Col span={6}>
+                        <Col span={8}>
                             <div className="links">
                                 <div>
-                                    <span>Thông tin về </span>
+                                   <ImLocation/> <a>Lô E2a-7, Đường D1 Khu Công nghệ cao, P. Long Thạnh Mỹ, TP. Thủ Đức, TP. Hồ Chí Minh</a>
                                 </div>
                                 <div>
-                                    <span>Quy Chế Hoạt Động</span>
+                                   <AiFillPhone/> <a>028 7300 1866</a>
                                 </div>
                                 <div>
-                                    <span>Điều Khoản Sử Dung</span>
+                                    <AiOutlineMail/> <a>hotro@fastship.com</a>
                                 </div>
                                 <div>
-                                    <span>Chính Sách Bảo Mật</span>
-                                </div>
-                                <div>
-                                    <span>Chính Sách Giải Quyết Khiếu Nại</span>
-                                </div>
-                                <div>
-                                    <span>Chính Sách Đăng Tải Sản Phẩm</span>
-                                </div>
-                                <div>
-                                    <span>Chính Sách Đổi Trả</span>
-                                </div>
-                                <div>
-                                    <span>Chính Sách Vận Chuyển</span>
+                                   <AiFillFacebook/> <a>FastShip.com Facebook</a>
                                 </div>
                             </div>
                         </Col>
-                        <Col span={6}>
+                        <Col span={8}>
                             <div className="links">
                                 <div>
-                                    <span>Câu Hỏi Thường Gặp</span>
+                                 <AiOutlineCheck/> <a>Điều khoản dịch vụ</a>
                                 </div>
                                 <div>
-                                    <span>Hướng Dẫn Đăng Tải Sản Phẩm</span>
+                                <AiOutlineCheck/> <a>Chính sách đổi trả</a>
                                 </div>
                                 <div>
-                                    <span>Hướng Dẫn Đặt Hàng Và Thanh Toán</span>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col span={6}>
-                            <div className="links">
-                                <div>
-                                    <span>hotro@</span>
+                                <AiOutlineCheck/> <a>Câu hỏi thường gặp</a>
                                 </div>
                                 <div>
-                                    <span>02 873 008 80 (Từ T2 đến CN: 8AM-8PM)</span>
-                                </div>
-                                <div>
-                                    <span>Nhận Ngay ƯU ĐÃI Mới</span>
+                                <AiOutlineCheck/> <a>Chính sách riêng</a>
                                 </div>
                             </div>
                         </Col>
