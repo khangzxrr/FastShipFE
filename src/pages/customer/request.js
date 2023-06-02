@@ -39,8 +39,7 @@ const Request = () => {
         .then((response) => {
             
             if (response.order.status !== 'noPriceQuotation'){
-                alert('đơn hàng không thuộc đúng trạng thái để xử lí trang này! ')
-                navigate('/home')
+                navigate('/detailod?orderId=' + orderId)
                 return
             }
 
