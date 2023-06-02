@@ -4,7 +4,7 @@ import OrderDetailEmployee from "../pages/employee/employee-orderdetail";
 import EmployeeRequest from "../pages/employee/employee-request";
 import EmployeeProductIssues from "../pages/employee/employeeProductIssuesList";
 import FastBuy from "../pages/fastbuy/fastbuy";
-import Form from "../pages/guest/guest-form";
+import GuestRegisterForm from "../pages/guest/guest-form";
 import CustomerManagement from "../pages/manager/customermanagement";
 import ManagerCurrency from "../pages/manager/manager-currency";
 import ManagerCustomerDetail from "../pages/manager/manager-customerdetail";
@@ -63,7 +63,7 @@ export const route = [
       },
       {
         path: "/register",
-        element: <RegisterAccount />,
+        element: <GuestRegisterForm />,
       },
       {
         path: "/add",
@@ -95,7 +95,7 @@ export const route = [
       },
       {
         path: "/guest-form",
-        element: <Form />
+        element: <GuestRegisterForm />
       },
       {
         path: "/manager-home",
