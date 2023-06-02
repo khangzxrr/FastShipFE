@@ -5,6 +5,8 @@ import { SearchOutlined } from '@ant-design/icons/lib/icons';
 import { Highlighter } from 'react-highlight-words';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Moment from 'react-moment';
+import { Utils } from '../../features/utils/Utils';
 
 export default function (props) {
     
@@ -26,84 +28,6 @@ export default function (props) {
         setSearchText('');
     };
     const getColumnSearchProps = (dataIndex) => ({
-        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
-            <div
-                style={{
-                    padding: 8,
-                }}
-                onKeyDown={(e) => e.stopPropagation()}
-            >
-                <Input
-                    ref={searchInput}
-                    placeholder={`Search ${dataIndex}`}
-                    value={selectedKeys[0]}
-                    onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-                    onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                    style={{
-                        marginBottom: 8,
-                        display: 'block',
-                    }}
-                />
-                <Space>
-                    <Button
-                        type="primary"
-                        onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                        icon={<SearchOutlined />}
-                        size="small"
-                        style={{
-                            width: 90,
-                        }}
-                    >
-                        Search
-                    </Button>
-                    <Button
-                        onClick={() => clearFilters && handleReset(clearFilters)}
-                        size="small"
-                        style={{
-                            width: 90,
-                        }}
-                    >
-                        Reset
-                    </Button>
-                    <Button
-                        type="link"
-                        size="small"
-                        onClick={() => {
-                            confirm({
-                                closeDropdown: false,
-                            });
-                            setSearchText(selectedKeys[0]);
-                            setSearchedColumn(dataIndex);
-                        }}
-                    >
-                        Filter
-                    </Button>
-                    <Button
-                        type="link"
-                        size="small"
-                        onClick={() => {
-                            close();
-                        }}
-                    >
-                        close
-                    </Button>
-                </Space>
-            </div>
-        ),
-        filterIcon: (filtered) => (
-            <SearchOutlined
-                style={{
-                    color: filtered ? '#1890ff' : undefined,
-                }}
-            />
-        ),
-        onFilter: (value, record) =>
-            record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
-        onFilterDropdownOpenChange: (visible) => {
-            if (visible) {
-                setTimeout(() => searchInput.current?.select(), 100);
-            }
-        },
         render: (text) =>
             searchedColumn === dataIndex ? (
                 <Highlighter
@@ -124,10 +48,8 @@ export default function (props) {
             title: 'MÃ ĐƠN HÀNG',
             dataIndex: 'orderId',
             key: 'orderId',
-            width: '30%',
+            width: '15%',
             ...getColumnSearchProps('id'),
-            sorter: (a, b) => a.id.length - b.id.length,
-            sortDirections: ['descend', 'ascend'],
             render: (id, { status }) => (status === 'noPriceQuotation' ? (<Link to={'/employee-request?orderId=' + id}>{id}</Link>): (<Link to={'/employee-orderdetail?orderId=' + id}>{id}</Link>))
         },
         {
@@ -135,12 +57,16 @@ export default function (props) {
             dataIndex: 'orderDate',
             key: 'orderDate',
             ...getColumnSearchProps('orderDate'),
+            sorter: (a,b) => a.orderDate - b.orderDate,
+            defaultSortOrder: 'descend',
+            render: (orderDate) => <Moment date={orderDate} format='DD/MM/YYYY HH:mm'/>
         },
         {
             title: 'TRẠNG THÁI',
             dataIndex: 'status',
             key: 'status',
             ...getColumnSearchProps('status'),
+            render: (status) => <p>{Utils.translateOrderStatus(status)}</p>
         },
     ];
     return (
