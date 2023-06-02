@@ -61,7 +61,7 @@ function AddDeleteTableRows() {
                                     <td><Input readOnly defaultValue={product.productCategory.productCategoryName} /></td>
                                     <td><Input readOnly defaultValue={product.productName} /></td>
                                     <td><Input readOnly defaultValue={product.productPrice + '$'} /></td>
-                                    <td><Input readOnly type="number" min={1} max={10}/></td>
+                                    <td><Input readOnly type="number" defaultValue={product.quantity} /></td>
                                     <td><Input readOnly defaultValue={product.productWarrantable ? "Có" : "Không"} /></td>
                                     <td><Input readOnly defaultValue={product.productReturnable ? "Có" : "Không"} /></td>
                                     <td>
