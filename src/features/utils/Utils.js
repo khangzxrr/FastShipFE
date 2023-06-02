@@ -1,7 +1,27 @@
+import { API_BASE_URL } from "../axiosProfile"
+
 
 export class Utils {
     static dateFormat = 'DD/MM/YYYY'
     static apiDateFormat = 'YYYY/MM/DD'
+
+
+    static translateOrderStatus(status) {
+        const translate = {
+            'noPriceQuotation': 'Đang báo giá',
+            'noPayYet': 'Chưa thanh toán',
+            'waitingToOrderFromSeller': 'Đang đợi order hàng',
+            'orderingFromSeller': 'Đang mua hàng',
+            'deliverFromUsToVN': 'Đang giao US sang VN',
+            'inVNwarehouse': 'Đang ở kho VN',
+            'deliverToCustomer': 'Đang giao đến khách hàng',
+            'finished': 'Thành công',
+            'reselling': 'Bán lại',
+            'denied': 'Từ chối'
+        }
+
+        return translate[status]
+    }
 
     static translateProductIssueState(state) {
         const translate = {
@@ -39,6 +59,10 @@ export class Utils {
 
     static showInfoNoti(messageApi, description) {
         messageApi.info(description)
+    }
+
+    static displayUploadImage(imageUrl) {
+        return `${API_BASE_URL}/medias?url=${imageUrl}`
     }
 
     static formatToVNDCurrency(currency){
