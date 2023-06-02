@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import "../home/home.css"
-import { Button, InputNumber, Space, Spin} from "antd";
+import { Button, InputNumber, Space, Spin, message} from "antd";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { HubConnectionBuilder } from '@microsoft/signalr';
@@ -8,6 +8,7 @@ import { useDispatch} from 'react-redux';
 import { addProduct } from '../../features/requestProduct/requestProductSlice';
 import { API_BASE_URL } from '../../features/axiosProfile';
 import { HttpTransportType } from '@microsoft/signalr';
+import { Utils } from '../../features/utils/Utils';
 
 
 
@@ -19,6 +20,8 @@ export default function () {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    const [messageApi, messageContextHolder] = message.useMessage()
 
     function handleCartOnClick() {
         navigate('/add')
@@ -38,12 +41,12 @@ export default function () {
 
         const regex = new RegExp('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?');  
         if (!regex.test(productUrl)){
-            alert('Đây không phải là một đường dẫn, vui lòng thử lại')
+            Utils.showErrorNoti(messageApi, 'Đây không phải là một đường dẫn, vui lòng thử lại')
             return
         }
 
         if (productUrl.indexOf('www.ebay.com') === -1){
-            alert('Đây không phải là link ebay, vui lòng thử lại')
+            Utils.showErrorNoti(messageApi, 'Đây không phải là link ebay, vui lòng thử lại')
             return
         }
 
@@ -53,7 +56,7 @@ export default function () {
         }catch(err) {
             console.log(err)
             setWaitingFetching(false)
-            alert('Có lỗi xảy ra, vui lòng tải lại trang và thử lại');
+            Utils.showErrorNoti(messageApi, 'Có lỗi xảy ra, vui lòng tải lại trang và thử lại')
         }
         
     }
@@ -98,13 +101,14 @@ export default function () {
 
     return (
         <>
+        {messageContextHolder}
             <div className='opa'>
                 
             </div>
             {waitingFetching && (
             <div className='baogia-form'>
                 <Space >
-                    <Spin style={{ width: '1200px', marginTop: '20px' }} tip="Đợi xí...">
+                    <Spin style={{ width: '1200px', marginTop: '20px' }} tip="Vui lòng chờ giây lát...">
                     </Spin>
                 </Space>
             </div>)}
