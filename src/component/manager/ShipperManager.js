@@ -27,7 +27,7 @@ export default function ShipperManager() {
       key: 'id',
     },
     {
-      title: 'Order ID',
+      title: 'MÃ ĐƠN',
       dataIndex: 'orderId',
       key: 'orderId',
       render: (orderId) => <Link to={`/employee-orderdetail?orderId=${orderId}`}>{orderId}</Link>,
