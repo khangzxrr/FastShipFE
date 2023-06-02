@@ -49,7 +49,7 @@ export default function EmployeeRequestProducts(props) {
     <div className='requestproducts' style={{ display: 'flex', padding: '10px'}}>
       <div style={{width:'28%', marginRight:'2%'}}>
         <img
-          src={props.orderDetail.product.imageUrl}
+          src={Utils.displayUploadImage(props.orderDetail.product.imageUrl)}
           style={{
             height: 'auto',
             width: '100%',
@@ -65,6 +65,7 @@ export default function EmployeeRequestProducts(props) {
       </div>
       <div style={{ padding: '0px 10px', width: '70%', lineHeight:'10px'}}>
         <h2 style={{wordWrap:'break-word', lineHeight:'30px'}}>Name: {props.orderDetail.product.name}</h2>
+        <a href={props.orderDetail.product.url}>Link sản phẩm</a>
         <p>Loại: {props.orderDetail.product.category} </p>
         <p>Mô tả: {props.orderDetail.product.description} <a onClick={() => showEditModal('productDescription', props.orderDetail.product.description)}><AiOutlineEdit/></a></p>
         <p>Tiền tệ: {props.orderDetail.product.productCurrencyExchangeRecord.currencyName} <a onClick={() => showEditModal('currencyName', props.orderDetail.product.productCurrencyExchangeRecord.currencyName)}><AiOutlineEdit/></a></p>
@@ -88,7 +89,7 @@ export default function EmployeeRequestProducts(props) {
         <p>Phí ship đến kho US: {props.orderDetail.shipCost}$ <a onClick={() => showEditModal('shipCost', props.orderDetail.shipCost)}><AiOutlineEdit/></a></p>
         <p>Giá: {props.orderDetail.productCost}$ <a onClick={() => showEditModal('productCost', props.orderDetail.productCost)}><AiOutlineEdit/></a></p>
         <p>Phí xử lý: {props.orderDetail.processCost}$ <a onClick={() => showEditModal('processCost', props.orderDetail.processCost)}><AiOutlineEdit/></a> </p>
-        <p>Phí phụ thu: {props.orderDetail.additionalCost}$ <a onClick={() => showEditModal('additionalCost', props.orderDetail.additionalCost)}><AiOutlineEdit/></a></p>
+        <p>(*cập nhật khi tính trọng lượng) Phí phụ thu: {props.orderDetail.additionalCost}$</p>
         <p>Phí mỗi kí(kg): {props.orderDetail.costPerWeight}$ <a onClick={() => showEditModal('costPerWeight', props.orderDetail.costPerWeight)}><AiOutlineEdit/></a></p>
         <p>Tỉ giá chuyển sang VNĐ: {Utils.formatToVNDCurrency(props.orderDetail.product.productCurrencyExchangeRecord.rate)}</p>
           <p style={{ fontWeight: 'bold' }}>Tổng cộng: {props.orderDetail.totalCost}$</p>
