@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { employeeUpdateProductIssueStatusAction } from '../../features/employeeUpdateProductIssue/employeeUpdateProductIssueStatusAction'
 import { employeeGetNextProductIssueStateAction } from '../../features/employeeGetNextProductIssueState/employeeGetNextProductIssueStateAction'
 import { Utils } from '../../features/utils/Utils'
+import Moment from 'react-moment'
 export default function UpdateStatusReturn(props) {
 
   const [messageApi, messaegContextHolder] = message.useMessage()
@@ -68,7 +69,7 @@ export default function UpdateStatusReturn(props) {
       
       Trạng thái đã cập nhật trước đó
       {
-        props.productIssue.stateTracking.map(state => (<p>{Utils.translateProductIssueState(state.status)}  -  {state.changeDate}</p>))
+        props.productIssue.stateTracking.map(state => (<p>{Utils.translateProductIssueState(state.status)}  - <Moment date={state.changeDate} format='DD/MM/YYYY HH:mm' /></p>))
       }
 
 
