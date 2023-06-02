@@ -80,28 +80,22 @@ export default function DetailOrders() {
                     current={order.progressStatus}
                     items={[
                         {
-                            title: 'Waiting Price Quotating',
+                            title: 'Đang đợi order hàng',
                         },
                         {
-                            title: 'Deposit',
+                            title: 'Đang mua hàng từ người bán',
                         },
                         {
-                            title: 'Waiting ordering',
+                            title: 'Đang giao từ US về VN',
                         },
                         {
-                            title: 'Ordering from seller',
+                            title: 'Đang ở kho VN',
                         },
                         {
-                            title: 'Delivery US to VN',
+                            title: 'Đang giao đến khách hàng',
                         },
                         {
-                            title: 'In VN warehouse',
-                        },
-                        {
-                            title: 'On delivery',
-                        },
-                        {
-                            title: 'Completed',
+                            title: 'Đã hoàn thành',
                         },
                     ]}
                 />
