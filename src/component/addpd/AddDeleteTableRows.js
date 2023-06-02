@@ -45,12 +45,11 @@ function AddDeleteTableRows() {
                     <tr>
                         <th style={{ width: '15%' }}>LINK SẢN PHẨM</th>
                         <th style={{ width: '15%' }}>LOẠI</th>
-                        <th style={{ width: '20%' }}>TÊN</th>
+                        <th style={{ width: '30%' }}>TÊN</th>
                         <th style={{ width: '8%' }}>GIÁ</th>
                         <th style={{ width: '10%' }}>SỐ LƯỢNG</th>
                         <th style={{ width: '10%' }}>CÓ BẢO HÀNH</th>
                         <th style={{ width: '10%' }}>CÓ ĐỔI TRẢ</th>
-                        <th style={{ width: '12%' }}>GHI CHÚ</th>
                         <th><Button style={{ color: 'black', fontSize: 30, color: 'green', border: 'none', boxShadow: 'none', height: '40px' }} onClick={handleAddNewProduct}><AiOutlinePlusSquare /></Button></th>
                     </tr>
 
@@ -58,14 +57,13 @@ function AddDeleteTableRows() {
                         requestProduct.products.map((product, index) => {
                             return (
                                 <tr key={index}>
-                                    <td><Input disabled defaultValue={product.productURL} /></td>
-                                    <td><Input defaultValue={product.productCategory.productCategoryName} /></td>
-                                    <td><Input defaultValue={product.productName} /></td>
-                                    <td><Input defaultValue={product.productPrice + '$'} /></td>
-                                    <td><Input type="number" min={1} max={10} defaultValue={'1'} /></td>
-                                    <td><Input defaultValue={product.productWarrantable ? "Có" : "Không"} /></td>
-                                    <td><Input defaultValue={product.productReturnable ? "Có" : "Không"} /></td>
-                                    <td><Input /></td>
+                                    <td><Input readOnly defaultValue={product.productURL} /></td>
+                                    <td><Input readOnly defaultValue={product.productCategory.productCategoryName} /></td>
+                                    <td><Input readOnly defaultValue={product.productName} /></td>
+                                    <td><Input readOnly defaultValue={product.productPrice + '$'} /></td>
+                                    <td><Input readOnly type="number" min={1} max={10}/></td>
+                                    <td><Input readOnly defaultValue={product.productWarrantable ? "Có" : "Không"} /></td>
+                                    <td><Input readOnly defaultValue={product.productReturnable ? "Có" : "Không"} /></td>
                                     <td>
                                         <button style={{ fontSize: 20, border: 'none', backgroundColor: 'white', marginLeft: '13px' }} onClick={() => { handleDeleteProduct(index) }}><AiFillDelete /></button>
                                     </td>
