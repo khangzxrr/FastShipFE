@@ -1,11 +1,10 @@
 import { useNavigate, useSearchParams } from "react-router-dom"
 import ProductWarrantyDetail from "../../component/warranty/ProductWarrantyDetail"
-import StepWarranty from "../../component/warranty/StepWarranty"
 import { Descriptions } from "antd"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { getProductReturnByIdAction } from "../../features/getProductReturnById/getProductReturnByIdAction"
-import StepReturn from "../../component/warranty/StepReturn"
+import { Utils } from "../../features/utils/Utils"
 
 const ProductIssueDetail = () => {
 
@@ -34,9 +33,7 @@ const ProductIssueDetail = () => {
     return (
         <>
             <div className='container' style={{ marginTop: '50px' }}>
-                {
-                    productIssue.isWarranty ? (<StepWarranty status={productIssue.statusCode} />) : (<StepReturn status={productIssue.statusCode} />)
-                }
+                
                 
             </div>
             <div className="container" style={{ display: 'flex', marginTop: '20px', marginBottom: '20px' }}>
@@ -45,13 +42,19 @@ const ProductIssueDetail = () => {
                     <ProductWarrantyDetail product={productIssue.productRecord}/>
                 </div>
                 <div style={{ width: '38%', padding: '0px 10px 10px 10px' }}>
-                    <h2>THÔNG TIN ĐỔI TRẢ</h2>
+                    <h2>THÔNG TIN</h2>
                     <Descriptions>
                         <Descriptions.Item label="Status" span={3}>{productIssue.status}</Descriptions.Item>
                         <Descriptions.Item label="returnDate" span={3}>{productIssue.returnDate}</Descriptions.Item>
                         <Descriptions.Item label="returnReason" span={3}>{productIssue.returnReason}</Descriptions.Item>
                         <Descriptions.Item label="Thuộc loại" span={3}>{productIssue.isWarranty ? 'Bảo hành' : 'Đổi trả'}</Descriptions.Item>
                     </Descriptions>
+                </div>
+                <div  style={{ width: '38%', padding: '0px 10px 10px 10px' }}>
+                    <h2>Cập nhật trạng thái</h2>
+                    {
+                        productIssue.stateTrackin && productIssue.stateTracking.map(state => (<p>{Utils.translateProductIssueState(state.status)} vào lúc {state.changeDate}</p>))
+                    }
                 </div>
             </div>
         </>
