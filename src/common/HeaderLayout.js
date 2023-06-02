@@ -49,7 +49,7 @@ export const HeaderLayout = () => {
 
   return (
     <>
-      <div style={{ backgroundColor: "#f0f0ed" }}>
+      <div style={{ backgroundColor: "#f0f0ed", padding:'0% 5%'}}>
         <div
           className="containerHeader"
           style={{
@@ -82,6 +82,8 @@ export const HeaderLayout = () => {
               <Link to="/signin">Đăng Ký</Link>
             </div>
           }
+
+
         </div>
       </div>
       <Header className="header"
@@ -112,6 +114,8 @@ export const HeaderLayout = () => {
           className="containerHeader"
           
         >
+
+          <div style={{ display: "flex", width:'700px' }}>
           <img
             onClick={() => navigate("/")}
             src="/logopage.jpg"
@@ -124,7 +128,6 @@ export const HeaderLayout = () => {
 
             }}
           />
-          <div style={{ display: "flex", width:'700px' }}>
             <Menu
               theme="light"
               mode="horizontal"

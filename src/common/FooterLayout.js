@@ -10,7 +10,7 @@ export const FooterLayout = () => {
     return (
         <Footer className="footer" style={{ padding: "0px" }}>
             <div style={{ backgroundColor: "white", padding: "20px 0", boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px' }}>
-                <div className="container" style={{ color: "black", display: "flex" }}>
+                <div style={{ color: "black", display: "flex", padding:'0% 5%' }}>
                     <Row gutter={[24, 8]}>
                         <Col style={{ fontSize: 24, fontWeight: 600 }} span={8}>
                             Tài khoản
