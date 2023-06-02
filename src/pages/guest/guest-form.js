@@ -1,6 +1,6 @@
 import InputForm from "./InputForm"
 import Map from "./Map"
-const Form = () => {
+const GuestRegisterForm = () => {
     return (
         <div className='container'>
             <h2>Vui lòng giúp chúng tôi nhập một vài thông tin hoặc đăng nhập để chúng tôi có thể liên hệ lại với bạn</h2>
@@ -17,4 +17,4 @@ const Form = () => {
         </div>
     )
 }
-export default Form
+export default GuestRegisterForm
