@@ -32,7 +32,7 @@ export default function FastBuyList(props) {
               <p style={{fontWeight:'bold'}}>{item.name}</p>
               <p>Loại: {item.category}</p>
               <p>Ghi chú: {item.description}</p>
-              <p>Gía: {item.price}$</p>
+              <h2 style={{color:'red'}}>{item.price}$</h2>
               <Button onClick={info} type='primary' style={{color:'black', width:'100%', fontWeight:'bold'}}>Chi tiết sản phẩm</Button>
             </Card>
           </List.Item>
