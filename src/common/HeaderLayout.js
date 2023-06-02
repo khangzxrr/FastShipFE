@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/login/loginSlice";
 import { BsFillCartCheckFill } from "react-icons/bs"
 import { clearEmployeeGetOrderById } from "../features/employeeGetOrderById/employeeGetOrderByIdSlice";
+import { clearProduct } from "../features/requestProduct/requestProductSlice";
 const { Header } = Layout;
 const items = [
   {
@@ -44,6 +45,7 @@ export const HeaderLayout = () => {
   function logoutOnClick() {
     dispatch(logout())
     dispatch(clearEmployeeGetOrderById())
+    dispatch(clearProduct())
     navigate("/login")
   }
 
@@ -79,7 +81,7 @@ export const HeaderLayout = () => {
             :
             <div className="href">
               <Link to="/login">Đăng Nhập</Link>
-              <Link style={{border:'none'}} to="/signin">Đăng Ký</Link>
+              <Link style={{border:'none'}} to="/register">Đăng Ký</Link>
             </div>
           }
 
