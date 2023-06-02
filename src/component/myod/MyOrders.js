@@ -7,6 +7,8 @@ import { getAllOrdersAction } from '../../features/getAllOrders/getAllOrdersActi
 import { logout } from '../../features/login/loginSlice';
 import { clearOrder } from '../../features/getOrderById/getOrderByIdSlice';
 import CustomerMenu from '../warranty/CustomerMenu';
+import Moment from 'react-moment';
+import { Utils } from '../../features/utils/Utils';
 
 const columns = [
   {
@@ -19,11 +21,13 @@ const columns = [
     title: 'NGÀY ĐẶT HÀNG',
     dataIndex: 'orderDate',
     key: 'time',
+    render: (time) => <Moment date={time} format='DD/MM/YYYY HH:mm'></Moment>
   },
   {
     title: 'TÌNH TRẠNG',
     dataIndex: 'orderStatus',
-    key: 'time',
+    key: 'orderStatus',
+    render: (orderStatus) => <span>{Utils.translateOrderStatus(orderStatus)}</span>
   },
   {
     title: '',
