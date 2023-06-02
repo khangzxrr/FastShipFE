@@ -8,6 +8,8 @@ import "../../component/home/home.css"
 import { useDispatch } from 'react-redux'
 import { registerAction } from '../../features/login/registerAction'
 import { useNavigate } from 'react-router-dom'
+import {EyeTwoTone, EyeInvisibleOutlined} from '@ant-design/icons'
+import { fromJSON } from 'postcss'
 export default function InputForm() {
 
   const [email, setEmail] = useState('')
@@ -82,8 +84,11 @@ export default function InputForm() {
         <Form.Item label="EMAIL">
           <Input onChange={handleChangeEmail}/>
         </Form.Item>
-        <Form.Item label="PASSWORD">
-          <Input onChange={handleChangePassword}/>
+        <Form.Item label="PASSWORD" >
+        <Input.Password
+        onChange={handleChangePassword}
+        iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+      />
         </Form.Item>
         <Form.Item label="SĐT">
           <Input onChange={handleChangePhoneNumber}/>
@@ -97,7 +102,7 @@ export default function InputForm() {
         <Form.Item label="ĐỊA CHỈ">
           <Input onChange={handleChangeAddress}/>
         </Form.Item>
-        <Button style={{ marginLeft: '150px', color: 'black' }} type='primary' onClick={handleOnRegister}>YÊU CẦU BÁO GIÁ</Button>
+        <Button style={{ marginLeft: '150px', color: 'black' }} type='primary' onClick={handleOnRegister}>ĐĂNG KÝ TÀI KHOẢN</Button>
       </Form>
     </>
   )
