@@ -16,7 +16,7 @@ const EmployeeProductIssues = () =>{
             setProductIssues(response.records)
             setTotal(response.totalCount)
 
-            console.log(productIssues)
+            console.log(response)
         })
     }
 
