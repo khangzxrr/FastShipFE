@@ -1,13 +1,14 @@
 import React from 'react'
+import { API_BASE_URL } from '../../features/axiosProfile'
 import { Utils } from '../../features/utils/Utils'
 export default function RequestProducts(props) {
 
     console.log(props.orderDetail)
-
+    
     return (
         <div className='requestproducts' style={{ display: 'flex', padding: '10px' }}>
             <img
-                src={props.orderDetail.product.imageUrl}
+                src={Utils.displayUploadImage(props.orderDetail.product.imageUrl)}
                 style={{
                     height: '150px',
                     width: '40%',
@@ -18,6 +19,7 @@ export default function RequestProducts(props) {
             <div style={{ padding: '0px 10px', width: '60%' }}>
                 <div>
                     <h2>{props.orderDetail.product.name}</h2>
+                    <a href={props.orderDetail.product.url}>Link sản phẩm</a>
                     <p>Loại: {props.orderDetail.product.category}</p>
                     <p>Số lượng: {props.orderDetail.quantity}</p>
                 </div>
