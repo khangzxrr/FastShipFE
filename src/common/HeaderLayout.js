@@ -16,7 +16,7 @@ const items = [
     key: "service",
   },
   {
-    label: "BẢNG GIÁ",
+    label: <Link to='/banggia'>BẢNG GIÁ</Link>,
     key: "price,"
   },
   {
