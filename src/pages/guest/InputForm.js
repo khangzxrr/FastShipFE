@@ -8,7 +8,7 @@ import "../../component/home/home.css"
 import { useDispatch } from 'react-redux'
 import { registerAction } from '../../features/login/registerAction'
 import { useNavigate } from 'react-router-dom'
-import {EyeTwoTone, EyeInvisibleOutlined} from '@ant-design/icons'
+import { EyeTwoTone, EyeInvisibleOutlined } from '@ant-design/icons'
 import { fromJSON } from 'postcss'
 export default function InputForm() {
 
@@ -50,22 +50,22 @@ export default function InputForm() {
     console.log(email)
 
     dispatch(registerAction(email, password, phoneNumber, address, firstName, lastName))
-    .then((data) => {
-      alert('Đăng kí thành công! vui lòng nhấn yêu cầu báo giá')
-      navigate('/add')
-    })
-    .catch((err) => {
+      .then((data) => {
+        alert('Đăng kí thành công! vui lòng nhấn yêu cầu báo giá')
+        navigate('/add')
+      })
+      .catch((err) => {
 
-      if (err.response.data.errors) {
-        for(let errorKey in err.response.data.errors){
-          alert(err.response.data.errors[errorKey])
+        if (err.response.data.errors) {
+          for (let errorKey in err.response.data.errors) {
+            alert(err.response.data.errors[errorKey])
+          }
+        } else {
+          alert(err.response.data)
         }
-      } else {
-        alert(err.response.data)
-      }
 
-    })
-   
+      })
+
   }
   return (
     <>
@@ -82,25 +82,31 @@ export default function InputForm() {
         }}
       >
         <Form.Item label="EMAIL">
-          <Input onChange={handleChangeEmail}/>
+          <Input onChange={handleChangeEmail} />
         </Form.Item>
         <Form.Item label="MẬT KHẨU" >
-        <Input.Password
-        onChange={handleChangePassword}
-        iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-      />
+          <Input.Password
+            onChange={handleChangePassword}
+            iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+          />
+        </Form.Item>
+        <Form.Item label="NHẬP LẠI MẬT KHẨU" >
+          <Input.Password
+            onChange={handleChangePassword}
+            iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+          />
         </Form.Item>
         <Form.Item label="SĐT">
-          <Input onChange={handleChangePhoneNumber}/>
+          <Input onChange={handleChangePhoneNumber} />
         </Form.Item>
         <Form.Item label="HỌ">
-          <Input onChange={handleChangeLastName}/>
+          <Input onChange={handleChangeLastName} />
         </Form.Item>
         <Form.Item label="TÊN">
-          <Input onChange={handleChangeFirstName}/>
+          <Input onChange={handleChangeFirstName} />
         </Form.Item>
         <Form.Item label="ĐỊA CHỈ">
-          <Input onChange={handleChangeAddress}/>
+          <Input onChange={handleChangeAddress} />
         </Form.Item>
         <Button style={{ marginLeft: '150px', color: 'black' }} type='primary' onClick={handleOnRegister}>ĐĂNG KÝ TÀI KHOẢN</Button>
       </Form>
