@@ -3,6 +3,8 @@ import {  Badge, Table} from 'antd'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setSelectedProductIssue } from '../../features/employeeUpdateProductIssue/employeeUpdateProductIssueSlice'
+import Moment from 'react-moment'
+import { Utils } from '../../features/utils/Utils'
 export default function EmployeeProductIssueList(props) {
 
   const dispatch = useDispatch()
@@ -29,9 +31,16 @@ export default function EmployeeProductIssueList(props) {
       render: (id,  productIssue) => (<a onClick={() => onClickSpecificProductIssue(productIssue)}>{id}</a>)
     },
     {
+      title: 'Bảo hành hoặc đổi trả',
+      dataIndex: 'isWarranty',
+      key: 'isWarranty',
+      render: (isWarranty) => <p>{ isWarranty ? 'Bảo hành' : 'Đổi trả'}</p>
+    },
+    {
       title: 'Trạng thái',
       dataIndex: 'status',
-      key: 'status'
+      key: 'status',
+      render: (status) => <p>{Utils.translateProductIssueState(status)}</p>
     },
     {
       title: 'Nguyên nhân',
@@ -40,14 +49,17 @@ export default function EmployeeProductIssueList(props) {
     },
     {
       title: 'Finish',
-      dataIndex: 'finishStatus',
-      key: 'finishStatus',
-      render: (finishStatus, {status }) =>  <Badge color={status !== 'finish' ? 'orange' : 'green'}  text={status === 'finish' ? 'finish' : 'on going'} /> 
+      dataIndex: 'status',
+      key: 'status',
+      defaultSortOrder: 'ascend',
+      sorter: (a,b) => (a === 'finish') ? -1 : 1,
+      render: (status) =>  <Badge color={status !== 'finish' ? 'orange' : 'green'}  text={status === 'finish' ? 'Hoàn thành' : 'Đang diễn ra'} /> 
     },
     {
       title: 'Ngày yêu cầu',
       dataIndex: 'returnDate',
-      key: 'returnDate'
+      key: 'returnDate',
+      render: (returnDate) => <Moment date={returnDate} format='DD/MM/YYYY HH:mm' />
     }
   ]
 
