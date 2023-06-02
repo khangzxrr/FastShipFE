@@ -84,7 +84,7 @@ export default function InputForm() {
         <Form.Item label="EMAIL">
           <Input onChange={handleChangeEmail}/>
         </Form.Item>
-        <Form.Item label="PASSWORD" >
+        <Form.Item label="MẬT KHẨU" >
         <Input.Password
         onChange={handleChangePassword}
         iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}

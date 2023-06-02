@@ -33,27 +33,27 @@ export default function CustomerList() {
         }
         },
         {
-          title: 'full name',
+          title: 'TÊN',
           dataIndex: 'fullname',
           key: 'fullname',
         },
         {
-          title: 'address',
+          title: 'ĐẠI CHỈ',
           dataIndex: 'address',
           key: 'address',
         },
         {
-          title: 'phone number',
+          title: 'SĐT',
           dataIndex: 'phoneNumber',
           key: 'phoneNumber',
         },
         {
-          title: 'total orders',
+          title: 'TỔNG ĐƠN',
           dataIndex: 'totalOrdersCount',
           key: 'totalOrdersCount'
         },
         {
-          title: 'total payments',
+          title: 'TỔNG THANH TOÁN',
           dataIndex: 'totalPaymentAmount',
           key: 'totalPaymentAmount',
           render: (amount) => (<a>{Utils.formatToVNDCurrency(amount)}</a>)
@@ -62,7 +62,7 @@ export default function CustomerList() {
   return (
     <>
     <div className='reportdetail'>
-      <h2>Danh sách Customer</h2>
+      <h2>Danh sách Khách hàng</h2>
       <div className='revenuedetail'>
         <Table rowKey={'id'} columns={columns} dataSource={customers} pagination={{  onChange:onChangePage,  total: totalCount }}/>
       </div>

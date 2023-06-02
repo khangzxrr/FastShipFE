@@ -29,12 +29,12 @@ export default function EmployeeProductIssueList(props) {
       render: (id,  productIssue) => (<a onClick={() => onClickSpecificProductIssue(productIssue)}>{id}</a>)
     },
     {
-      title: 'Status',
+      title: 'Trạng thái',
       dataIndex: 'status',
       key: 'status'
     },
     {
-      title: 'Reason',
+      title: 'Nguyên nhân',
       dataIndex: 'returnReason',
       key: 'returnReason'
     },

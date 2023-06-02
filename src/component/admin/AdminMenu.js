@@ -27,8 +27,8 @@ export default function AdminMenu() {
                 </Space>
             </Button>
         </Dropdown>
-        <Link to='/admin-server'><Button style={{color:'black'}} type='text'>Server Report</Button></Link>
-        <Link to='/admin-accounts'><Button style={{color:'black'}} type='text'>Account Management</Button></Link>
+        <Link to='/admin-server'><Button style={{color:'black'}} type='text'>Server Reporting</Button></Link>
+        <Link to='/admin-accounts'><Button style={{color:'black'}} type='text'>QUẢN LÝ TÀI KHOẢN</Button></Link>
     </Space>
 </div>
   )

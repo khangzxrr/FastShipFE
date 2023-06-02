@@ -30,14 +30,9 @@ export default function AccountTable() {
             key: 'id',
         },
         {
-            title: 'First name',
+            title: 'Tên',
             dataIndex: 'firstName',
             key: 'firstName',
-        },
-        {
-            title: 'Last name',
-            dataIndex: 'lastName',
-            key: 'lastName',
         },
         {
             title: 'Email',
@@ -45,12 +40,12 @@ export default function AccountTable() {
             key: 'email',
         },
         {
-            title: 'PasswordHash',
+            title: 'Mật khẩu',
             dataIndex: 'passwordHash',
             key: 'passwordHash',
         },
         {
-            title: 'Role',
+            title: 'Vai trò',
             dataIndex: 'roleName',
             key: 'roleName',
         },
@@ -59,7 +54,7 @@ export default function AccountTable() {
             dataIndex: '',
             key: '',
             render: () => <Space>
-                <Link to='/admin-insertaccount'>Update</Link>
+                <Link to='/admin-insertaccount'>Cập nhật</Link>
             </Space>
         },
         {
@@ -68,15 +63,15 @@ export default function AccountTable() {
             key: '',
             render: () => <Space>
                 <Radio.Group>
-                    <Radio value="1">Disable</Radio>
-                    <Radio value="2">Enable</Radio>
+                    <Radio value="1">Vô hiệu hóa</Radio>
+                    <Radio value="2">Mở</Radio>
                 </Radio.Group>
             </Space>
         },
     ];
     return (
         <div className='reportdetail'>
-            <h2>Account Management</h2>
+            <h2>QUẢN LÝ TÀI KHOẢN</h2>
             <AccountSearch />
             <div className='revenuedetail'>
                 <Table columns={columns} dataSource={accounts} pagination={{ total, onChange: getAccounts }} />

@@ -121,7 +121,7 @@ export default function (props) {
     });
     const columns = [
         {
-            title: 'ID Order',
+            title: 'MÃ ĐƠN HÀNG',
             dataIndex: 'orderId',
             key: 'orderId',
             width: '30%',
@@ -131,13 +131,13 @@ export default function (props) {
             render: (id, { status }) => (status === 'noPriceQuotation' ? (<Link to={'/employee-request?orderId=' + id}>{id}</Link>): (<Link to={'/employee-orderdetail?orderId=' + id}>{id}</Link>))
         },
         {
-            title: 'Order Date',
+            title: 'NGÀY ĐẶT',
             dataIndex: 'orderDate',
             key: 'orderDate',
             ...getColumnSearchProps('orderDate'),
         },
         {
-            title: 'Status',
+            title: 'TRẠNG THÁI',
             dataIndex: 'status',
             key: 'status',
             ...getColumnSearchProps('status'),

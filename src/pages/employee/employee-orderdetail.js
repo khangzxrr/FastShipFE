@@ -48,7 +48,7 @@ const OrderDetailEmployee = () => {
     </div>
     <div style={{width:'38%', padding:'0px 10px 10px 10px'}}>
         <DeliveryOption order={order} />
-        <h2>THÔNG TIN CUSTOMER</h2>
+        <h2>THÔNG TIN KHÁCH HÀNH</h2>
         <OrderDetail order={order} />
         <h2>CẬP NHẬT TRẠNG THÁI ĐƠN HÀNG <span style={{float:'right'}}><EmployeeResell/></span></h2>
         <OrderInfo order={order} />

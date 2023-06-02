@@ -17,27 +17,27 @@ export default function RevenueDetails() {
       render: (text) => <a>{text}</a>,
     },
     {
-      title: 'DATE',
+      title: 'NGÀY',
       dataIndex: 'paymentDate',
       key: 'paymentDate',
     },
     {
-      title: 'DESCRIPTION',
+      title: 'MÔ TẢ',
       dataIndex: 'paymentDescription',
       key: 'paymentDescription',
     },
     {
-      title: 'STATUS',
+      title: 'TRẠNG THÁI',
       key: 'paymentStatus',
       dataIndex: 'paymentStatus'
     },
     {
-      title: 'TRANSACTIONAL ID',
+      title: 'MÃ GIAO DỊCH',
       key: 'transactionId',
       dataIndex: 'transactionId'
     },
     {
-      title: 'AMOUNT',
+      title: 'SỐ TIỀN',
       key: 'paymentCost',
       dataIndex: 'paymentCost',
       render: (amount) => <a>{Utils.formatToVNDCurrency(amount)}</a>,
@@ -80,7 +80,7 @@ export default function RevenueDetails() {
     <>
       <div className='report'>
         <div className='child'>
-          <h2>TOTAL</h2>
+          <h2>TỔNG CỘNG</h2>
           <h3>{Utils.formatToVNDCurrency(totalPaymentsCost)}</h3>
           <RangePicker style={{ width: '30%' }} onCalendarChange={dateChange} defaultValue={dates}/>
         </div>

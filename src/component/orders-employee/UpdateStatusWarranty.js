@@ -3,7 +3,7 @@ import { Descriptions } from 'antd'
 export default function UpdateStatusWarranty() {
   return (
     <Descriptions>
-                <Descriptions.Item label="Status" span={3} >
+                <Descriptions.Item label="Trạng thái" span={3} >
                     <select style={{ border: '1px solid grey', borderRadius: '10px', padding: '5px' }} >
                         <option value={"noPayYet"}> Chưa thanh toán </option>
                         <option value={"waitingToOrderFromSeller"}> Đang đợi order hàng</option>

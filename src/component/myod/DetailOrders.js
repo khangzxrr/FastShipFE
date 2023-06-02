@@ -187,7 +187,7 @@ export default function DetailOrders() {
                     }
                 </div>
                 <div style={{ width: '38%', padding: '0px 10px 10px 10px' }}>
-                    <h2>THÔNG TIN CUSTOMER</h2>
+                    <h2>THÔNG TIN KHÁCH HÀNG</h2>
                     <Descriptions>
                         <Descriptions.Item label="UserName" span={3}>{order.customerName}</Descriptions.Item>
                         <Descriptions.Item label="Telephone" span={3}>{order.contactPhoneNumber}</Descriptions.Item>

@@ -8,14 +8,13 @@ export default function AccountSearch() {
     return (
         <div className='searchrevenue'>
             <Search
-                placeholder="input search text"
                 onSearch={onSearch}
                 style={{
                     width: '100%',
                 }}
             />
             <Link to='/admin-createaccount'>
-            <Button>Create Account</Button>
+            <Button>Tạo tài khoản</Button>
             </Link>
         </div>
     )
