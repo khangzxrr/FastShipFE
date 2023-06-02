@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
 import "../home/home.css"
-import { Button, InputNumber, Space, Spin, message} from "antd";
+import { Button, InputNumber, Space, Spin, message } from "antd";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { HubConnectionBuilder } from '@microsoft/signalr';
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addProduct } from '../../features/requestProduct/requestProductSlice';
 import { API_BASE_URL } from '../../features/axiosProfile';
 import { HttpTransportType } from '@microsoft/signalr';
 import { Utils } from '../../features/utils/Utils';
+import { Input } from 'antd/es';
 
 
 
@@ -28,8 +29,9 @@ export default function () {
     }
 
     function handleProductQuantityChange(value) {
-        console.log(value)
         setProductQuantity(value)
+
+        console.log(productQuantity)
     }
 
     function handleProductUrlOnChange(event) {
@@ -39,26 +41,46 @@ export default function () {
 
     function handleRequestProductOnClick() {
 
-        const regex = new RegExp('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?');  
-        if (!regex.test(productUrl)){
+        const regex = new RegExp('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?');
+        if (!regex.test(productUrl)) {
             Utils.showErrorNoti(messageApi, 'Đây không phải là một đường dẫn, vui lòng thử lại')
             return
         }
 
-        if (productUrl.indexOf('www.ebay.com') === -1){
+        if (productUrl.indexOf('www.ebay.com') === -1) {
             Utils.showErrorNoti(messageApi, 'Đây không phải là link ebay, vui lòng thử lại')
             return
         }
 
-        try{
+        try {
             setWaitingFetching(true)
-            connection.invoke('AddProductUrlToFetchData', { productUrl })
-        }catch(err) {
+            connection.invoke('AddProductUrlToFetchData', {
+                productUrl
+            })
+        } catch (err) {
             console.log(err)
             setWaitingFetching(false)
             Utils.showErrorNoti(messageApi, 'Có lỗi xảy ra, vui lòng tải lại trang và thử lại')
         }
-        
+
+    }
+
+    function parseProductAndNavigate(message) {
+        const jsonObj = JSON.parse(message)
+
+        if (jsonObj.message) {
+            Utils.showErrorNoti(messageApi, 'Có lỗi xảy ra, vui lòng tải lại trang và thử lại')
+
+            setWaitingFetching(false)
+            return
+        }
+
+        console.log(productQuantity)
+
+        jsonObj.quantity = productQuantity
+        //success
+        dispatch(addProduct(jsonObj))
+        navigate("/add")
     }
 
     useEffect(() => {
@@ -71,24 +93,13 @@ export default function () {
             .withAutomaticReconnect()
             .build()
 
-            connectionBuilder.start()
+        connectionBuilder.start()
             .then(() => {
-                
+
                 console.log("connected")
 
                 connectionBuilder.on("fetched_new_product", (message) => {
-
-                    const jsonObj = JSON.parse(message)
-
-                    if (jsonObj.message) {
-                        alert("Có lỗi xảy ra, vui lòng thử lại")
-                        setWaitingFetching(false)
-                        return
-                    }
-
-                    //success
-                    dispatch(addProduct(jsonObj))
-                    navigate("/add")
+                    parseProductAndNavigate(message)
                 });
 
 
@@ -97,28 +108,28 @@ export default function () {
             .catch((err) => {
                 console.log(err)
             })
-    }, [])
+    }, [productQuantity])
 
     return (
         <>
-        {messageContextHolder}
+            {messageContextHolder}
             <div className='opa'>
-                
+
             </div>
             {waitingFetching && (
-            <div className='baogia-form'>
-                <Space >
-                    <Spin style={{ width: '1200px', marginTop: '20px' }} tip="Vui lòng chờ giây lát...">
-                    </Spin>
-                </Space>
-            </div>)}
+                <div className='baogia-form'>
+                    <Space >
+                        <Spin style={{ width: '1200px', marginTop: '20px' }} tip="Vui lòng chờ giây lát...">
+                        </Spin>
+                    </Space>
+                </div>)}
             <div style={{ width: '98vw', height: '100vw' }} hidden={waitingFetching}>
                 <div className='baogia-form'>
                     <input className='btnlink' onChange={handleProductUrlOnChange} type='text' placeholder='Nhập link sản phẩm cần mua'></input>
-                    <InputNumber className='btnquantity' min={1} max={10} value={productQuantity} placeholder='Nhập số lượng' onChange={handleProductQuantityChange}></InputNumber>
+                    <Input className='btnquantity' value={productQuantity} placeholder='Nhập số lượng' onInput={(event) => handleProductQuantityChange(event.target.value)} onStep={(val) => handleProductQuantityChange(val)}></Input>
                     <Button type='primary' onClick={handleRequestProductOnClick}>TÌM KIẾM</Button>
                     <Button type='primary' onClick={handleCartOnClick}>GIỎ HÀNG</Button>
-                    
+
                 </div>
             </div>
         </>
