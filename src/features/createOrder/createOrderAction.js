@@ -6,7 +6,7 @@ export const createOrderAction = (productDetails, customerDescription, address, 
 
     const products = productDetails.map(
             function(product){ 
-                return { "productId": product.Id, "productQuantity": 1 }
+                return { "productId": product.Id, "productQuantity": product.quantity }
             }
         )
 
