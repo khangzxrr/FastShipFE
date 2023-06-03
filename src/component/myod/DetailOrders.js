@@ -184,16 +184,16 @@ export default function DetailOrders() {
                 <div style={{ width: '38%', padding: '0px 10px 10px 10px' }}>
                     <h2>THÔNG TIN KHÁCH HÀNG</h2>
                     <Descriptions>
-                        <Descriptions.Item label="UserName" span={3}>{order.customerName}</Descriptions.Item>
-                        <Descriptions.Item label="Telephone" span={3}>{order.contactPhoneNumber}</Descriptions.Item>
+                        <Descriptions.Item label="Tên" span={3}>{order.customerName}</Descriptions.Item>
+                        <Descriptions.Item label="SĐT" span={3}>{order.contactPhoneNumber}</Descriptions.Item>
                     </Descriptions>
                     <h2>THÔNG TIN ĐƠN HÀNG</h2>
                     <Descriptions>
-                        <Descriptions.Item span={3} label="Order Date"><Moment date={order.orderDate} format='DD/MM/YYYY HH:mm'></Moment></Descriptions.Item>
-                        <Descriptions.Item span={3} label="Note">{order.customerDescription}</Descriptions.Item>
-                        <Descriptions.Item span={3} label="Delivery Address">{order.deliveryAddress}</Descriptions.Item>
-                        <Descriptions.Item span={3} label="Contact Phone Number">{order.contactPhoneNumber}</Descriptions.Item>
-                        <Descriptions.Item span={3} label="Ship Estimated Days">{order.shipEstimatedDays}</Descriptions.Item>
+                        <Descriptions.Item span={3} label="Ngày đặt hàng"><Moment date={order.orderDate} format='DD/MM/YYYY HH:mm'></Moment></Descriptions.Item>
+                        <Descriptions.Item span={3} label="Ghi chú">{order.customerDescription}</Descriptions.Item>
+                        <Descriptions.Item span={3} label="Địa chỉ giao hàng">{order.deliveryAddress}</Descriptions.Item>
+                        <Descriptions.Item span={3} label="SĐT liên lạc">{order.contactPhoneNumber}</Descriptions.Item>
+                        <Descriptions.Item span={3} label="Ngày dự kiến giao hàng">{order.shipEstimatedDays}</Descriptions.Item>
                     </Descriptions>
                     <h2>NỘI DUNG TRAO ĐỔI</h2>
                     <Chat connection={connection}/>
