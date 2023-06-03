@@ -2,7 +2,7 @@ import { Typography } from 'antd'
 const { Title, Paragraph, Text } = Typography;
 const Rules = () => {
     return (
-        <div className="container" style={{marginBottom:'70px'}}>
+        <div className="container" style={{ marginBottom: '70px' }}>
             <Typography>
                 <Title>Những trường hợp được đổi hàng tại FastShip</Title>
                 <Paragraph>
@@ -42,6 +42,15 @@ const Rules = () => {
                 </Title>
                 <Paragraph>
                     - Nếu sản phẩm còn trong thời gian bảo hành, khách hàng vui lòng gởi sản phẩm đến kho để nhân viên tiếp nhận và gởi đi bảo hành.
+                </Paragraph>
+                <Title level={5}>
+                    4. Yêu cầu khác:
+                </Title>
+                <Paragraph>
+                    - FastShip khuyến khích bạn quay lại video clip mở hàng để làm bằng chứng khi có khiếu nại xảy ra. Video nên thể hiện rõ các yếu tố sau:
+                    6 mặt bên ngoài của kiện hàng
+                    Đúng thông tin đơn hàng đã đặt (mã đơn hàng, mã vận đơn...)
+                    Tình trạng, số lượng, và lỗi của sản phẩm nhận được
                 </Paragraph>
             </Typography>
         </div>
