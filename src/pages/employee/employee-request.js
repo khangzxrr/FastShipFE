@@ -132,7 +132,7 @@ const EmployeeRequest = () => {
             </div>
             <div style={{ width: '38%', padding: '0px 10px 10px 10px' }}>
                 <h2>THÔNG TIN ĐƠN HÀNG</h2>
-                <EmployeeRequestInfo order={order} />
+                <EmployeeRequestInfo order={order} messageApi={messageApi} />
                 <h2>NỘI DUNG TRAO ĐỔI</h2>
                 <EmployeeRequestChat order={order} chatMessages={chatMessages} handleOnSendMessage={handleOnSendMessage} />
             </div>
