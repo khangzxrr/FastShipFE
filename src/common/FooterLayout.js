@@ -28,7 +28,7 @@ export const FooterLayout = () => {
                             Thông tin liên hệ
                         </Col>
                         <Col style={{ fontSize: 24, fontWeight: 600 }} span={12}>
-                            
+
                         </Col>
 
                         <Col span={6}>
@@ -64,18 +64,10 @@ export const FooterLayout = () => {
                             </div>
                         </Col>
                         <Col span={12}>
-                            <div style={{ height: '40vh', width: '100%', marginTop:'-40px' }}>
-                                <GoogleMapReact
-                                    bootstrapURLKeys={{ key: "" }}
-                                    defaultCenter={defaultProps.center}
-                                    defaultZoom={defaultProps.zoom}
-                                >
-                                    <AnyReactComponent
-                                        lat={59.955413}
-                                        lng={30.337844}
-                                        text="My Marker"
-                                    />
-                                </GoogleMapReact>
+                            <div style={{ width: '100%', marginLeft: '0px', marginTop: '-30px' }}>
+                                <iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=tr%C6%B0%E1%BB%9Dng%20%C4%91%E1%BA%A1i%20h%E1%BB%8Dc%20FPT%20qu%E1%BA%ADn%209+(123)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+                                    <a href="https://www.maps.ie/distance-area-calculator.html">measure distance on map</a>
+                                </iframe>
                             </div>
                         </Col>
                     </Row>
