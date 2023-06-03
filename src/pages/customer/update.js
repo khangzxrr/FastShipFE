@@ -1,5 +1,22 @@
+import { useEffect } from "react"
 import UpdateProfile from "../../component/home/UpdateProfile"
-const Update = () => {
+import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
+
+const ProfileUpdate = () => {
+
+  const { roleName } = useSelector(state => state.login)
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    
+    if (roleName !== 'CUSTOMER') {
+      navigate(-1)
+    }
+
+  }, [roleName])
+
   return (
     <div className="container">
       <h1
@@ -41,4 +58,4 @@ const Update = () => {
 
   )
 }
-export default Update
+export default ProfileUpdate

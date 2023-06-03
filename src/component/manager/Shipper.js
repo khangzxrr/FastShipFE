@@ -3,7 +3,8 @@ import { Button } from 'antd'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { managerGetTotalOrderShippingsAction } from '../../features/managerGetTotalOrderShippings/managerGetTotalOrderShippingsAction'
-export default function Shipper() {
+import { Utils } from '../../features/utils/Utils'
+export default function Shipper(props) {
 
     const [total, setTotal] = useState(0)
 
@@ -14,6 +15,9 @@ export default function Shipper() {
             .then((response) => {
                 console.log(response)
                 setTotal(response.totalOrderShippings)
+            })
+            .catch(() => {
+                Utils.showErrorNoti(props.messageApi, 'Lỗi vui lòng thử lại')
             })
 
     }, [])

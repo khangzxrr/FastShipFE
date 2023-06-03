@@ -1,31 +1,68 @@
-import React from 'react'
-import { Button, Col, Form, Input, Row, Select } from "antd";
+import React, { useEffect } from 'react'
+import { Button, Col, Form, Input, Row, Select, message } from "antd";
+import { Utils } from '../../features/utils/Utils';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateCustomerProfileAction } from '../../features/updateCustomerProfile/updateCustomerProfileAction';
 const { Option } = Select;
 export default function UpdateProfile() {
+
+    const [form] = Form.useForm()
+
+    const { phoneNumber, address, fullName } = useSelector(state => state.login)
+
+    const [messageApi, messageContextHolder] = message.useMessage()
+
+    const dispatch = useDispatch()
+    
+    useEffect(() => {
+        form.setFieldsValue({
+            phoneNumber,
+            address,
+            fullName,
+            password: ''
+        })
+
+        console.log(phoneNumber)
+    }, [phoneNumber, address, fullName])
+
     const onFinish = (values) => {
         console.log("Success:", values);
+
+        dispatch(updateCustomerProfileAction(values.password, values.phoneNumber, values.address, values.fullName))
+        .then(response => {
+            Utils.showSuccessNoti(messageApi, 'Cập nhật thành công')
+        })
+        .catch(() => {
+            Utils.showErrorNoti(messageApi, 'Có lỗi xảy ra, vui lòng thử lại')
+        })
+
+        
     };
     const onFinishFailed = (errorInfo) => {
         console.log("Failed:", errorInfo);
+        Utils.showErrorNoti(messageApi, 'Vui lòng kiểm tra lại dữ liệu')
     };
+
+
     return (
-        <Form
+        <Form form={form}
             layout="vertical"
             name="basic"
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
         >
+            {messageContextHolder}
             <Row gutter={[16, 8]}>
                 <Col span={12}>
                     <Form.Item
                         style={{ fontWeight: 600 }}
                         label="Tên"
-                        name="name"
+                        name="fullName"
                         rules={[
                             {
                                 required: true,
-                                message: "Please input your name!",
+                                message: "Vui lòng nhập tên!",
                             },
                         ]}
                     >
@@ -50,12 +87,21 @@ export default function UpdateProfile() {
                     <Form.Item
                         style={{ fontWeight: 600 }}
                         label="Điện thoại"
-                        name="phone"
+                        name="phoneNumber"
                         rules={[
                             {
                                 required: true,
-                                message: "Please input your phone!",
+                                pattern: /^(?:\d*)$/,
+                                message: "Vui lòng kiểm tra lại số điện thoại", 
                             },
+                            {
+                                max: 13,
+                                message: 'Chiều dài vượt quá 13 kí tự'
+                            },
+                            {
+                                min: 10,
+                                message: 'Chiều dài chưa đủ 10 kí tự'
+                            }
                         ]}
                     >
                         <Input style={{ height: 40 }} />
@@ -70,7 +116,7 @@ export default function UpdateProfile() {
                         rules={[
                             {
                                 required: true,
-                                message: "Please input your address!",
+                                message: "Vui lòng nhập địa chỉ",
                             },
                         ]}
                     >
@@ -99,8 +145,12 @@ export default function UpdateProfile() {
                         rules={[
                             {
                                 required: true,
-                                message: "Please input your password!",
+                                message: "Vui lòng nhập mật khẩu!",
                             },
+                            {
+                                min: 6,
+                                message: 'Vui lòng nhập ít nhất 6 kí tự'
+                            }
                         ]}
                         hasFeedback
                     >
@@ -117,7 +167,7 @@ export default function UpdateProfile() {
                         rules={[
                             {
                                 required: true,
-                                message: "Please confirm your password!",
+                                message: "Vui lòng nhập lại mật khẩu!",
                             },
                             ({ getFieldValue }) => ({
                                 validator(_, value) {
@@ -126,7 +176,7 @@ export default function UpdateProfile() {
                                     }
                                     return Promise.reject(
                                         new Error(
-                                            "The two passwords that you entered do not match!"
+                                            "Mật khẩu không khớp!"
                                         )
                                     );
                                 },
