@@ -16,6 +16,9 @@ const HomePage = () => {
         if (roleName === "EMPLOYEE"){
             navigate("/employee-order")
         }
+        if (roleName === "ADMIN"){
+            navigate('/admin-home')
+        }
     }, [roleName]);
 
     return (
