@@ -62,7 +62,7 @@ export default function OrderInfo(props) {
                             { value: 'inVNwarehouse', label: 'Đang ở kho VN', disabled: currentStatus !== 'deliverFromUsToVN'},
                             { value: 'deliverToCustomer', label: 'Đang giao đến khách hàng', disabled: currentStatus !== 'inVNwarehouse' },
                             { value: 'finished', label: 'Đã hoàn thành', disabled: currentStatus !== 'deliverToCustomer'},
-                            { value: 'reselling', label: 'Bán lại đơn', disabled: currentStatus !== 'finished' }
+                            { value: 'failToDelivery', label: 'Giao hàng thất bại', disabled: currentStatus !== 'deliverToCustomer'},
                         ]}
                     
                     />
@@ -72,13 +72,13 @@ export default function OrderInfo(props) {
             {
                 (
                     <Popconfirm   
-                        disabled={currentStatus !== 'finish'} 
+                        disabled={currentStatus !== 'failToDelivery'} 
                         title="Xác nhận bán lại"
                         description="Bạn có chắc chắn muốn bán lại tất cả sản phẩm của đơn này?"
                         onConfirm={() => handleResell()}
                     >
 
-                        <Button disabled={currentStatus !== 'finish'}  type="primary" style={{color:'black'}}>Bán lại đơn hàng này</Button>
+                        <Button disabled={currentStatus !== 'failToDelivery'}  type="primary" style={{color:'black'}}>Bán lại đơn hàng này</Button>
                     </Popconfirm>
                 )
             }
