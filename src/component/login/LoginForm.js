@@ -64,7 +64,6 @@ export default function LoginForm() {
                 <br />
                 <Input type='password' placeholder='NHẬP MẬT KHẨU' onChange={handlePasswordChange} />
                 <br />
-                <Link><p style={{ textAlign: "right", marginRight: '160px', color: 'grey' }}>Quên mật khẩu ?</p></Link>
                 
                 {!loading && (<Button type='primary' onClick={(e) => loginButtonOnClick(e)}>Đăng nhập</Button>)}
                 {loading && (<Spin />)}
