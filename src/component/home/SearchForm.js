@@ -112,6 +112,7 @@ export default function () {
 
     return (
         <>
+            <h2 style={{margin:'14% 0% 0% 8%', position:'absolute', color:'white', fontSize:70, zIndex:9}}>TÌM GÌ CŨNG CÓ TẠI FASTSHIP</h2>
             {messageContextHolder}
             <div className='opa'>
 
@@ -119,7 +120,7 @@ export default function () {
             {waitingFetching && (
                 <div className='baogia-form'>
                     <Space >
-                        <Spin style={{ width: '1200px', marginTop: '20px' }} tip="Vui lòng chờ giây lát...">
+                        <Spin style={{ width: '1200px', marginTop: '20px', marginLeft:'11%' }} tip="Vui lòng chờ giây lát...">
                         </Spin>
                     </Space>
                 </div>)}
