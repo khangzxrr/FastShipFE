@@ -11,6 +11,11 @@ const BangGia = () => {
 
     const columns = [
         {
+            title: 'Loại sản phẩm',
+            dataIndex: 'category',
+            key: 'category',
+          },
+        {
             title: 'Phụ thu',
             dataIndex: 'addtionalCostDescription',
             key: 'addtionalCostDescription',
@@ -26,7 +31,7 @@ const BangGia = () => {
         setLoading(true)
         dispatch(getPriceTableAction())
         .then(resp => {
-            setPriceTableData(priceTableData)
+            setPriceTableData(resp)
         })
         .catch(() => {
 
