@@ -22,15 +22,9 @@ export default function CustomerMenu() {
         },
         {
             label: (
-                <Link to='/add'>Tạo đơn hàng</Link>
+                <Link to='/product-return-list'>Danh sách yêu cầu</Link>
             ),
             key: '3',
-        },
-        {
-            label: (
-                <Link to='/warrantylist'>Danh sách yêu cầu</Link>
-            ),
-            key: '4',
         },
     ];
     const menuProps = {

@@ -25,10 +25,6 @@ const items = [
     key: "rule",
   },
   {
-    label: "TIN TỨC",
-    key: "news",
-  },
-  {
     label: <Link to='/fastbuy'>FASTBUY</Link>,
     key: "thanhly",
   },
@@ -84,8 +80,6 @@ export const HeaderLayout = () => {
               <Link style={{border:'none'}} to="/register">Đăng Ký</Link>
             </div>
           }
-
-
         </div>
       </div>
       <Header className="header"
@@ -140,7 +134,7 @@ export const HeaderLayout = () => {
           <div>
             {roleName === "EMPLOYEE" &&
               (<Link to="/employee-order">
-                <Button style={{ fontSize: 11 }} >
+                <Button style={{ fontSize: 11 , marginRight:'10px'}} >
                   Đơn hàng tôi đang đảm nhiệm
                 </Button>
               </Link>)
