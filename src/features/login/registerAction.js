@@ -1,15 +1,13 @@
 import axiosProfile from "../axiosProfile"
 import { loginSuccess } from "./loginSlice"
 
-export const registerAction = (email, password, phoneNumber, address, firstName, lastName) => async dispatch => {
+export const registerAction = (email, password, phoneNumber, address, fullName) => async dispatch => {
     const response = await axiosProfile.post('/Register',{
         email,
         password,
         phoneNumber,
         address,
-        firstName,
-        lastName,
-        DateOfBirth: "2023-05-10"
+        fullName
     })
 
     dispatch(loginSuccess(response.data))
