@@ -11,6 +11,12 @@ export const loginSlice = createSlice({
         fullName: ''
     },
     reducers: {
+        updateProfile: (state, action) => {
+            state.address = action.payload.address
+            state.fullName = action.payload.fullName
+            state.phoneNumber = action.payload.phoneNumber
+        },
+
         loginSuccess: (state, action) => {
             state.isLogin = true
 
@@ -33,4 +39,4 @@ export const loginSlice = createSlice({
     }
 })
 
-export const { loginSuccess, logout } = loginSlice.actions
+export const { loginSuccess, logout, updateProfile } = loginSlice.actions
