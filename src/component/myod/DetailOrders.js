@@ -146,7 +146,7 @@ export default function DetailOrders() {
                                         <p>Phụ thu: ${od.additionalCost}</p>
                                         <p>Phí xử lý: ${od.processCost}</p>
                                         <p>Phí ship đến kho US: {od.shipCost}</p>
-                                        <p>Phí trọng lượng theo kg: ${od.product.costPerWeight}</p>
+                                        <p>Phí trọng lượng theo kg: {od.product.costPerWeight}$</p>
                                     </div>
                                 </div>
                             </div>
@@ -193,7 +193,7 @@ export default function DetailOrders() {
                         <Descriptions.Item span={3} label="Ghi chú">{order.customerDescription}</Descriptions.Item>
                         <Descriptions.Item span={3} label="Địa chỉ giao hàng">{order.deliveryAddress}</Descriptions.Item>
                         <Descriptions.Item span={3} label="SĐT liên lạc">{order.contactPhoneNumber}</Descriptions.Item>
-                        <Descriptions.Item span={3} label="Ngày dự kiến giao hàng">{order.shipEstimatedDays}</Descriptions.Item>
+                        <Descriptions.Item span={3} label="Ngày dự kiến giao hàng">{order.shipEstimatedDays} ngày</Descriptions.Item>
                     </Descriptions>
                     <h2>NỘI DUNG TRAO ĐỔI</h2>
                     <Chat connection={connection}/>
