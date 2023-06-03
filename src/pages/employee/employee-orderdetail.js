@@ -7,7 +7,6 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { employeeGetOrderByIdAction } from "../../features/employeeGetOrderById/employeeGetOrderByIdAction"
 import { logout } from "../../features/login/loginSlice"
-import { employeeGetOrderChatAction } from "../../features/employeeGetOrderChat/employeeGetOrderChatAction"
 import EmployeeChat from "../../component/orders-employee/EmployeeChat"
 import DeliveryOption from "../../component/orders-employee/DeliveryOption"
 import EmployeeResell from "../../component/request-employee/EmployeeResell"
@@ -30,7 +29,7 @@ const OrderDetailEmployee = () => {
 
     dispatch(employeeGetOrderByIdAction(orderId))
       .catch(err => {
-        if (err.response.status === 401 || err.response.status === 403) {
+        if (err.response && err.response.status === 401 || err.response.status === 403) {
           //alert('Bạn không có quyền thực thi việc này, vui lòng đăng nhập lại')
           dispatch(logout())
           navigate('/login')
