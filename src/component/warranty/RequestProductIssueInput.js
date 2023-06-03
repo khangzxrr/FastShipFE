@@ -87,7 +87,7 @@ export default function RequestProductIssueInput(props) {
                     </Radio.Group>
                 </Descriptions.Item>
                 
-                <Descriptions.Item label="Số seri những sản phẩm cần xử lí" span={3}>
+                <Descriptions.Item label="Seri SP" span={3}>
                     <TextArea style={{ resize: 'none' }} onChange={handleSeriesOnChange}/>
                 </Descriptions.Item>
 

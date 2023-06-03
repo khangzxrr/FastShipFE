@@ -85,7 +85,7 @@ export default function EmployeeRequestProducts(props) {
             <p></p>
         }
         <div style={{textAlign:'right'}}>
-        <p>Số lượng: {props.orderDetail.quantity} cái <a onClick={() => showEditModal('quantity', props.orderDetail.quantity)}><AiOutlineEdit/></a></p>
+        <p>Số lượng: {props.orderDetail.quantity} <a onClick={() => showEditModal('quantity', props.orderDetail.quantity)}><AiOutlineEdit/></a></p>
         <p>Phí ship đến kho US: {props.orderDetail.shipCost}$ <a onClick={() => showEditModal('shipCost', props.orderDetail.shipCost)}><AiOutlineEdit/></a></p>
         <p>Giá: {props.orderDetail.productCost}$ <a onClick={() => showEditModal('productCost', props.orderDetail.productCost)}><AiOutlineEdit/></a></p>
         <p>Phí xử lý: {props.orderDetail.processCost}$ <a onClick={() => showEditModal('processCost', props.orderDetail.processCost)}><AiOutlineEdit/></a> </p>
