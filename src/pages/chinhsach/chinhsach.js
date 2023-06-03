@@ -2,7 +2,7 @@ import { Typography } from 'antd'
 const { Title, Paragraph, Text } = Typography;
 const Rules = () => {
     return (
-        <div className="container">
+        <div className="container" style={{marginBottom:'70px'}}>
             <Typography>
                 <Title>Những trường hợp được đổi hàng tại FastShip</Title>
                 <Paragraph>
