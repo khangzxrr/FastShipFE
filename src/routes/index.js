@@ -38,7 +38,7 @@ import AdminInsertAccount from "../pages/admin/admin-insertaccount";
 import EmployeeProductReturnDetail from "../pages/employee/employee-productreturndetail ";
 import Rules from "../pages/chinhsach/chinhsach";
 import BangGia from "../pages/banggia/banggia";
-import Update from "../pages/customer/update";
+import ProfileUpdate from "../pages/customer/update";
 
 export const route = [
   {
@@ -202,8 +202,8 @@ export const route = [
         element:<BangGia/>
       }
       , {
-        path:"/update",
-        element:<Update/>
+        path:"/profile",
+        element:<ProfileUpdate/>
       }
     ]
   },
