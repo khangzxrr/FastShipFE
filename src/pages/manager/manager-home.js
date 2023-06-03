@@ -9,7 +9,11 @@ import { logout } from "../../features/login/loginSlice";
 import Order from "../../component/manager/Order"
 import Shipper from "../../component/manager/Shipper"
 import { managerGetTotalPaymentCost } from "../../features/managerGetTotalPaymentCost/managerGetTotalPaymentCost"
+import { message } from "antd"
+import { Utils } from "../../features/utils/Utils"
 const ManagerHome = () => {
+
+    const [messageApi, messageApiContextHolder] = message.useMessage()
 
     const { roleName } = useSelector(state => state.login)
 
@@ -22,7 +26,6 @@ const ManagerHome = () => {
     useEffect(() => {
         
         if (roleName !== 'MANAGER') {
-            alert('bạn không có quyền xem trang này, vui lòng đăng nhập lại')
             dispatch(logout())
             navigate('/login')
             return
@@ -33,22 +36,27 @@ const ManagerHome = () => {
                 console.log(response.totalPayment)
                 setTotalPayment(response.totalPayment)
             })
+            .catch(err => {
+                Utils.showErrorNoti(messageApi, 'Lỗi yêu cầu tổng tiền')
+                return
+            })
 
 
     }, [roleName])
 
     return (
         <div className="container">
+            {messageApiContextHolder}
             <ManagerMenu />
             <div style={{ display: 'flex', marginTop: '20px' }}>
                 <div style={{ width: '32%' }}>
                     <Revenue totalPayment={totalPayment} />
                 </div>
                 <div style={{ width: '32%', marginLeft: '2%', marginRight: '2%' }}>
-                    <Shipper/>
+                    <Shipper messageApi={messageApi}/>
                 </div>
                 <div style={{ width: '32%' }}>
-                    <Order/>
+                    <Order messageApi={messageApi}/>
                 </div>
             </div>
 

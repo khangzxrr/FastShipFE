@@ -3,7 +3,9 @@ import { Button } from 'antd'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { managerGetTotalOrderAction } from '../../features/managerGetTotalOrder/managerGetTotalOrderAction'
-export default function Order() {
+import { Utils } from '../../features/utils/Utils'
+
+export default function Order(props) {
 
     const [totalOrder, setTotalOrder] = useState(0)
 
@@ -14,6 +16,9 @@ export default function Order() {
             .then((response) => {
                 console.log(response.totalOrder)
                 setTotalOrder(response.totalOrder)
+            })
+            .catch(() => {
+                Utils.showErrorNoti(props.messageApi, 'Lỗi, vui lòng thử lại')
             })
     }, [dispatch])
 
