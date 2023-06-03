@@ -36,22 +36,8 @@ const menuProps = {
 };
 export default function AddProducts() {
   return (
-    <div>
-      <div className='addpd' style={{ padding: "10px 20px", display: 'flex', boxShadow: ' rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px', border: 'none' }}>
-        <MdArrowBackIosNew style={{ fontSize: 20, marginTop: '6px', color: '#023E73' }} />
-        <Space wrap>
-          <Dropdown menu={menuProps}>
-            <Button style={{width:'100px', backgroundColor:'#D8DEFF', color:'#2447FF',fontWeight:600, borderRadius:'20px', border:'none',marginLeft:'20px'}} >
-              <Space>
-                Menu<MdArrowDropDown />
-              </Space>
-            </Button>
-          </Dropdown>
-        </Space>
-      </div>
-      <div  style={{display:'flex',width: '100%', marginBottom: '10px' }}>
+      <div  style={{display:'flex',width: '100%', marginBottom: '10px', marginTop:'10px' }}>
         <AddProducts1 />
       </div>
-    </div>
   )
 }
