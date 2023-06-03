@@ -13,6 +13,8 @@ export default function UpdateWeight(props) {
 
     const dispatch = useDispatch()
 
+
+
     const showModal = () => {
         console.log(props.orderId, props.productId)
         setIsModalOpen(true);
@@ -46,7 +48,7 @@ export default function UpdateWeight(props) {
     const weightOnChange = (newWeight) => {
         setWeight(newWeight)
     }
-    const [value, setValue] = useState('');
+
     return (
         <>
             <Button type='primary' onClick={showModal} style={{ color: 'black', width:'100%' }}>Cập nhật số kg</Button>
