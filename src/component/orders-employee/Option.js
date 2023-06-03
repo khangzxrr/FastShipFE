@@ -1,17 +1,22 @@
 import React from 'react'
-import { Dropdown, Space } from 'antd'
+import { Button, Dropdown, Space } from 'antd'
 import {CiMenuKebab} from 'react-icons/ci'
 import { Link } from 'react-router-dom';
-export default function Option() {
+import { useDispatch } from 'react-redux';
+import { employeeEditOrderDetailAction } from '../../features/employeeEditOrderDetail/employeeEditOrderDetailAction';
+export default function Option(props) {
+
+    const dispatch = useDispatch()
+
+    function disableOrderDetail() {
+        dispatch(employeeEditOrderDetailAction(props.orderId, props.orderDetailId, 'disable', 'true'))
+    }
+
     const items = [
         {
-            label: <Link to='/employee-requestwarranty'>Tạo đơn bảo hành/ đổi trả</Link>,
-            key: '1',
-        },
-        {
-            label: <a>Cập nhật số kg</a>,
-            key: '2',
-        },
+            label: <a onClick={() => disableOrderDetail()}>Vô hiệu sản phẩm</a>,
+            key: '3'
+        }
     ];
   return (
     <Dropdown
