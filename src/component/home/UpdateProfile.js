@@ -43,9 +43,7 @@ export default function UpdateProfile() {
         Utils.showErrorNoti(messageApi, 'Vui lòng kiểm tra lại dữ liệu')
     };
 
-    const onChange = (info) => {
-        console.log(info)
-    }
+
     return (
         <Form form={form}
             layout="vertical"
@@ -61,7 +59,6 @@ export default function UpdateProfile() {
                         style={{ fontWeight: 600 }}
                         label="Tên"
                         name="fullName"
-                        value={"abc"}
                         rules={[
                             {
                                 required: true,
