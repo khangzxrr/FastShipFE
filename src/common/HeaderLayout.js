@@ -75,7 +75,7 @@ export const HeaderLayout = () => {
           </div>
           {loginInfo.isLogin ?
             <div className="href">
-              <Link to="/login">{loginInfo.email}</Link>
+              <Link to="/profile">{loginInfo.email}</Link>
               <Link style={{border:'none'}} onClick={logoutOnClick}>Đăng xuất</Link>
             </div>
             :
