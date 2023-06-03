@@ -46,7 +46,7 @@ export default function ProductList(props) {
           <div key={index} className='requestproducts' style={{ display: 'flex', padding: '10px' }}>
             <div style={{ width: '40%' }}>
               <img
-                src={od.product.imageUrl} alt={od.product.name}
+                src={Utils.displayUploadImage(od.product.imageUrl)} alt={od.product.name}
                 style={{
                   height: '150px',
                   width: '100%',
