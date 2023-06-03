@@ -1,10 +1,11 @@
 import React from 'react'
+import { Utils } from '../../features/utils/Utils'
 
 export default function RequestProductIssueInfo(props) {
     return (
         <div className='requestproducts' style={{ display: 'flex', padding: '10px', width: '100%' }}>
             <img
-                src={props.product.imageUrl}
+                src={Utils.displayUploadImage(props.product.imageUrl)}
                 style={{
                     height: '150px',
                     width: '40%',
