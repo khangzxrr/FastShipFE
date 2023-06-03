@@ -9,14 +9,13 @@ import { useDispatch } from 'react-redux'
 import { registerAction } from '../../features/login/registerAction'
 import { useNavigate } from 'react-router-dom'
 import { EyeTwoTone, EyeInvisibleOutlined } from '@ant-design/icons'
-import { fromJSON } from 'postcss'
+
 export default function InputForm() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
+  const [fullname, setFullname] = useState('')
   const [address, setAddress] = useState('')
 
   const dispatch = useDispatch()
@@ -38,18 +37,15 @@ export default function InputForm() {
     setPhoneNumber(event.target.value)
   }
 
-  function handleChangeFirstName(event) {
-    setFirstName(event.target.value)
+  function handleChangeFullname(event) {
+    setFullname(event.target.value)
   }
 
-  function handleChangeLastName(event) {
-    setLastName(event.target.value)
-  }
 
   function handleOnRegister() {
     console.log(email)
 
-    dispatch(registerAction(email, password, phoneNumber, address, firstName, lastName))
+    dispatch(registerAction(email, password, phoneNumber, address, fullname))
       .then((data) => {
         alert('Đăng kí thành công! vui lòng nhấn yêu cầu báo giá')
         navigate('/add')
@@ -81,7 +77,14 @@ export default function InputForm() {
           maxWidth: 600,
         }}
       >
-        <Form.Item label="EMAIL">
+        <Form.Item label="EMAIL"
+          rules={[
+            {
+                required: true,
+                message: "Vui lòng nhập email!",
+            },
+          ]}
+        >
           <Input onChange={handleChangeEmail} />
         </Form.Item>
         <Form.Item label="MẬT KHẨU" >
@@ -99,11 +102,8 @@ export default function InputForm() {
         <Form.Item label="SĐT">
           <Input onChange={handleChangePhoneNumber} />
         </Form.Item>
-        <Form.Item label="HỌ">
-          <Input onChange={handleChangeLastName} />
-        </Form.Item>
         <Form.Item label="TÊN">
-          <Input onChange={handleChangeFirstName} />
+          <Input onChange={handleChangeFullname} />
         </Form.Item>
         <Form.Item label="ĐỊA CHỈ">
           <Input onChange={handleChangeAddress} />
