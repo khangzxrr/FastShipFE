@@ -7,7 +7,8 @@ export const loginSlice = createSlice({
         email: '',
         phoneNumber: '',
         address: '',
-        token: ''
+        token: '',
+        fullName: ''
     },
     reducers: {
         loginSuccess: (state, action) => {
@@ -18,6 +19,7 @@ export const loginSlice = createSlice({
             state.address = action.payload.address
             state.phoneNumber = action.payload.phoneNumber
             state.roleName = action.payload.roleName
+            state.fullName = action.payload.fullName
             
         },
         logout: (state) => {
