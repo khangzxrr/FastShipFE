@@ -1,13 +1,13 @@
-import { Divider, Typography } from 'antd'
-const { Title, Paragraph, Text, Link } = Typography;
+import { Typography } from 'antd'
+const { Title, Paragraph, Text } = Typography;
 const Rules = () => {
     return (
         <div className="container">
             <Typography>
-                <Title>Những trường hợp được đổi trả hàng tại FastShip</Title>
+                <Title>Những trường hợp được đổi hàng tại FastShip</Title>
                 <Paragraph>
                     <Text strong>
-                        Khi nhận được đơn hàng từ khách hàng, Xanh Logistics cam kết mua đúng sản phẩm quý khách đã đặt hàng qua link đã được gửi. Tuy nhiên, trong một số trường hợp rủi ro, chúng tôi sẽ thực hiện một số chính sách đổi, trả hàng nhằm bảo vệ tối đa quyền lợi của khách hàng.
+                        Khi nhận được đơn hàng từ khách hàng, FastShip cam kết mua đúng sản phẩm quý khách đã đặt hàng qua link đã được gửi. Tuy nhiên, trong một số trường hợp rủi ro, chúng tôi sẽ thực hiện một số chính sách đổi hàng nhằm bảo vệ tối đa quyền lợi của khách hàng.
                     </Text>
                 </Paragraph>
                 <Title level={5}>
@@ -20,7 +20,7 @@ const Rules = () => {
                     - Nếu seller không đồng ý đổi trả hàng: nếu quá trình thương lượng giữa khách hàng và seller không thành công, khách sẽ chịu trách nhiệm.
                 </Paragraph>
                 <Paragraph>
-                    - Nếu seller đồng ý đổi trả hàng: Xanh Logistics sẽ tiến hành vận chuyển số hàng này qua bên Mỹ để tiến hành đổi trả, chi phí vận chuyển sẽ do khách hàng chi trả.
+                    - Nếu seller đồng ý đổi trả hàng: FastShip sẽ tiến hành vận chuyển số hàng này qua bên Mỹ để tiến hành đổi trả, chi phí vận chuyển sẽ do khách hàng chi trả.
                 </Paragraph>
                 <Title level={5}>
                     2. Trường hợp nếu do lỗi vận chuyển:
@@ -35,7 +35,13 @@ const Rules = () => {
                     - Với dịch vụ vận chuyển hàng, nếu hàng hóa vận chuyển bị mất mát hoặc thất lạc, chúng tôi sẽ đền bù tối đa gấp 3 lần phí vận chuyển. Nếu trong trường hợp khách hàng có sử dụng dịch vụ có bảo hiểm, chúng tôi sẽ tiến hành đền bù 100% giá trị đơn hàng.
                 </Paragraph>
                 <Paragraph>
-                    - Hàng hóa bị bể vỡ hoặc sứt mẻ, tùy vào mức độ thiệt hại, chúng tôi sẽ thương lượng với khách để đưa ra mức đền bù thích hợp.
+                    - Hàng hóa bị bể vỡ hoặc sứt mẻ, chúng tôi sẽ hoàn lại toàn bộ số tiền mà khách đã thanh toán.
+                </Paragraph>
+                <Title level={5}>
+                    3. Chính sách bảo hành sản phẩm:
+                </Title>
+                <Paragraph>
+                    - Nếu sản phẩm còn trong thời gian bảo hành, khách hàng vui lòng gởi sản phẩm đến kho để nhân viên tiếp nhận và gởi đi bảo hành.
                 </Paragraph>
             </Typography>
         </div>

@@ -13,12 +13,12 @@ import { clearProduct } from "../features/requestProduct/requestProductSlice";
 const { Header } = Layout;
 const items = [
   {
-    label: "DỊCH VỤ",
+    label: <Link to='/home'>DỊCH VỤ</Link>,
     key: "service",
   },
   {
     label: <Link to='/banggia'>BẢNG GIÁ</Link>,
-    key: "price,"
+    key: "price",
   },
   {
     label: <Link to='/chinhsach'>CHÍNH SÁCH</Link>,
