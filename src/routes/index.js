@@ -63,7 +63,7 @@ export const route = [
       },
       {
         path: "/register",
-        element: <GuestRegisterForm />,
+        element: <RegisterAccount />,
       },
       {
         path: "/add",

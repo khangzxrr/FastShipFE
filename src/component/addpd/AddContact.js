@@ -67,8 +67,8 @@ export default function AddContact() {
     }
 
     return (
-        <div style={{ display: 'flex', width: '90%', marginLeft: '5%', marginRight: '5%', marginBottom:'20px' }}>
-            <div className='contactform'>
+        <div style={{ display: 'flex', width: '90%', marginLeft: '5%', marginRight: '5%', marginBottom:'20px'}}>
+            <div className='contactform' style={{ borderRadius:'10px', boxShadow:'rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px' }}>
                 <Descriptions title="THÔNG TIN LIÊN HỆ" layout="vertical">
                     <Descriptions.Item label="Ghi chú" span={3}><Input onChange={onChangeDescription}/></Descriptions.Item>
                     <Descriptions.Item label="Địa chỉ giao hàng" span={3}><Input onChange={onChangeAddress} value={newAddress}/></Descriptions.Item>
@@ -77,7 +77,7 @@ export default function AddContact() {
 
                 <Button onClick={requestCreateOrder} type="primary" style={{ color: 'black', fontWeight: 600, margin: '5px 0px' }} >YÊU CẦU BÁO GIÁ</Button>
             </div>
-            <div style={{ width: '68%', backgroundColor:'aliceblue', padding:'0px 10px 0px 10px'}}>
+            <div style={{ width: '68%', backgroundColor:'aliceblue', padding:'0px 10px 0px 10px', borderRadius:'10px', boxShadow:'rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px'}}>
                 <Typography>
                     <Title>Điều khoản sử dụng dịch vụ mua hộ</Title>
                     <Paragraph>

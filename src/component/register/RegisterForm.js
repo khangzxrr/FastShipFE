@@ -24,22 +24,7 @@ export default function ResgisterForm () {
             rules={[
               {
                 required: true,
-                message: "Please input your name!",
-              },
-            ]}
-          >
-            <Input style={{ height: 40 }} />
-          </Form.Item>
-        </Col>
-        <Col span={12}>
-          <Form.Item
-            style={{ fontWeight: 600 }}
-            label="Họ"
-            name="lastname"
-            rules={[
-              {
-                required: true,
-                message: "Please input your lastname!",
+                message: "Nhập tên!",
               },
             ]}
           >
@@ -73,7 +58,7 @@ export default function ResgisterForm () {
             rules={[
               {
                 required: true,
-                message: "Please input your phone!",
+                message: "Vui lòng nhập SĐT!",
               },
             ]}
           >
@@ -89,7 +74,7 @@ export default function ResgisterForm () {
             rules={[
               {
                 required: true,
-                message: "Please input your address!",
+                message: "Vui lòng nhập địa chỉ!",
               },
             ]}
           >
@@ -105,7 +90,7 @@ export default function ResgisterForm () {
             rules={[
               {
                 required: true,
-                message: "Please input your city!",
+                message: "Vui lòng nhập thành phố!",
               },
             ]}
           >
@@ -113,33 +98,6 @@ export default function ResgisterForm () {
           </Form.Item>
         </Col>
         <Col span={12} />
-        <Col span={12}>
-          <Form.Item
-            style={{ fontWeight: 600 }}
-            label="Mã Zip/Bưu điện"
-            name="zipcode"
-          >
-            <Input style={{ height: 40 }} />
-          </Form.Item>
-        </Col>
-        <Col span={12}>
-          <Form.Item
-            initialValue={"VN"}
-            style={{ fontWeight: 600 }}
-            label="Quốc gia"
-            name="country"
-            rules={[
-              {
-                required: true,
-                message: "Please input your country!",
-              },
-            ]}
-          >
-            <Select size="large">
-              <Option value="VN">Việt Nam</Option>
-            </Select>
-          </Form.Item>
-        </Col>
       </Row>
 
       <h2
@@ -162,7 +120,7 @@ export default function ResgisterForm () {
             rules={[
               {
                 required: true,
-                message: "Please input your password!",
+                message: "Vui lòng nhập mật khẩu!",
               },
             ]}
             hasFeedback
@@ -180,7 +138,7 @@ export default function ResgisterForm () {
             rules={[
               {
                 required: true,
-                message: "Please confirm your password!",
+                message: "Vui lòng xác thực mật khẩu!",
               },
               ({ getFieldValue }) => ({
                 validator(_, value) {
@@ -189,7 +147,7 @@ export default function ResgisterForm () {
                   }
                   return Promise.reject(
                     new Error(
-                      "The two passwords that you entered do not match!"
+                      "Mật khẩu không đúng!"
                     )
                   );
                 },

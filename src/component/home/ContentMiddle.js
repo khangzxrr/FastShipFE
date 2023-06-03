@@ -18,24 +18,24 @@ export default function ContentMiddle() {
                         <h2>NHANH CHÓNG <span style={{ color: "black" }}>VÀ</span> AN TOÀN</h2>
                     </div>
                     <div style={{ padding: "30px 5px" }}>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                        <p>Thông qua việc tối ưu hóa chi phí, nâng cao hiệu suất các dịch vụ của mình, Xanh lơ cung cấp cho khách hàng dịch vụ vận chuyển nhanh với chi phí rẻ đồng thời giảm tác động đến môi trường.</p>
                     </div>
                 </div>
                 <div className='content2' style={{ display: "flex" }}>
-                    <div style={{ marginRight: "10px" }}>
+                    <div style={{ marginRight: "2%" }}>
                         <span><BsFillAirplaneFill style={{ color: "#FFE715" }} /></span>
                         <h2>HÀNG KHÔNG</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
+                        <p>Cung cấp giá cước tiết kiệm, phù hợp với các mặt hàng nặng, số lượng lớn</p>
                     </div>
                     <div>
                         <span><IoMdBoat style={{ color: "#FFE715" }} /></span>
                         <h2>HÀNG HẢI</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
+                        <p>Với thời gian vận chuyển từ 7-15 ngày giúp cho việc mua hàng hoá từ Mỹ trở nên dễ dàng và nhanh chóng. Chỉ vài click chuột đơn giản, hàng hoá nhanh chóng được chuyển tới bạn</p>
                     </div>
-                    <div style={{ marginLeft: "10px" }}>
+                    <div style={{ marginLeft: "2%" }}>
                         <span><MdOutlineSecurity style={{ color: "#FFE715" }} /></span>
                         <h2>An Toàn Vận Chuyển</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
+                        <p>Hàng hoá được bảo hiểm 100% (*). Các mặt hàng khó vận chuyển như chất dễ cháy, hoá chất, ... sẽ được FastShip tư vấn và đảm bảo hàng về tới Việt Nam an toàn</p>
                     </div>
                 </div>
                 <div className='content3' style={{
@@ -45,7 +45,7 @@ export default function ContentMiddle() {
                     <BsFillChatHeartFill style={{ color: "#FFE715", fontSize: "40px", marginTop: "10px", marginLeft: "50px" }} />
                     <div style={{ width: "80%", marginLeft: "60px" }}>
                         <h2 style={{ color: "#FFE715", }}>Khách hàng nói gì</h2>
-                        <p style={{ color: "grey" }}>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics</p>
+                        <p style={{ color: "grey" }}>Hàng mình nhận siêu đẹp. Anh chị nhân viên bên FastShip hỗ trợ mình rất nhiệt tình và hàng về thì giao mình rất nhanh chóng. Mình sẽ ủng hộ FastShip vào các lần đặt hàng sau nữa</p>
                         <div style={{ display: "flex" }}>
                             <div style={{ width: "95%" }}>
                                 <p style={{ color: "white" }}>Anh Tân</p>
@@ -73,7 +73,7 @@ export default function ContentMiddle() {
                         <h2>DỊCH VỤ <span style={{ color: "black" }}>NỔI BẬT</span></h2>
                     </div>
                     <div style={{ padding: "10px 5px" }}>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                        <p>Khách hàng sử dụng dịch vụ của FastShip cũng chính là người đồng hành cùng chúng tôi trong các hoạt động vì xã hội.<br/>Giải pháp logistics tiết kiệm gắn liền với lợi ích xã hội, môi trường.</p>
                     </div>
                 </div>
                 <div className='content5' style={{ display: "flex" }}>
@@ -102,7 +102,7 @@ export default function ContentMiddle() {
                     <div style={{ width: "60%", padding: "10px 50px 10px 0px" }}>
                         <h2>VÌ SAO <span style={{ color: "#FFE715" }}>NÊN LỰA CHỌN</span></h2>
                         <h2>CHÚNG TÔI</h2>
-                        <p style={{ color: "#C9C9C9" }}>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,</p>
+                        <p style={{ color: "#C9C9C9" }}>Giải pháp logistics tiết kiệm gắn liền với lợi ích xã hội, môi trường.</p>
                     </div>
                     <div className='content6' style={{ width: "20%" }}>
                         <div>
@@ -139,37 +139,37 @@ export default function ContentMiddle() {
                         <h2><span style={{ color: "#FFE715" }}>TIN TỨC</span> HÔM NAY</h2>
                     </div>
                     <div className='content7' style={{ display: "flex", height: "600px" }}>
-                        <div>
+                        <div style={{width:'50%', marginRight:'2%'}}>
                             <img src={('service6.jpg')} style={{ width: "615px", }} />
-                            <h2>TIN TỨC HÔM NAY</h2>
-                            <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's </h4>
+                            <h2>Hướng dẫn cách thanh toán bằng thẻ Visa trên eBay</h2>
+                            <h4 style={{textAlign:'left'}}>eBay là một trong những trang thương mại điện tử có số lượng khách hàng truy cập “khủng” nhất hiện nay.</h4>
                         </div>
-                        <div className='content8'>
+                        <div className='content8' style={{width:'48%'}}>
                             <div style={{ display: "flex" }}>
                                 <img src={('service7.jpg')} style={{ width: "180px", height: "130px" }} />
                                 <div>
-                                    <h2>TIN TỨC HÔM NAY</h2>
-                                    <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
+                                    <h2>Giải đáp: Mua hàng trên Ebay có bị đánh thuế không?</h2>
+                                    <h4 style={{textAlign:'left'}}>Hẳn là có rất nhiều bạn đang tự hỏi, liệu mua hàng trên Ebay có bị đánh thuế không?...</h4>
                                 </div>
                             </div>
                             <div style={{ display: "flex" }}>
                                 <img src={('service7.jpg')} style={{ width: "180px", height: "130px" }} />
                                 <div>
-                                    <h2>TIN TỨC HÔM NAY</h2>
-                                    <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
+                                    <h2>Cách order nước hoa chính hãng đơn giản nhất</h2>
+                                    <h4 style={{textAlign:'left'}}>Thị trường nước hoa rất đa dạng với nhiều sản phẩm và thương hiệu khác nhau...</h4>
                                 </div>
                             </div>
                             <div style={{ display: "flex" }}>
                                 <img src={('service7.jpg')} style={{ width: "180px", height: "130px" }} />
                                 <div>
-                                    <h2>TIN TỨC HÔM NAY</h2>
-                                    <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
+                                    <h2>Order quần áo Hàn Quốc đơn giản, hàng đẹp</h2>
+                                    <h4 style={{textAlign:'left'}}>Order quần áo Hàn Quốc trở thành một trong những xu hướng mua sắm lý tưởng của người tiêu dùng Việt, nhất là giới trẻ....</h4>
                                 </div>
                             </div>
                         </div>
                         
                     </div>
-                    <Divider><Link>Show more</Link></Divider>
+                    <Divider><Link>Xem thêm</Link></Divider>
                 </div>
                 <div>
                     <div>
@@ -178,19 +178,19 @@ export default function ContentMiddle() {
                     <div style={{ display: "flex", width:"100%", border:"1px solid black", borderRadius:"20px", padding:"5px 10px", marginBottom:"20px"}}>
                         <img src={('service10.png')} style={{ width: "50px", height: "50px", margin:"20px 50px 20px 50px"}} />
                         <div style={{marginTop:"10px"}}>
-                            <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's </h4>
+                            <h1>So sánh Amazon và Ebay: Đâu là lựa chọn mua hàng tốt nhất?</h1>
                         </div>
                     </div>
                     <div style={{ display: "flex", width:"100%", border:"1px solid black", borderRadius:"20px", padding:"5px 10px", marginBottom:"20px"}}>
                         <img src={('service10.png')} style={{ width: "50px", height: "50px", margin:"20px 50px 20px 50px"}} />
                         <div style={{marginTop:"10px"}}>
-                            <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's </h4>
+                            <h1>Order quần áo Hàn Quốc đơn giản, hàng đẹp</h1>
                         </div>
                     </div>
                     <div style={{ display: "flex", width:"100%", border:"1px solid black", borderRadius:"20px", padding:"5px 10px", marginBottom:"50px"}}>
                         <img src={('service10.png')} style={{ width: "50px", height: "50px", margin:"20px 50px 20px 50px"}} />
                         <div style={{marginTop:"10px"}}>
-                            <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's </h4>
+                            <h1>Nên Order giày Mỹ chính hãng ở đâu uy tín, giá rẻ?</h1>
                         </div>
                     </div>
                 </div>

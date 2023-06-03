@@ -19,8 +19,8 @@ const HomePage = () => {
     }, [roleName]);
 
     return (
-        <>
-            <div style={{ background: "url(/homebg11.jpg) 0 no-repeat", backgroundSize:'100%'}}>
+        <>  
+            <div style={{ background: "url(/homebg11.jpg) 0 no-repeat", backgroundSize:'100%', height:'700px'}}>
                 <div>
                     <ContentUpper />
                 </div>

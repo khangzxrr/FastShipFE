@@ -158,7 +158,7 @@ export default function DetailOrders() {
                                 <h1>Thanh toán
                                     {
                                         order.status === "noPayYet" &&
-                                        (<Button type="primary" style={{ width: '30%', color: 'black', fontWeight: 600, float: 'right' }} onClick={() => handleCreatePaymentOnClick()}>Thanh toán Lần 1 ({Utils.formatToVNDCurrency(order.firstPaymentAmount)})</Button>)
+                                        (<Button type="primary" style={{ color: 'black', fontWeight: 600, float: 'right' }} onClick={() => handleCreatePaymentOnClick()}>Thanh toán lần 1 (80%) = {Utils.formatToVNDCurrency(order.firstPaymentAmount)}</Button>)
                                     }
                                 </h1>
 
