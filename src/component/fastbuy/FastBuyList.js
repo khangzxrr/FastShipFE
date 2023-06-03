@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, List, Button, Image, Modal } from 'antd'
+import { Utils } from '../../features/utils/Utils';
 export default function FastBuyList(props) {
   
   function onPageChange(pageIndex) {
@@ -28,7 +29,7 @@ export default function FastBuyList(props) {
         renderItem={(item) => (
           <List.Item>
             <Card style={{lineHeight:'18px'}}>
-              <Image src={item.imageUrl} />
+              <Image src={Utils.displayUploadImage(item.imageUrl)} />
               <p style={{fontWeight:'bold'}}>{item.name}</p>
               <p>Loại: {item.category}</p>
               <p>Ghi chú: {item.description}</p>
