@@ -107,7 +107,7 @@ export default function ContentMiddle() {
                     <div className='content6' style={{ width: "20%" }}>
                         <div>
                             <p style={{ color: "#C3F10E", fontWeight: 1000 }}>1,426,378</p>
-                            <p style={{ color: "white", fontWeight: 600 }}>Kiên hàng được giao</p>
+                            <p style={{ color: "white", fontWeight: 600 }}>Kiện hàng được giao</p>
                         </div>
                         <div>
                             <span>
