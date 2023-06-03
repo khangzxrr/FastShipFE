@@ -53,7 +53,7 @@ const ProductIssueDetail = () => {
                 <div  style={{ width: '38%', padding: '0px 10px 10px 10px' }}>
                     <h2>Cập nhật trạng thái</h2>
                     {
-                        productIssue.stateTrackin && productIssue.stateTracking.map(state => (<p>{Utils.translateProductIssueState(state.status)} vào lúc {state.changeDate}</p>))
+                        productIssue.stateTracking && productIssue.stateTracking.map(state => (<p>{Utils.translateProductIssueState(state.status)} vào lúc {state.changeDate}</p>))
                     }
                 </div>
             </div>
