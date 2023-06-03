@@ -18,7 +18,7 @@ const items = [
   },
   {
     label: <Link to='/banggia'>BẢNG GIÁ</Link>,
-    key: "price,"
+    key: "price",
   },
   {
     label: <Link to='/chinhsach'>CHÍNH SÁCH</Link>,
