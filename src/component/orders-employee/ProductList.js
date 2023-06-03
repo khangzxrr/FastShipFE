@@ -79,8 +79,8 @@ export default function ProductList(props) {
                 <p>Giá sản phẩm: ${od.productCost}</p>
                 <p>Phụ thu: ${od.additionalCost}</p>
                 <p>Phí xử lý: ${od.processCost}</p>
-                <p>Phí ship đến kho US: {od.shipCost}</p>
-                <p>Phí trọng lượng theo kg: ${od.product.costPerWeight}</p>
+                <p>Phí ship đến kho US: ${od.shipCost}</p>
+                <p>Phí trọng lượng theo kg: ${od.costPerWeight}</p>
               </div>
             </div>
           </div>

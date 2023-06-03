@@ -81,6 +81,12 @@ export default function DetailOrders() {
                     current={order.progressStatus}
                     items={[
                         {
+                            title: 'Đang báo giá'
+                        },
+                        {
+                            title: 'Đang thanh toán'
+                        },
+                        {
                             title: 'Đang đợi order hàng',
                         },
                         {

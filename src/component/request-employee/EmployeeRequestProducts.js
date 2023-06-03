@@ -72,7 +72,7 @@ export default function EmployeeRequestProducts(props) {
         <p>Bảo hành: {props.orderDetail.product.warrantable ? 'Có' : 'Không'} <a onClick={() => showEditModal('productWarrantable', props.orderDetail.product.warrantable)}><AiOutlineEdit/></a></p>
         {
           props.orderDetail.product.warrantable ? 
-            <p>Mô tả đổi trả: {props.orderDetail.product.warrantyDescription} <a onClick={() => showEditModal('warrantyDescription', props.orderDetail.product.warrantyDescription)}><AiOutlineEdit/></a></p>
+            <p>Mô tả bảo hành: {props.orderDetail.product.warrantyDescription} <a onClick={() => showEditModal('warrantyDescription', props.orderDetail.product.warrantyDescription)}><AiOutlineEdit/></a></p>
              : 
             <p></p>
         }
