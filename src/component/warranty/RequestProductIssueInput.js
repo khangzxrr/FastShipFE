@@ -3,13 +3,14 @@ import {
     Descriptions,
     Button,
     Input,
-    Radio, Upload
+    Radio, Upload, message
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons';
 import { API_BASE_URL } from '../../features/axiosProfile';
 import { useDispatch } from 'react-redux';
 import { requestProductIssueAction as requestProductIssueAction } from '../../features/requestProductReturn/requestProductReturnAction';
 import { useNavigate } from 'react-router-dom';
+import { Utils } from '../../features/utils/Utils';
 const { TextArea } = Input;
 
 export default function RequestProductIssueInput(props) {
@@ -18,6 +19,8 @@ export default function RequestProductIssueInput(props) {
     const [ratioValue, setRatioValue] = useState(0)
     const [description, setDescription] = useState('')
     const [series, setSeries] = useState('')
+
+    const [messageApi, messageApiContextHolder] = message.useMessage()
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -75,10 +78,14 @@ export default function RequestProductIssueInput(props) {
         .then((response) => {
             navigate('/product-issue-detail?id=' + response.productIssueRecord.id)
         })
+        .catch(err => {
+            Utils.showErrorNoti(messageApi, 'Lỗi, xin vui lòng thử lại')
+        })
 
     }
     return (
         <>
+        {messageApiContextHolder}
             <Descriptions>
                 <Descriptions.Item label="Dịch vụ" span={3}>
                     <Radio.Group onChange={onRatioValueChange}>

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { getProductReturnByIdAction } from "../../features/getProductReturnById/getProductReturnByIdAction"
 import { Utils } from "../../features/utils/Utils"
+import Moment from "react-moment"
 
 const ProductIssueDetail = () => {
 
@@ -53,7 +54,7 @@ const ProductIssueDetail = () => {
                 <div  style={{ width: '38%', padding: '0px 10px 10px 10px' }}>
                     <h2>Cập nhật trạng thái</h2>
                     {
-                        productIssue.stateTracking && productIssue.stateTracking.map(state => (<p>{Utils.translateProductIssueState(state.status)} vào lúc {state.changeDate}</p>))
+                        productIssue.stateTracking && productIssue.stateTracking.map(state => (<p>{Utils.translateProductIssueState(state.status)} vào lúc <Moment date={state.changeDate} format="DD/MM/YYYY HH:mm" /></p>))
                     }
                 </div>
             </div>
