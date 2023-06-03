@@ -63,7 +63,7 @@ export default function ProductList(props) {
 
             <div style={{ padding: '0px 10px', width: '60%' }}>
               <div>
-                <h2>{od.product.name}<span style={{float:'right'}}><Option/></span></h2>
+                <h2>{od.product.name}<span style={{float:'right'}}><Option orderDetailId={od.orderDetailId} orderId={props.order.orderId} /></span></h2>
                 <a href={od.product.url}>Link Product</a><br />
                 <p>Số lượng: {od.quantity}</p>
                 <p>Khối lượng: {od.product.weight}</p>
