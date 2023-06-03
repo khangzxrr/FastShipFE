@@ -1,54 +1,30 @@
 import React, { useState } from 'react'
 import "../../component/home/home.css"
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { registerAction } from '../../features/login/registerAction'
 import { useNavigate } from 'react-router-dom'
-import { Button, Col, Form, Input, Row } from "antd";
+import { Button, Col, Form, Input, Row, message } from "antd";
 
 export default function InputForm() {
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [phoneNumber, setPhoneNumber] = useState('')
-  const [fullname, setFullname] = useState('')
-  const [address, setAddress] = useState('')
-
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  const { products } = useSelector(state => state.requestProduct)
+
+  const [messageApi, messageApiContextHolder] = message.useMessage()
+
   const onFinish = (values) => {
     console.log("Success:", values);
-  };
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
-  function handleChangeEmail(event) {
-    setEmail(event.target.value)
-  }
 
-  function handleChangeAddress(event) {
-    setAddress(event.target.value)
-  }
-
-  function handleChangePassword(event) {
-    setPassword(event.target.value)
-  }
-
-  function handleChangePhoneNumber(event) {
-    setPhoneNumber(event.target.value)
-  }
-
-  function handleChangeFullname(event) {
-    setFullname(event.target.value)
-  }
-
-
-  function handleOnRegister() {
-    console.log(email)
-
-    dispatch(registerAction(email, password, phoneNumber, address, fullname))
+    dispatch(registerAction(values.email, values.password, values.phone, values.address, values.name))
       .then((data) => {
-        alert('Đăng kí thành công! vui lòng nhấn yêu cầu báo giá')
-        navigate('/add')
+
+        if (products.length > 0) {
+          navigate('/add')
+        } else {
+          navigate('/home')
+        }
       })
       .catch((err) => {
 
@@ -61,51 +37,22 @@ export default function InputForm() {
         }
 
       })
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+
+
+  function handleOnRegister() {
+    // console.log(email)
+
+
 
   }
   return (
 
-    // <Form className='inputform'
-    //   labelCol={{
-    //     span: 4,
-    //   }}
-    //   wrapperCol={{
-    //     span: 14,
-    //   }}
-    //   layout="horizontal"
-    //   style={{
-    //     maxWidth: 600,
-    //   }}
-    // >
-    //   <Form.Item label="EMAIL">
-    //     <Input onChange={handleChangeEmail} />
-    //   </Form.Item>
-    //   <Form.Item label="MẬT KHẨU" >
-    //     <Input.Password
-    //       onChange={handleChangePassword}
-    //       iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-    //     />
-    //   </Form.Item>
-    //   <Form.Item label="NHẬP LẠI MẬT KHẨU" >
-    //     <Input.Password
-    //       onChange={handleChangePassword}
-    //       iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-    //     />
-    //   </Form.Item>
-    //   <Form.Item label="SĐT">
-    //     <Input onChange={handleChangePhoneNumber} />
-    //   </Form.Item>
-    //   <Form.Item label="HỌ">
-    //     <Input onChange={handleChangeLastName} />
-    //   </Form.Item>
-    //   <Form.Item label="TÊN">
-    //     <Input onChange={handleChangeFirstName} />
-    //   </Form.Item>
-    //   <Form.Item label="ĐỊA CHỈ">
-    //     <Input onChange={handleChangeAddress} />
-    //   </Form.Item>
-    //   <Button style={{ marginLeft: '150px', color: 'black' }} type='primary' onClick={handleOnRegister}>ĐĂNG KÝ TÀI KHOẢN</Button>
-    // </Form>
+
     <Form
       layout="vertical"
       name="basic"
@@ -113,20 +60,22 @@ export default function InputForm() {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
+      {messageApiContextHolder}
       <Row gutter={[16, 8]}>
         <Col span={12}>
           <Form.Item
             style={{ fontWeight: 600 }}
             label="Email"
-            name="name"
+            name="email"
             rules={[
               {
                 required: true,
+                type: 'email',
                 message: "Nhập email!",
               },
             ]}
           >
-            <Input  onChange={handleChangeEmail} style={{ height: 40 }} />
+            <Input style={{ height: 40 }} />
           </Form.Item>
         </Col>
         <Col span={12}>
@@ -137,11 +86,20 @@ export default function InputForm() {
             rules={[
               {
                 required: true,
-                message: "Vui lòng nhập SĐT!",
+                pattern: /^(?:\d*)$/,
+                message: "Vui lòng kiểm tra lại số điện thoại",
               },
+              {
+                max: 13,
+                message: 'Chiều dài vượt quá 13 kí tự'
+              },
+              {
+                min: 10,
+                message: 'Chiều dài chưa đủ 10 kí tự'
+              }
             ]}
           >
-            <Input onChange={handleChangePhoneNumber} style={{ height: 40 }} />
+            <Input style={{ height: 40 }} />
           </Form.Item>
         </Col>
         <Col span={12}>
@@ -156,7 +114,7 @@ export default function InputForm() {
               },
             ]}
           >
-            <Input onChange={handleChangeFullname} style={{ height: 40 }} />
+            <Input style={{ height: 40 }} />
           </Form.Item>
         </Col>
       </Row>
@@ -174,7 +132,7 @@ export default function InputForm() {
               },
             ]}
           >
-            <Input onChange={handleChangeAddress} style={{ height: 40 }} />
+            <Input style={{ height: 40 }} />
           </Form.Item>
         </Col>
         <Col span={12} />
@@ -193,7 +151,7 @@ export default function InputForm() {
             ]}
             hasFeedback
           >
-            <Input.Password onChange={handleChangePassword} style={{ height: 40 }} />
+            <Input.Password style={{ height: 40 }} />
           </Form.Item>
         </Col>
         <Col span={12}>
@@ -222,7 +180,7 @@ export default function InputForm() {
               }),
             ]}
           >
-            <Input.Password onChange={handleChangePassword} style={{ height: 40 }} />
+            <Input.Password style={{ height: 40 }} />
           </Form.Item>
         </Col>
       </Row>
@@ -231,11 +189,11 @@ export default function InputForm() {
           float: "left",
           display: "flex",
           flexDirection: "column",
-          marginBottom:'30px'
+          marginBottom: '30px'
         }}
       >
         <Button
-          style={{ marginTop: 25, color:'black', fontWeight:'bold'}}
+          style={{ marginTop: 25, color: 'black', fontWeight: 'bold' }}
           type="primary"
           htmlType="submit"
           onClick={handleOnRegister}
