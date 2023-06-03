@@ -3,10 +3,8 @@ import "../../component/home/home.css"
 import { useDispatch } from 'react-redux'
 import { registerAction } from '../../features/login/registerAction'
 import { useNavigate } from 'react-router-dom'
-import { EyeTwoTone, EyeInvisibleOutlined } from '@ant-design/icons'
-import { fromJSON } from 'postcss'
-import { Button, Col, Form, Input, Row, Select } from "antd";
-const { Option } = Select;
+import { Button, Col, Form, Input, Row } from "antd";
+
 export default function InputForm() {
 
   const [email, setEmail] = useState('')
@@ -149,21 +147,6 @@ export default function InputForm() {
         <Col span={12}>
           <Form.Item
             style={{ fontWeight: 600 }}
-            label="Họ"
-            name="name"
-            rules={[
-              {
-                required: true,
-                message: "Nhập họ",
-              },
-            ]}
-          >
-            <Input onChange={handleChangeLastName} style={{ height: 40 }} />
-          </Form.Item>
-        </Col>
-        <Col span={12}>
-          <Form.Item
-            style={{ fontWeight: 600 }}
             label="Tên"
             name="name"
             rules={[
@@ -173,7 +156,7 @@ export default function InputForm() {
               },
             ]}
           >
-            <Input onChange={handleChangeFirstName} style={{ height: 40 }} />
+            <Input onChange={handleChangeFullname} style={{ height: 40 }} />
           </Form.Item>
         </Col>
       </Row>
